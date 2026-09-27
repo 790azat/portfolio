@@ -22,7 +22,7 @@ jobs:
           PORT: ${{ vars.SFTP_PORT || '22122' }}
           USER: ${{ secrets.SFTP_USER }}
           PASS: ${{ secrets.SFTP_PASSWORD }}
-          REMOTE: ${{ vars.SFTP_PATH || 'www/s18113211.smrtp.ru' }}
+          REMOTE: ${{ vars.SFTP_PATH || 'www/evnweb.am' }}
         run: |
           if [ -z "$USER" ] || [ -z "$PASS" ]; then
             echo "::warning::Выкладка пропущена: задайте секреты SFTP_USER и SFTP_PASSWORD"
@@ -38,11 +38,11 @@ jobs:
           fi
           if ! LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
             set sftp:auto-confirm yes; set net:max-retries 1; set net:timeout 20;
-            cls -1 $REMOTE/ > /dev/null; bye"; then
-            echo "::error::Не удалось войти по SFTP или нет папки $REMOTE: проверьте секреты SFTP_USER / SFTP_PASSWORD и переменную SFTP_PATH"
+            mkdir -p -f $REMOTE; cls -1 $REMOTE/ > /dev/null; bye"; then
+            echo "::error::Не удалось войти по SFTP или создать папку $REMOTE: проверьте секреты SFTP_USER / SFTP_PASSWORD и переменную SFTP_PATH"
             exit 1
           fi
-          echo "Вход по SFTP успешен, папка $REMOTE найдена"
+          echo "Вход по SFTP успешен, папка $REMOTE на месте"
           LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
             set sftp:auto-confirm yes;
             set net:max-retries 3; set net:timeout 30;
