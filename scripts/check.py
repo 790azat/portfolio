@@ -21,6 +21,12 @@ class Parser(html.parser.HTMLParser):
             if name in ("href", "src", "data-full") and value:
                 self.refs.append(value)
 
+    def handle_startendtag(self, tag, attrs):
+        # <img ... /> и <path ... /> в SVG закрыты сами, в стек не кладём
+        for name, value in attrs:
+            if name in ("href", "src", "data-full") and value:
+                self.refs.append(value)
+
     def handle_endtag(self, tag):
         if self.stack and self.stack[-1] == tag:
             self.stack.pop()
