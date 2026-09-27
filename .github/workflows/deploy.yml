@@ -29,6 +29,20 @@ jobs:
             exit 0
           fi
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          # Понятная ошибка вместо «max-retries exceeded»: сначала порт, потом вход.
+          if timeout 20 bash -c "</dev/tcp/$HOST/$PORT" 2>/dev/null; then
+            echo "Порт $HOST:$PORT открыт"
+          else
+            echo "::error::Сервер $HOST:$PORT не отвечает (хостинг недоступен или блокирует GitHub)"
+            exit 1
+          fi
+          if ! LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
+            set sftp:auto-confirm yes; set net:max-retries 1; set net:timeout 20;
+            cls -1 $REMOTE/ > /dev/null; bye"; then
+            echo "::error::Не удалось войти по SFTP или нет папки $REMOTE: проверьте секреты SFTP_USER / SFTP_PASSWORD и переменную SFTP_PATH"
+            exit 1
+          fi
+          echo "Вход по SFTP успешен, папка $REMOTE найдена"
           LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
             set sftp:auto-confirm yes;
             set net:max-retries 3; set net:timeout 30;
