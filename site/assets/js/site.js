@@ -22,5 +22,13 @@
     if (e.key === 'ArrowLeft') show(idx - 1);
     if (e.key === 'ArrowRight') show(idx + 1);
   });
+  // Цели Метрики: клик по способу связи (telegram, whatsapp, viber, phone, email)
+  const goals = [['t.me/', 'telegram'], ['wa.me/', 'whatsapp'], ['viber:', 'viber'], ['tel:', 'phone'], ['mailto:', 'email']];
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || typeof window.ym !== 'function') return;
+    const g = goals.find(([part]) => a.getAttribute('href').includes(part));
+    if (g) window.ym(113109354, 'reachGoal', g[1]);
+  });
   document.getElementById('y').textContent = new Date().getFullYear();
 })();
