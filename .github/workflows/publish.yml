@@ -28,7 +28,7 @@ jobs:
         env:
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL: ${{ vars.TELEGRAM_CHANNEL }}
+          TELEGRAM_CHANNEL: ${{ vars.TELEGRAM_CHANNEL || secrets.TELEGRAM_CHANNEL }}
           TELEGRAM_WEBHOOK_URL: ${{ vars.TELEGRAM_WEBHOOK_URL }}
           MEDIA_BASE: ${{ vars.MEDIA_BASE || 'https://raw.githubusercontent.com/790azat/portfolio/main/site' }}
           # Azat 2026-09-28: пока evnweb.am не открывается (домен .am не делегирован), картинки берутся с GitHub. Потом вернуть https://evnweb.am
