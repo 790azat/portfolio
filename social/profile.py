@@ -31,18 +31,16 @@ def main():
     if cfg.get('emails'):
         step('emails', lambda: publish.call('POST', page, emails=json.dumps(cfg['emails'])))
     if cfg.get('picture'):
-        if not publish.reachable(url(cfg['picture'])):
-            bad.append('picture'); print('::warning::фото профиля ещё не выложено на сайт')
-        else:
-            step('picture', lambda: publish.call('POST', f'{page}/picture', picture=url(cfg['picture'])))
+        # проверка сайта только для лога, решает сама Meta
+        publish.reachable(url(cfg['picture']))
+        step('picture', lambda: publish.call('POST', f'{page}/picture', picture=url(cfg['picture'])))
     if cfg.get('cover'):
-        if not publish.reachable(url(cfg['cover'])):
-            bad.append('cover'); print('::warning::обложка ещё не выложена на сайт')
-        else:
-            def cover():
-                pid = publish.call('POST', f'{page}/photos', url=url(cfg['cover']), published='false')['id']
-                publish.call('POST', page, cover=pid)
-            step('cover', cover)
+        publish.reachable(url(cfg['cover']))
+
+        def cover():
+            pid = publish.call('POST', f'{page}/photos', url=url(cfg['cover']), published='false')['id']
+            publish.call('POST', page, cover=pid)
+        step('cover', cover)
     print('Готово:', ', '.join(ok) or '—', '| Не получилось:', ', '.join(bad) or '—')
     if bad:
         sys.exit(1)

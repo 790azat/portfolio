@@ -45,10 +45,13 @@ def call(method, path, **params):
 
 
 def reachable(url):
+    # GET первого байта с обычным User-Agent: хостинг может отвечать 403 на HEAD или на «Python-urllib»
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (evnweb-publisher)', 'Range': 'bytes=0-0'})
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, method='HEAD'), timeout=30) as r:
-            return r.status == 200
-    except Exception:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.status in (200, 206)
+    except Exception as e:
+        print(f'  недоступно {url}: {e}')
         return False
 
 
