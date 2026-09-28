@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml; links: ссылки на опубликованные посты; tg-setup: подключить Telegram-бота к сайту"
+        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml; links: ссылки на опубликованные посты; tg-setup: подключить Telegram-бота к сайту; inbox: список переписок в Direct"
         type: choice
-        options: [check, dry-run, publish, profile, delete, links, tg-setup]
+        options: [check, dry-run, publish, profile, delete, links, tg-setup, inbox]
         default: check
 
 concurrency: publish
@@ -45,6 +45,7 @@ jobs:
             links) python social/permalinks.py ;;
             tg-setup) python social/tg_setup.py ;;
             delete) python social/delete.py ;;
+            inbox) python social/ig_inbox.py ;;
             *) python social/publish.py ;;
           esac
       - name: Записать, что опубликовано
