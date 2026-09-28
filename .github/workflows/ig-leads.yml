@@ -1,0 +1,29 @@
+name: Instagram-лиды (проверка профилей)
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "файл со списком username"
+        default: social/leads/handles.txt
+      hashtags:
+        description: "хэштеги через пробел для пробного поиска (необязательно)"
+        default: ""
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml
+      - name: Проверка профилей
+        env:
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          FILE: ${{ github.event.inputs.file }}
+          TAGS: ${{ github.event.inputs.hashtags }}
+        run: |
+          args=""
+          for t in $TAGS; do args="$args --hashtag $t"; done
+          python social/ig_leads.py "$FILE" $args
