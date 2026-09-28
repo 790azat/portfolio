@@ -27,7 +27,8 @@ jobs:
       - name: Публикация
         env:
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
-          MEDIA_BASE: ${{ vars.MEDIA_BASE || 'https://evnweb.am' }}
+          MEDIA_BASE: ${{ vars.MEDIA_BASE || 'https://raw.githubusercontent.com/790azat/portfolio/main/site' }}
+          # Azat 2026-09-28: пока evnweb.am не открывается (домен .am не делегирован), картинки берутся с GitHub. Потом вернуть https://evnweb.am
           MODE: ${{ github.event.inputs.mode || 'publish' }}
         run: |
           if [ -z "$META_PAGE_TOKEN" ]; then
