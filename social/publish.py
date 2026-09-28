@@ -85,6 +85,7 @@ def token_expiry():
         d = call('GET', 'debug_token', input_token=TOKEN).get('data', {})
     except MetaError:
         return None
+    print('Приложение:', d.get('application'), '| app_id:', d.get('app_id'))
     print('Тип токена:', d.get('type'), '| права:', ', '.join(d.get('scopes') or []) or '—')
     exp = d.get('expires_at') or d.get('data_access_expires_at')
     return 0 if d.get('expires_at') == 0 else exp
