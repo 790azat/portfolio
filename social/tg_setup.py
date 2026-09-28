@@ -19,6 +19,23 @@ def alive(u):
         return str(getattr(e, 'reason', e))
 
 
+import socket
+for h in ('evnweb.am', 'www.evnweb.am', 's18113211.smrtp.ru', 'shared-33.smartape.net', 'api.telegram.org'):
+    try:
+        addrs = sorted({a[4][0] for a in socket.getaddrinfo(h, 443, proto=socket.IPPROTO_TCP)})
+    except Exception as e:
+        addrs = [str(e)]
+    res = []
+    for a in addrs:
+        try:
+            socket.create_connection((a, 443), timeout=8).close(); res.append(f'{a}:443 ok')
+        except Exception as e:
+            res.append(f'{a}:443 {e}')
+        try:
+            socket.create_connection((a, 80), timeout=8).close(); res.append(f'{a}:80 ok')
+        except Exception as e:
+            res.append(f'{a}:80 {e}')
+    print('DIAG', h, '|', '; '.join(res))
 url = None
 for u in CANDIDATES:
     err = alive(u)
