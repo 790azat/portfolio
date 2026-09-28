@@ -74,3 +74,4 @@ jobs:
               mkdir -p -f $MIRROR;
               mirror -R --delete --exclude-glob .well-known/ --exclude-glob bot/data/ site/ $MIRROR/;
               bye" && echo "Копия выложена в $MIRROR" || echo "::warning::Не удалось выложить копию в $MIRROR"
+          fi
