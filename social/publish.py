@@ -50,7 +50,7 @@ def upload(path, file, **params):
     params['access_token'] = TOKEN
     b = uuid.uuid4().hex
     body = b''.join(f'--{b}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode() for k, v in params.items())
-    body += f'--{b}\r\nContent-Disposition: form-data; name="source"; filename="{file.name}"\r\nContent-Type: image/jpeg\r\n\r\n'.encode()
+    body += f'--{b}\r\nContent-Disposition: form-data; name="source"; filename="{file.name}"\r\nContent-Type: image/{"png" if file.suffix == ".png" else "jpeg"}\r\n\r\n'.encode()
     body += file.read_bytes() + f'\r\n--{b}--\r\n'.encode()
     req = urllib.request.Request(f'{API}/{path}', data=body, method='POST', headers={'Content-Type': f'multipart/form-data; boundary={b}'})
     try:
