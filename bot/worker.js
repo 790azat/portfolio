@@ -70,14 +70,32 @@ async function chat(req, env, url) {
   if (q.name) hist.name = String(q.name).slice(0, 80);
   if (q.page) hist.page = String(q.page).slice(0, 200);
   await env.BOT.put(key, JSON.stringify(hist), { expirationTtl: CHAT_TTL });
-  const a = (await env.BOT.get('admin', 'json'))?.id;
-  if (a) {
-    const first = mine.length === 0;
-    const head = first ? `🌐 Чат на сайте, новый посетитель${hist.page ? ` (${hist.page})` : ''}` : '🌐 Чат на сайте';
-    const sent = await tg(env)('sendMessage', { chat_id: a, text: `${head} #${sid.slice(0, 6)}:\n\n${text}\n\nОтветьте (reply), и ответ появится у него в чате на сайте.` });
-    if (sent?.message_id) await env.BOT.put(`reply:${sent.message_id}`, `web:${sid}`, { expirationTtl: CHAT_TTL });
-  }
+  const first = mine.length === 0;
+  const head = first ? `🌐 Чат на сайте, новый посетитель${hist.page ? ` (${hist.page})` : ''}` : '🌐 Чат на сайте';
+  await notifyAdmin(env, `${head} #${sid.slice(0, 6)}:\n\n${text}\n\nОтветьте (reply), и ответ появится у него в чате на сайте.`, `web:${sid}`);
   return res({ ok: true, n: hist.msgs.length });
+}
+
+// Сообщение Азату. Пока он не зарегистрировался через /admin, сообщения копятся в очереди
+// и уходят ему сразу после регистрации, чтобы ни одна заявка не потерялась.
+async function notifyAdmin(env, text, replyTo) {
+  const a = (await env.BOT.get('admin', 'json'))?.id;
+  if (!a) {
+    const q = (await env.BOT.get('pending', 'json')) || [];
+    q.push({ text, replyTo, at: Date.now() });
+    await env.BOT.put('pending', JSON.stringify(q.slice(-100)));
+    return null;
+  }
+  const sent = await tg(env)('sendMessage', { chat_id: a, text, disable_web_page_preview: true });
+  if (sent?.message_id && replyTo) await env.BOT.put(`reply:${sent.message_id}`, String(replyTo), { expirationTtl: CHAT_TTL * 2 });
+  return sent;
+}
+
+async function flushPending(env) {
+  const q = (await env.BOT.get('pending', 'json')) || [];
+  await env.BOT.delete('pending');
+  for (const p of q) await notifyAdmin(env, `⏳ Пришло, пока бот ждал /admin (${new Date(p.at).toISOString().slice(0, 16).replace('T', ' ')} UTC):\n${p.text}`, p.replyTo);
+  return q.length;
 }
 
 export default {
@@ -104,7 +122,7 @@ async function handle(u, env) {
   const admin = async () => (await kv.get('admin', {})).id;
   const toAdmin = async (text, fromChat, msgId) => {
     const a = await admin();
-    if (!a) return;
+    if (!a) return notifyAdmin(env, text, fromChat);
     const ids = [(await say(a, text))?.message_id];
     if (fromChat && msgId) ids.push((await api('forwardMessage', { chat_id: a, from_chat_id: fromChat, message_id: msgId }))?.message_id);
     for (const id of ids.filter(Boolean)) await env.BOT.put(`reply:${id}`, String(fromChat), { expirationTtl: 60 * 60 * 24 * 60 });
@@ -160,7 +178,8 @@ async function handle(u, env) {
     const own = m.contact.user_id === m.from?.id;
     if (own && m.contact.phone_number.replace(/\D/g, '').endsWith(ADMIN_PHONE)) {
       await kv.put('admin', { id: chat });
-      return say(chat, 'Готово: заявки и сообщения клиентов будут приходить сюда. Чтобы ответить клиенту, ответьте (reply) на его сообщение.', { remove_keyboard: true });
+      await say(chat, 'Готово: заявки и сообщения клиентов будут приходить сюда. Чтобы ответить клиенту, ответьте (reply) на его сообщение.', { remove_keyboard: true });
+      return flushPending(env);
     }
     return say(chat, 'Этот номер не подходит.', { remove_keyboard: true });
   }
