@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for d in evnweb.am www.evnweb.am s18113211.smrtp.ru; do echo "== $d"; dig +short A $d; dig +short NS $d; done
-          echo "== whois-ish NS via 8.8.8.8"; dig @8.8.8.8 +short A evnweb.am; dig @1.1.1.1 +short A evnweb.am
-          dig @8.8.8.8 evnweb.am SOA +noall +answer +authority
-          for u in https://evnweb.am/ https://www.evnweb.am/m/profile/avatar.jpg http://evnweb.am/m/profile/avatar.jpg https://s18113211.smrtp.ru/m/profile/avatar.jpg; do curl -sS -o /dev/null -w "%{http_code} %{content_type} $u\n" -m 20 "$u" || true; done
+          B=https://raw.githubusercontent.com/790azat/portfolio/main/site/m
+          for u in $B/profile/avatar.jpg $B/2026-10-nedelya-1/06-reel-restoran/reel.mp4; do curl -sSI -m 20 "$u" | grep -iE "^HTTP|content-type|content-length"; done
+          whois evnweb.am 2>/dev/null | head -30 || true
+          dig @ns1.smartape.ru +short A evnweb.am || true
