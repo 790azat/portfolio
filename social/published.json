@@ -93,5 +93,17 @@
   "facebook_at": "2026-09-28 12:09",
   "telegram": 30,
   "telegram_at": "2026-09-28 15:39"
+ },
+ "2026-10-segmenty/04-post-business-site": {
+  "instagram": "18631651891062462",
+  "instagram_at": "2026-09-28 19:20",
+  "facebook_tries": 1,
+  "facebook_error": "POST 1347280171803827/photos: Missing or invalid image file (code 324/2069019)",
+  "telegram": 38,
+  "telegram_ids": [
+   38,
+   39
+  ],
+  "telegram_at": "2026-09-28 19:20"
  }
 }
