@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Готовит партию фабрики к публикации: кладёт JPEG/MP4 в site/m/<партия>/ и добавляет записи в schedule.yaml.
 
-  python social/stage.py /mnt/project-files/social/factory 2026-10-nedelya-1 --start 2026-10-05 [--lang ru]
+  python social/stage.py /mnt/project-files/social/factory 2026-10-nedelya-1 --start 2026-10-05 [--lang hy]
 
 Картинки берутся на языке --lang, подпись: сначала на этом языке, под ней на втором.
 Все новые записи получают approved: false, публикация начнётся только после одобрения.
@@ -38,7 +38,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('factory'); ap.add_argument('batch')
     ap.add_argument('--start', required=True, help='понедельник недели публикации, ГГГГ-ММ-ДД')
-    ap.add_argument('--lang', default='ru')
+    ap.add_argument('--lang', default='hy')
     a = ap.parse_args()
     fac = pathlib.Path(a.factory); out = fac / 'out' / a.batch; briefs = fac / 'briefs' / a.batch
     other = 'hy' if a.lang == 'ru' else 'ru'
