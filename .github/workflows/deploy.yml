@@ -35,6 +35,7 @@ jobs:
           USER: ${{ secrets.SFTP_USER }}
           PASS: ${{ secrets.SFTP_PASSWORD }}
           REMOTE: ${{ vars.SFTP_PATH || 'www/evnweb.am' }}
+          MIRROR: ${{ vars.SFTP_MIRROR_PATH || 'www/s18113211.smrtp.ru' }}
         run: |
           if [ -z "$USER" ] || [ -z "$PASS" ]; then
             echo "::warning::Выкладка пропущена: задайте секреты SFTP_USER и SFTP_PASSWORD"
@@ -65,3 +66,11 @@ jobs:
             set net:max-retries 3; set net:timeout 30;
             mirror -R --delete --verbose --exclude-glob .well-known/ --exclude-glob bot/data/ site/ $REMOTE/;
             bye"
+          # Запасная копия на техническом адресе SmartApe: пока evnweb.am не открывается, Telegram-бот работает отсюда.
+          if [ -n "$MIRROR" ]; then
+            LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
+              set sftp:auto-confirm yes;
+              set net:max-retries 3; set net:timeout 30;
+              mkdir -p -f $MIRROR;
+              mirror -R --delete --exclude-glob .well-known/ --exclude-glob bot/data/ site/ $MIRROR/;
+              bye" && echo "Копия выложена в $MIRROR" || echo "::warning::Не удалось выложить копию в $MIRROR"
