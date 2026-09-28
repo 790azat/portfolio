@@ -81,6 +81,7 @@ def token_expiry():
         d = call('GET', 'debug_token', input_token=TOKEN).get('data', {})
     except MetaError:
         return None
+    print('Тип токена:', d.get('type'), '| права:', ', '.join(d.get('scopes') or []) or '—')
     exp = d.get('expires_at') or d.get('data_access_expires_at')
     return 0 if d.get('expires_at') == 0 else exp
 
@@ -168,6 +169,10 @@ def main():
     page, page_name, ig, ig_name = accounts()
     print(f'Страница Facebook: {page_name} ({page}); Instagram: @{ig_name or "не привязан"}')
     if a.check:
+        try:
+            print('Мои задачи на странице:', call('GET', 'me/accounts', fields='id,name,tasks').get('data'))
+        except MetaError as e:
+            print('me/accounts:', e)
         if not ig:
             sys.exit('Instagram не привязан к странице или это не бизнес-аккаунт')
         return
