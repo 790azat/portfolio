@@ -16,6 +16,16 @@ jobs:
           python-version: "3.12"
       - name: Проверка перед выкладкой
         run: python scripts/check.py
+      - name: Настройки Telegram-бота (из секрета, в репозиторий не попадают)
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ -n "$TG_TOKEN" ]; then
+            SECRET=$(printf '%s' "$TG_TOKEN" | sha256sum | cut -c1-32)
+            printf "<?php\nconst TG_TOKEN = '%s';\nconst TG_SECRET = '%s';\n" "$TG_TOKEN" "$SECRET" > site/bot/config.php
+          else
+            echo "Бот не настроен: нет секрета TELEGRAM_BOT_TOKEN"; rm -rf site/bot
+          fi
       - name: Заливка по SFTP (папка site/ заменяет всё содержимое на сервере)
         env:
           HOST: ${{ vars.SFTP_HOST || 'shared-33.smartape.net' }}
@@ -51,5 +61,5 @@ jobs:
           LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
             set sftp:auto-confirm yes;
             set net:max-retries 3; set net:timeout 30;
-            mirror -R --delete --verbose --exclude-glob .well-known/ site/ $REMOTE/;
+            mirror -R --delete --verbose --exclude-glob .well-known/ --exclude-glob bot/data/ site/ $REMOTE/;
             bye"

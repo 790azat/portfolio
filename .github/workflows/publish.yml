@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml; links: ссылки на опубликованные посты"
+        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml; links: ссылки на опубликованные посты; tg-setup: подключить Telegram-бота к сайту"
         type: choice
-        options: [check, dry-run, publish, profile, delete, links]
+        options: [check, dry-run, publish, profile, delete, links, tg-setup]
         default: check
 
 concurrency: publish
@@ -27,6 +27,9 @@ jobs:
       - name: Публикация
         env:
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: ${{ vars.TELEGRAM_CHANNEL }}
+          TELEGRAM_WEBHOOK_URL: ${{ vars.TELEGRAM_WEBHOOK_URL }}
           MEDIA_BASE: ${{ vars.MEDIA_BASE || 'https://raw.githubusercontent.com/790azat/portfolio/main/site' }}
           # Azat 2026-09-28: пока evnweb.am не открывается (домен .am не делегирован), картинки берутся с GitHub. Потом вернуть https://evnweb.am
           MODE: ${{ github.event.inputs.mode || 'publish' }}
@@ -40,6 +43,7 @@ jobs:
             dry-run) python social/publish.py --dry-run ;;
             profile) python social/profile.py ;;
             links) python social/permalinks.py ;;
+            tg-setup) python social/tg_setup.py ;;
             delete) python social/delete.py ;;
             *) python social/publish.py ;;
           esac

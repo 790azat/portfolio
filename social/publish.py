@@ -14,6 +14,8 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
+import tg
+
 HERE = pathlib.Path(__file__).resolve().parent
 SCHEDULE = HERE / 'schedule.yaml'
 LOG = HERE / 'published.json'
@@ -214,6 +216,13 @@ def main():
     PAGE = page
     print(f'Страница Facebook: {page_name} ({page}); Instagram: @{ig_name or "не привязан"}')
     if a.check:
+        if tg.enabled():
+            try:
+                tg.check()
+            except tg.TgError as e:
+                print(f'::error::Telegram: {e}')
+        else:
+            print('Telegram: не настроен (нужны секрет TELEGRAM_BOT_TOKEN и переменная TELEGRAM_CHANNEL)')
         if not ig:
             sys.exit('Instagram не привязан к странице или это не бизнес-аккаунт')
         return
@@ -232,11 +241,29 @@ def main():
         rec = log.setdefault(pid, {})
         urls = [f'{BASE}/m/{pid}/{f}' for f in p['media']]
         cover = f"{BASE}/m/{pid}/{p['cover']}" if p.get('cover') else None
-        for target in p.get('to', ['instagram', 'facebook']):
+        targets = list(p.get('to', ['instagram', 'facebook']))
+        if tg.enabled() and 'telegram' not in targets and p['kind'] != 'story':
+            targets.append('telegram')  # канал Telegram получает всё, кроме сторис
+        for target in targets:
             if target in rec or rec.get(f'{target}_tries', 0) >= MAX_TRIES:
                 continue
             if target == 'instagram' and not ig:
                 print(f'{pid}: пропуск Instagram, аккаунт не привязан'); continue
+            if target == 'telegram':
+                if not tg.enabled():
+                    continue
+                if a.dry_run:
+                    print(f'[пробно] {pid} → telegram: {p["kind"]}, {len(urls)} файл(ов)'); continue
+                try:
+                    rec['telegram'] = tg.publish(pid, p['kind'], p['media'], p.get('caption', ''))
+                    rec['telegram_at'] = now.strftime('%Y-%m-%d %H:%M'); rec.pop('telegram_error', None)
+                    print(f"ОПУБЛИКОВАНО {pid} → telegram: {rec['telegram']}")
+                except tg.TgError as e:
+                    failed = True
+                    rec['telegram_tries'] = rec.get('telegram_tries', 0) + 1
+                    rec['telegram_error'] = str(e)
+                    print(f'::error::{pid} → telegram: {e}')
+                continue
             missing = [u for u in urls + ([cover] if cover else []) if not reachable(u)]
             if missing:
                 print(f'{pid}: файлы ещё не выложены на сайт, жду: {missing[0]}'); break
