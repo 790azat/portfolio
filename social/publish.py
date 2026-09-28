@@ -182,6 +182,14 @@ def ig_publish(ig, kind, urls, caption, cover=None):
 
 
 # ---------- Facebook ----------
+def fb_photo(page, url, **params):
+    """Фото в Facebook загружаем файлом: по ссылке Facebook не всегда скачивает картинку с хостинга (ошибка 324)."""
+    f = local_file(url)
+    if f:
+        return upload(f'{page}/photos', f, **params)
+    return call('POST', f'{page}/photos', url=url, **params)
+
+
 def fb_publish(page, kind, urls, caption):
     if kind == 'reel':
         f = local_file(urls[0])
@@ -189,13 +197,13 @@ def fb_publish(page, kind, urls, caption):
             return upload(f'{page}/videos', f, description=caption, host='https://graph-video.facebook.com')['id']
         return call('POST', f'{page}/videos', file_url=urls[0], description=caption)['id']
     if kind == 'story':
-        pid = call('POST', f'{page}/photos', url=urls[0], published='false')['id']
+        pid = fb_photo(page, urls[0], published='false')['id']
         return call('POST', f'{page}/photo_stories', photo_id=pid).get('post_id', pid)
     if kind == 'carousel':
-        ids = [call('POST', f'{page}/photos', url=u, published='false')['id'] for u in urls]
+        ids = [fb_photo(page, u, published='false')['id'] for u in urls]
         p = {f'attached_media[{i}]': json.dumps({'media_fbid': x}) for i, x in enumerate(ids)}
         return call('POST', f'{page}/feed', message=caption, **p)['id']
-    return call('POST', f'{page}/photos', url=urls[0], message=caption)['id']
+    return fb_photo(page, urls[0], message=caption)['id']
 
 
 def main():
