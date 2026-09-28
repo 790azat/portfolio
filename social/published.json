@@ -98,12 +98,13 @@
   "instagram": "18631651891062462",
   "instagram_at": "2026-09-28 19:20",
   "facebook_tries": 1,
-  "facebook_error": "POST 1347280171803827/photos: Missing or invalid image file (code 324/2069019)",
   "telegram": 38,
   "telegram_ids": [
    38,
    39
   ],
-  "telegram_at": "2026-09-28 19:20"
+  "telegram_at": "2026-09-28 19:20",
+  "facebook": "122099136507492824",
+  "facebook_at": "2026-09-28 19:23"
  }
 }
