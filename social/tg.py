@@ -5,8 +5,24 @@
 """
 import json, os, pathlib, urllib.error, urllib.request, uuid
 
-TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-CHANNEL = os.environ.get('TELEGRAM_CHANNEL', '')
+def _token(t):
+    t = ''.join(t.split())
+    return t[3:] if t.lower().startswith('bot') and ':' in t else t
+
+
+def _channel(c):
+    # принимаем @evnweb, evnweb, t.me/evnweb, https://t.me/evnweb и числовой id
+    c = c.strip().rstrip('/')
+    for p in ('https://', 'http://', 't.me/', 'telegram.me/'):
+        if c.lower().startswith(p):
+            c = c[len(p):]
+    if c and not c.startswith('@') and not c.lstrip('-').isdigit():
+        c = '@' + c
+    return c
+
+
+TOKEN = _token(os.environ.get('TELEGRAM_BOT_TOKEN', ''))
+CHANNEL = _channel(os.environ.get('TELEGRAM_CHANNEL', ''))
 SITE = pathlib.Path(__file__).resolve().parent.parent / 'site'
 CAPTION_MAX = 1024
 
@@ -29,16 +45,21 @@ def api(method, fields=None, files=None):
         body += f'--{b}\r\nContent-Disposition: form-data; name="{k}"; filename="{f.name}"\r\nContent-Type: {ctype}\r\n\r\n'.encode()
         body += f.read_bytes() + b'\r\n'
     body += f'--{b}--\r\n'.encode()
-    req = urllib.request.Request(f'https://api.telegram.org/bot{TOKEN}/{method}', data=body, method='POST',
-                                 headers={'Content-Type': f'multipart/form-data; boundary={b}'})
+    url = f'https://api.telegram.org/bot{TOKEN}/{method}'
+    if fields or files:
+        req = urllib.request.Request(url, data=body, method='POST',
+                                     headers={'Content-Type': f'multipart/form-data; boundary={b}'})
+    else:
+        req = urllib.request.Request(url)
     try:
         with urllib.request.urlopen(req, timeout=300) as r:
             return json.load(r)['result']
     except urllib.error.HTTPError as e:
+        raw = e.read().decode('utf-8', 'replace')
         try:
-            msg = json.load(e).get('description')
+            msg = json.loads(raw).get('description') or raw
         except Exception:
-            msg = str(e)
+            msg = f'{e} {raw[:200]}'.strip()
         raise TgError(f'{method}: {msg}') from None
 
 

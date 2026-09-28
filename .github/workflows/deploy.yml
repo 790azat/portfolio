@@ -20,6 +20,8 @@ jobs:
         env:
           TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
+          # как в social/tg.py: без пробелов и без приставки "bot"
+          TG_TOKEN=$(printf '%s' "$TG_TOKEN" | tr -d '[:space:]' | sed -E 's/^[Bb][Oo][Tt]([0-9]+:)/\1/')
           if [ -n "$TG_TOKEN" ]; then
             SECRET=$(printf '%s' "$TG_TOKEN" | sha256sum | cut -c1-32)
             printf "<?php\nconst TG_TOKEN = '%s';\nconst TG_SECRET = '%s';\n" "$TG_TOKEN" "$SECRET" > site/bot/config.php
