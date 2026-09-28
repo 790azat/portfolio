@@ -16,7 +16,9 @@ http_response_code(200);
 
 function api(string $m, array $p = []): array {
     $ch = curl_init('https://api.telegram.org/bot' . TG_TOKEN . '/' . $m);
-    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $p, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 60]);
+    // Хостинг зависал на IPv6-маршруте до api.telegram.org: только IPv4 и короткое ожидание соединения.
+    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $p, CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, CURLOPT_CONNECTTIMEOUT => 10, CURLOPT_TIMEOUT => 50]);
     $r = json_decode((string)curl_exec($ch), true) ?: [];
     curl_close($ch);
     return $r;
