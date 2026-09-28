@@ -2,6 +2,7 @@
 import html.parser
 import pathlib
 import re
+import subprocess
 import sys
 
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
@@ -34,23 +35,30 @@ class Parser(html.parser.HTMLParser):
             errors.append(f"лишний или перепутанный </{tag}>")
 
 
-for page in SITE.glob("*.html"):
+for page in sorted(SITE.rglob("*.html")):
+    name = page.relative_to(SITE)
     p = Parser()
     p.feed(page.read_text(encoding="utf-8"))
     if p.stack:
-        errors.append(f"{page.name}: не закрыты теги {p.stack}")
+        errors.append(f"{name}: не закрыты теги {p.stack}")
     for ref in p.refs:
         if re.match(r"^(https?:|mailto:|tel:|viber:|data:|#)", ref) or ref == "#":
             continue
-        target = SITE / ref.split("?")[0].split("#")[0]
+        path = ref.split("?")[0].split("#")[0]
+        target = SITE / path.lstrip("/") if path.startswith("/") else page.parent / path
         if not target.exists():
-            errors.append(f"{page.name}: нет файла {ref}")
+            errors.append(f"{name}: нет файла {ref}")
 
 for css in SITE.rglob("*.css"):
     for ref in re.findall(r"url\(([^)]+)\)", css.read_text(encoding="utf-8")):
         ref = ref.strip("'\"")
         if not ref.startswith("data:") and not (css.parent / ref).exists():
             errors.append(f"{css.relative_to(SITE)}: нет файла {ref}")
+
+# Языковые версии собираются из src/: собранные файлы не должны отставать от шаблона и переводов
+built = subprocess.run([sys.executable, str(SITE.parent / "scripts/build.py"), "--check"], capture_output=True, text=True)
+if built.returncode:
+    errors.append((built.stderr or built.stdout).strip())
 
 if errors:
     print("\n".join(errors))
