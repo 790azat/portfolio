@@ -52,8 +52,32 @@ def reachable(url):
         return False
 
 
+def token_expiry():
+    try:
+        d = call('GET', 'debug_token', input_token=TOKEN).get('data', {})
+    except MetaError:
+        return None
+    exp = d.get('expires_at') or d.get('data_access_expires_at')
+    return 0 if d.get('expires_at') == 0 else exp
+
+
 def accounts():
-    me = call('GET', 'me', fields='id,name,instagram_business_account{id,username}')
+    """Работает и с токеном страницы, и с токеном пользователя (тогда берём токен страницы из me/accounts)."""
+    global TOKEN
+    fields = 'id,name,instagram_business_account{id,username}'
+    try:
+        me = call('GET', 'me', fields=fields)
+    except MetaError as e:
+        if 'nonexisting field' not in str(e):
+            raise
+        pages = call('GET', 'me/accounts', fields=fields + ',access_token').get('data', [])
+        if not pages:
+            raise MetaError('у токена нет доступа ни к одной странице (нужно право pages_show_list)')
+        want = os.environ.get('META_PAGE_ID')
+        me = next((p for p in pages if p['id'] == want), None) if want else None
+        me = me or next((p for p in pages if p.get('instagram_business_account')), pages[0])
+        print('Токен пользователя: беру токен страницы', me.get('name'), '(доступно страниц:', len(pages), ')')
+        TOKEN = me['access_token']
     ig = me.get('instagram_business_account') or {}
     return me['id'], me.get('name'), ig.get('id'), ig.get('username')
 
@@ -111,6 +135,12 @@ def main():
     a = ap.parse_args()
     if not TOKEN:
         sys.exit('Нет META_PAGE_TOKEN: добавьте секрет в Settings → Secrets and variables → Actions')
+    exp = token_expiry()
+    if exp:
+        left = (datetime.datetime.fromtimestamp(exp) - datetime.datetime.now()).days
+        print(f'Токен действует ещё {left} дн.' + (' Продлите его (Extend Access Token), иначе публикации остановятся.' if left < 7 else ''))
+    elif exp == 0:
+        print('Токен бессрочный')
     page, page_name, ig, ig_name = accounts()
     print(f'Страница Facebook: {page_name} ({page}); Instagram: @{ig_name or "не привязан"}')
     if a.check:
