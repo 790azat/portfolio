@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Подключает бота к сайту (setWebhook) и проверяет канал. Запуск: publish.yml, режим tg-setup."""
+"""Подключает бота (setWebhook) и проверяет канал. Запускается из bot.yml после выкладки на Cloudflare."""
 import hashlib, json, os, sys, urllib.error, urllib.parse, urllib.request
 
 import tg
 
-# Первый адрес, где бот реально отвечает (без секретного заголовка tg.php отдаёт 403) и сертификат годный.
-CANDIDATES = [os.environ['TELEGRAM_WEBHOOK_URL']] if os.environ.get('TELEGRAM_WEBHOOK_URL') else [
-    'https://evnweb.am/bot/tg.php', 'https://www.evnweb.am/bot/tg.php', 'https://s18113211.smrtp.ru/bot/tg.php']
+# Бот живёт на Cloudflare Workers (bot/worker.js, выкладка .github/workflows/bot.yml передаёт его адрес).
+# PHP-копия на evnweb.am — запасная: хостинг SmartApe не пропускает Telegram (2026-09-28).
+# Первый адрес, где бот отвечает 403 без секретного заголовка и сертификат годный.
+CANDIDATES = [os.environ['TELEGRAM_WEBHOOK_URL']] if os.environ.get('TELEGRAM_WEBHOOK_URL') else []
+if not CANDIDATES:
+    sys.exit('Адрес бота задаёт выкладка на Cloudflare: запустите workflow «Telegram-бот на Cloudflare» (bot.yml)')
 
 
 def alive(u):
