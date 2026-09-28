@@ -4,6 +4,7 @@
 
 - `site/` — сам сайт (HTML, CSS, JS, картинки, PDF), выкладывается как есть.
 - Три языка: армянский на главной (`/`), русский `/ru/`, английский `/en/`. Страницы собираются из `src/page.html` (разметка) и `src/strings.json` (тексты, у каждого ключа `hy`/`ru`/`en`) командой `python3 scripts/build.py`. Готовые `site/index.html`, `site/ru/index.html`, `site/en/index.html` коммитятся; руками их не правим, иначе проверка упадёт.
+- `scripts/og_images.cjs` — картинки превью ссылок `og-hy/ru/en.png` (1200×630), запуск `node scripts/og_images.cjs`.
 - `scripts/check.py` — проверка ссылок, картинок и разметки. Запускается на каждый PR и перед выкладкой.
 - `.github/workflows/deploy.yml` — при каждом изменении `main` заливает `site/` по SFTP на SmartApe.
 
