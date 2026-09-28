@@ -24,7 +24,9 @@
     '.evc-m{max-width:85%;padding:9px 12px;border-radius:14px;white-space:pre-wrap;word-wrap:break-word}.evc-a{background:#fff;align-self:flex-start;border-bottom-left-radius:4px}.evc-v{background:var(--accent,#1f5f5b);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}' +
     '.evc-e{font-size:.85rem;color:#b8373a;text-align:center}.evc-tg{font-size:.85rem;text-align:center;padding:6px 0 0}.evc-tg a{color:var(--accent,#1f5f5b)}' +
     '.evc-f{display:flex;gap:8px;padding:10px;border-top:1px solid #e4dfd5}.evc-f textarea{flex:1;resize:none;border:1px solid #e4dfd5;border-radius:12px;padding:9px 11px;font:inherit;height:44px;max-height:120px}.evc-f button{border:0;border-radius:12px;background:var(--accent,#1f5f5b);color:#fff;font:600 .95rem var(--sans,system-ui);padding:0 14px;cursor:pointer}.evc-f button:disabled{opacity:.5}' +
-    '@media (max-width:520px){.evc{right:8px;left:8px;width:auto;bottom:80px;height:calc(100vh - 100px)}.evc-btn span{display:none}.evc-btn{padding:0 16px}}';
+    // На телефоне окно на весь экран; шрифт поля 16px, иначе iPhone увеличивает страницу при вводе и окно «уезжает»
+    '@media (max-width:520px){.evc{left:8px;right:8px;top:8px;bottom:auto;width:auto;height:calc(100vh - 16px);height:calc(100dvh - 16px);border-radius:14px}' +
+    '.evc-f textarea{font-size:16px}.evc-btn span{display:none}.evc-btn{padding:0 16px}.evc-open .evc-btn,.evc-open .fab{display:none}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   var btn = document.createElement('button');
@@ -71,9 +73,22 @@
     timer = setTimeout(poll, open ? (idle > 5 * 60 * 1000 ? 12000 : 4000) : 20000);
   }
 
+  var phone = window.matchMedia('(max-width:520px)');
+  // Когда на телефоне открыта клавиатура, окно подстраивается под видимую часть экрана
+  function fit() {
+    var vv = window.visualViewport;
+    if (!open || !phone.matches || !vv) { box.style.top = box.style.height = ''; return; }
+    box.style.top = (vv.offsetTop + 8) + 'px'; box.style.height = (vv.height - 16) + 'px';
+    list.scrollTop = list.scrollHeight;
+  }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', fit); visualViewport.addEventListener('scroll', fit); }
+
   function toggle(v) {
     open = v; box.classList.toggle('open', v);
-    if (v) { render(); markSeen(); lastActive = Date.now(); poll(); setTimeout(function () { ta.focus(); }, 50); }
+    document.documentElement.classList.toggle('evc-open', v);
+    document.body.style.overflow = v && phone.matches ? 'hidden' : '';
+    fit();
+    if (v) { render(); markSeen(); lastActive = Date.now(); poll(); if (!phone.matches) setTimeout(function () { ta.focus(); }, 50); }
   }
   btn.addEventListener('click', function () { toggle(!open); });
   box.querySelector('.evc-h button').addEventListener('click', function () { toggle(false); });
