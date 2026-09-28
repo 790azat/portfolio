@@ -1,0 +1,13 @@
+name: diag
+on:
+  push:
+    branches: [claude/diag-dns]
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for d in evnweb.am www.evnweb.am s18113211.smrtp.ru; do echo "== $d"; dig +short A $d; dig +short NS $d; done
+          echo "== whois-ish NS via 8.8.8.8"; dig @8.8.8.8 +short A evnweb.am; dig @1.1.1.1 +short A evnweb.am
+          dig @8.8.8.8 evnweb.am SOA +noall +answer +authority
+          for u in https://evnweb.am/ https://www.evnweb.am/m/profile/avatar.jpg http://evnweb.am/m/profile/avatar.jpg https://s18113211.smrtp.ru/m/profile/avatar.jpg; do curl -sS -o /dev/null -w "%{http_code} %{content_type} $u\n" -m 20 "$u" || true; done
