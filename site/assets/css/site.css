@@ -28,9 +28,9 @@ p { margin: 0 0 1em; }
 
 .top { position: sticky; top: 0; z-index: 20; background: rgba(251,250,247,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .top__in { display: flex; align-items: center; gap: 28px; height: 68px; }
-.logo { font: 800 1.3rem var(--sans); letter-spacing: .06em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-.logo svg { width: 36px; height: 36px; flex: none; }
-.logo b { color: var(--accent); font-weight: 800; }
+.logo { font: 700 1.45rem var(--serif); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.logo svg { width: 40px; height: 40px; flex: none; }
+.logo b { color: #b8373a; font-weight: 700; }
 .nav { display: flex; gap: 24px; margin-left: auto; font-weight: 500; }
 .nav a { text-decoration: none; color: var(--muted); } .nav a:hover { color: var(--ink); }
 
