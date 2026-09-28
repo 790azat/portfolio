@@ -1,8 +1,9 @@
 {
  "2026-10-nedelya-1/01-karusel-restoran": {
   "instagram_tries": 1,
-  "instagram_error": "POST 17841421152410929/media: Only photo or video can be accepted as media type. (code 9004/2207052)",
   "facebook": "1347280171803827_122098755249492824",
-  "facebook_at": "2026-09-28 09:39"
+  "facebook_at": "2026-09-28 09:39",
+  "instagram": "18074937095741743",
+  "instagram_at": "2026-09-28 09:42"
  }
 }
