@@ -31,7 +31,7 @@ def main():
         u = line.strip().split('instagram.com/')[-1].strip('/@ ').split('?')[0].split('/')[0].lower()
         if u and not u.startswith('#') and u not in names:
             names.append(u)
-    rows, left = [], []
+    rows, left, errs = [], [], {}
     for i, u in enumerate(names):
         try:
             d = call('GET', ig, fields=f'business_discovery.username({u}){{{FIELDS}}}')['business_discovery']
@@ -43,7 +43,15 @@ def main():
                 print('Лимит запросов Meta, остановился на', u)
                 left = names[i:]
                 break
+            msg = str(e).split(': ', 1)[-1]
+            errs[msg] = errs.get(msg, 0) + 1
+            if errs[msg] == 1:
+                print('Ошибка на', u, '->', msg)
             rows.append([u, '', '', '', '', '', '', 'нет данных'])
+            if len(rows) >= 8 and not any(r[-1] == 'ok' for r in rows):
+                print('Первые 8 профилей не прочитались, останавливаюсь: похоже, не хватает прав')
+                left = names[i + 1:]
+                break
         time.sleep(1)
     for tag in a.hashtag:
         try:
