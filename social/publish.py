@@ -222,7 +222,8 @@ def main():
             except tg.TgError as e:
                 print(f'::error::Telegram: {e}')
         else:
-            print('Telegram: не настроен (нужны секрет TELEGRAM_BOT_TOKEN и переменная TELEGRAM_CHANNEL)')
+            missing = [n for n, v in (('секрет TELEGRAM_BOT_TOKEN', tg.TOKEN), ('переменная TELEGRAM_CHANNEL', tg.CHANNEL)) if not v]
+            print('Telegram: не настроен, нет: ' + ', '.join(missing))
         if not ig:
             sys.exit('Instagram не привязан к странице или это не бизнес-аккаунт')
         return
