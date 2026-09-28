@@ -277,7 +277,7 @@ def main():
                     rec['telegram_error'] = str(e)
                     print(f'::error::{pid} → telegram: {e}')
                 continue
-            missing = [u for u in urls + ([cover] if cover else []) if not reachable(u)]
+            missing = [u for u in urls + ([cover] if cover else []) if not local_file(u) and not reachable(u)]
             if missing:
                 print(f'{pid}: файлы ещё не выложены на сайт, жду: {missing[0]}'); break
             if a.dry_run:
