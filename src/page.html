@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{redirect}}<title>{{title}}</title>
 <meta name="description" content="{{description}}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#1f5f5b">
+<meta name="geo.region" content="AM-ER">
+<meta name="geo.placename" content="{{geo_place}}">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{og_description}}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://evnweb.am/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{og_image_alt}}">
 <meta property="og:url" content="{{url}}">
 <meta property="og:site_name" content="EVNWEB">
 <meta property="og:locale" content="{{og_locale}}">
+{{og_alternates}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{title}}">
+<meta name="twitter:description" content="{{og_description}}">
+<meta name="twitter:image" content="https://evnweb.am/assets/img/og.png">
 <link rel="icon" href="{{root}}assets/img/logo.svg" type="image/svg+xml">
+<link rel="icon" href="{{root}}assets/img/logo-180.png" type="image/png" sizes="180x180">
 <link rel="apple-touch-icon" href="{{root}}assets/img/logo-180.png">
 <link rel="canonical" href="{{url}}">
 {{alternates}}
-<link rel="stylesheet" href="{{root}}assets/css/site.css?v=4">
+{{preload}}
+<link rel="stylesheet" href="{{root}}assets/fonts/fonts.css">
+<link rel="stylesheet" href="{{root}}assets/css/site.css?v=5">
+{{jsonld}}
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -57,7 +73,7 @@
     <div class="chips"><span>Laravel / PHP</span><span>Հայ · Рус · Eng</span><span>{{chip_mobile}}</span><span>{{chip_pay}}</span></div>
   </div>
   <div class="collage" aria-hidden="true">
-    <img class="a" src="{{root}}assets/img/hotel-1-t.webp" alt="">
+    <img class="a" src="{{root}}assets/img/hotel-1-t.webp" alt="" fetchpriority="high">
     <img class="b" src="{{root}}assets/img/market-1-t.webp" alt="">
     <img class="c" src="{{root}}assets/img/hotel-5-t.webp" alt="">
   </div>

@@ -1,15 +1,13 @@
 {
-  "title": {"hy": "EVNWEB — կայքեր և համակարգեր բիզնեսի համար Հայաստանում", "ru": "EVNWEB — сайты и системы для бизнеса в Армении", "en": "EVNWEB — websites and business systems in Armenia"},
-  "description": {"hy": "Կայքեր ռեստորանների, հյուրանոցների և խանութների համար՝ առցանց ամրագրում, ադմին վահանակ, ապրանքների հաշվառում։ Հայերեն, ռուսերեն, անգլերեն։ Երևան։", "ru": "Сайты для ресторанов, отелей и магазинов: онлайн-бронирование, админка, учёт товаров. Армянский, русский, английский. Ереван.", "en": "Websites for restaurants, hotels and shops: online booking, admin panel, inventory tracking. Armenian, Russian, English. Yerevan."},
+  "title": {"hy": "Կայքերի պատրաստում Երևանում՝ ռեստորան, հյուրանոց, խանութ | EVNWEB", "ru": "Разработка сайтов в Ереване: ресторан, отель, магазин | EVNWEB", "en": "Website development in Yerevan: restaurants, hotels, shops | EVNWEB"},
+  "description": {"hy": "Կայքերի պատրաստում Երևանում՝ ռեստորանների, հյուրանոցների և խանութների համար։ Առցանց ամրագրում, ադմին վահանակ, ապրանքների հաշվառում, 3 լեզու։ Գները՝ 150 000 ֏-ից։", "ru": "Разработка сайтов в Ереване для ресторанов, отелей и магазинов: онлайн-бронирование, админка, учёт товаров, 3 языка. Цены от 150 000 ֏.", "en": "Website development in Yerevan for restaurants, hotels and shops: online booking, admin panel, inventory, 3 languages. Prices from 150,000 ֏."},
   "og_description": {"hy": "Ռեստորաններ, հյուրանոցներ, խանութներ՝ կայք, առցանց ամրագրում, ադմին վահանակ և ապրանքների հաշվառում։", "ru": "Рестораны, отели, магазины: сайт, онлайн-бронирование, админка и учёт товаров.", "en": "Restaurants, hotels, shops: website, online booking, admin panel and inventory tracking."},
-
   "nav_services": {"hy": "Ծառայություններ", "ru": "Услуги", "en": "Services"},
   "nav_works": {"hy": "Աշխատանքներ", "ru": "Работы", "en": "Works"},
   "nav_prices": {"hy": "Գներ", "ru": "Цены", "en": "Prices"},
   "nav_docs": {"hy": "Փաստաթղթեր", "ru": "Документы", "en": "Documents"},
   "nav_contacts": {"hy": "Կապ", "ru": "Контакты", "en": "Contacts"},
   "tg_header": {"hy": "Telegram", "ru": "Написать в Telegram", "en": "Message on Telegram"},
-
   "hero_eyebrow": {"hy": "Վեբ ծրագրավորող · Երևան", "ru": "Веб-разработчик · Ереван", "en": "Web developer · Yerevan"},
   "hero_title": {"hy": "Կայքեր և համակարգեր, որոնք հայտեր են բերում", "ru": "Сайты и системы, которые приносят заявки", "en": "Websites and systems that bring you customers"},
   "hero_lead": {"hy": "Կայքեր եմ պատրաստում ռեստորանների, հյուրանոցների և խանութների համար՝ առցանց ամրագրում, հարմար ադմին վահանակ և ապրանքների հաշվառում։ Հայերեն, ռուսերեն և անգլերեն։", "ru": "Делаю сайты для ресторанов, отелей и магазинов: онлайн-бронирование, удобную админку и учёт товаров. На армянском, русском и английском.", "en": "I build websites for restaurants, hotels and shops: online booking, an easy admin panel and inventory tracking. In Armenian, Russian and English."},
@@ -17,7 +15,6 @@
   "hero_works": {"hy": "Դիտել աշխատանքները", "ru": "Смотреть работы", "en": "See my work"},
   "chip_mobile": {"hy": "Հարմար հեռախոսի համար", "ru": "Адаптивно для телефонов", "en": "Mobile-friendly"},
   "chip_pay": {"hy": "Առցանց վճարում ArCa / Idram", "ru": "Онлайн-оплата ArCa / Idram", "en": "Online payment ArCa / Idram"},
-
   "svc_title": {"hy": "Ինչով եմ զբաղվում", "ru": "Что я делаю", "en": "What I do"},
   "svc_lead": {"hy": "Ես վաճառում եմ ոչ թե «Laravel-ով կայք», այլ արդյունք՝ ամրագրումներ, հայտեր և կարգուկանոն հաշվառման մեջ։", "ru": "Продаю не «сайт на Laravel», а результат: бронирования, заявки и порядок в учёте.", "en": "I don't sell “a Laravel website”, I sell results: bookings, leads and order in your records."},
   "svc1_h": {"hy": "Ռեստորաններ և սրճարաններ", "ru": "Рестораны и кафе", "en": "Restaurants and cafes"},
@@ -32,14 +29,12 @@
   "svc5_p": {"hy": "Արագ բեռնում, հեռախոսի տարբերակ, մի քանի լեզու, SSL և հարմար ադմին վահանակ։", "ru": "Быстрая загрузка, версия для телефона, мультиязычность, SSL и удобная админка.", "en": "Fast loading, a mobile version, multiple languages, SSL and an easy admin panel."},
   "svc6_h": {"hy": "Գործակալությունների համար", "ru": "Для агентств", "en": "For agencies"},
   "svc6_p": {"hy": "Կատարում եմ ձեր նախագծերը ձեր բրենդով (white-label)՝ առանց հաճախորդի հետ շփման։", "ru": "Беру разработку ваших проектов под вашим брендом (white-label), без общения с клиентом.", "en": "I develop your projects under your brand (white-label), with no contact with your client."},
-
   "works_title": {"hy": "Պատրաստի լուծումներ", "ru": "Готовые решения", "en": "Ready-made solutions"},
   "works_lead": {"hy": "Դեմո նախագծեր, որոնք արագ հարմարեցնում եմ ձեր բիզնեսին՝ լոգո, գույներ, տեքստեր և անհրաժեշտ ֆունկցիաներ։ Դեմոներում անվանումները հորինված են։ Սեղմեք սքրինշոթի վրա՝ մեծացնելու համար։", "ru": "Демо-проекты, которые быстро адаптирую под ваш бизнес: логотип, цвета, тексты и нужные функции. Названия в демо вымышленные. Нажмите на скриншот, чтобы увеличить.", "en": "Demo projects I quickly adapt to your business: logo, colours, texts and the features you need. The names in the demos are fictional. Click a screenshot to enlarge it."},
   "offer_pdf": {"hy": "Առաջարկ PDF (ռուսերեն)", "ru": "Предложение PDF", "en": "Offer PDF (in Russian)"},
   "want_m": {"hy": "Ուզում եմ նույնը", "ru": "Хочу такой", "en": "I want one"},
   "want_f": {"hy": "Ուզում եմ նույնը", "ru": "Хочу такую", "en": "I want one"},
   "c_mobile": {"hy": "Հեռախոսի տարբերակ", "ru": "Версия для телефона", "en": "Mobile version"},
-
   "hotel_tag": {"hy": "Դեմո · հյուրանոց", "ru": "Демо · отель", "en": "Demo · hotel"},
   "hotel_desc": {"hy": "Կայք առցանց ամրագրմամբ և հյուրանոցի կառավարման համակարգ։", "ru": "Сайт с онлайн-бронированием и система управления отелем.", "en": "A website with online booking and a hotel management system."},
   "hotel_li1": {"hy": "Ազատ համարների որոնում ըստ ամսաթվերի", "ru": "Поиск свободных номеров по датам", "en": "Search for available rooms by date"},
@@ -51,7 +46,6 @@
   "hotel_c2": {"hy": "Ամրագրում գների օրացույցով և վճարումով", "ru": "Бронирование с календарём цен и оплатой", "en": "Booking with a price calendar and payment"},
   "hotel_c3": {"hy": "Սեփականատիրոջ վահանակ՝ զբաղվածություն և հասույթ", "ru": "Панель владельца: загрузка и выручка", "en": "Owner dashboard: occupancy and revenue"},
   "hotel_c4": {"hy": "Համարների զբաղվածության աղյուսակ", "ru": "Шахматка номеров", "en": "Room occupancy chart"},
-
   "market_tag": {"hy": "Դեմո · սուպերմարկետ", "ru": "Демо · супермаркет", "en": "Demo · supermarket"},
   "market_desc": {"hy": "Ապրանքների հաշվառման համակարգ խանութի կամ խանութների ցանցի համար։", "ru": "Система учёта товаров для магазина или сети магазинов.", "en": "An inventory system for a shop or a chain of shops."},
   "market_li1": {"hy": "Մնացորդներ իրական ժամանակում, որոնում շտրիխկոդով", "ru": "Остатки в реальном времени, поиск по штрихкоду", "en": "Real-time stock levels, barcode search"},
@@ -63,7 +57,6 @@
   "market_c2": {"hy": "Ապրանքներ և մնացորդներ", "ru": "Товары и остатки", "en": "Products and stock"},
   "market_c3": {"hy": "Պիտանիության ժամկետներ և ավտոպատվեր", "ru": "Сроки годности и автозаказ", "en": "Expiry dates and auto-ordering"},
   "market_c4": {"hy": "Ապրանքի ընդունում հեռախոսով", "ru": "Приёмка товара с телефона", "en": "Receiving goods with a phone"},
-
   "rest_tag": {"hy": "Դեմո · ռեստորան", "ru": "Демо · ресторан", "en": "Demo · restaurant"},
   "rest_desc": {"hy": "Հայկական ռեստորանի կայք Laravel-ով՝ աշխատող նախագիծ ադմին վահանակով։", "ru": "Сайт армянского ресторана на Laravel: работающий проект с админкой.", "en": "An Armenian restaurant website on Laravel: a working project with an admin panel."},
   "rest_li1": {"hy": "Ճաշացանկ ըստ կատեգորիաների՝ գները դրամով", "ru": "Меню по категориям с ценами в драмах", "en": "Menu by category with prices in dram"},
@@ -76,7 +69,6 @@
   "rest_c4": {"hy": "Հեռախոսի տարբերակ (անգլերեն)", "ru": "Версия для телефона (английский)", "en": "Mobile version (English)"},
   "rest_c5": {"hy": "Ադմին վահանակ՝ ամրագրումներ", "ru": "Админка: брони", "en": "Admin panel: bookings"},
   "rest_c6": {"hy": "Ադմին վահանակ՝ ուտեստ 3 լեզվով", "ru": "Админка: блюдо на 3 языках", "en": "Admin panel: a dish in 3 languages"},
-
   "prices_title": {"hy": "Որքա՞ն արժե", "ru": "Сколько стоит", "en": "How much it costs"},
   "prices_lead": {"hy": "Ճշգրիտ գինը կախված է ֆունկցիաներից։ Կասեմ կարճ զրույցից հետո, անվճար։", "ru": "Точная цена зависит от функций. Назову её после короткого разговора, бесплатно.", "en": "The exact price depends on the features. I'll give it to you after a short free call."},
   "discuss": {"hy": "Քննարկել", "ru": "Обсудить", "en": "Discuss"},
@@ -111,7 +103,6 @@
   "p6_2": {"hy": "Մանր փոփոխություններ ամեն ամիս", "ru": "Мелкие правки каждый месяц", "en": "Small edits every month"},
   "p6_3": {"hy": "Առաջին 3 ամիսը՝ անվճար", "ru": "Первые 3 месяца бесплатно", "en": "First 3 months free"},
   "prices_note": {"hy": "Կայքը, դոմենը և բոլոր տվյալները պատկանում են ձեզ։ Գինը ամրագրվում է պայմանագրում՝ մինչև աշխատանքի սկիզբը։", "ru": "Сайт, домен и все данные принадлежат вам. Цена фиксируется в договоре до начала работы.", "en": "The website, domain and all data belong to you. The price is fixed in the contract before work starts."},
-
   "steps_eyebrow": {"hy": "Ինչպես ենք աշխատում", "ru": "Как работаем", "en": "How we work"},
   "steps_title": {"hy": "Զանգից մինչև գործարկում", "ru": "От звонка до запуска", "en": "From first call to launch"},
   "steps_lead": {"hy": "Միշտ տեսնում եք, թե ինչ է կատարվում, և կարող եք փորձել կայքը մինչև գործարկումը։", "ru": "Вы всегда видите, что происходит, и можете попробовать сайт до запуска.", "en": "You always see what's happening and can try the site before launch."},
@@ -123,22 +114,25 @@
   "s3_p": {"hy": "Պատրաստում եմ կայքը և ցույց տալիս միջանկյալ տարբերակները հղումով։", "ru": "Делаю сайт и показываю промежуточные версии по ссылке.", "en": "I build the site and share work-in-progress versions by link."},
   "s4_h": {"hy": "Գործարկում", "ru": "Запуск", "en": "Launch"},
   "s4_p": {"hy": "Դոմեն, հոսթինգ, անձնակազմի ուսուցում և սպասարկում։", "ru": "Домен, хостинг, обучение персонала и поддержка.", "en": "Domain, hosting, staff training and support."},
-
   "docs_title": {"hy": "Առևտրային առաջարկներ", "ru": "Коммерческие предложения", "en": "Commercial offers"},
   "docs_lead": {"hy": "Կարող եք ներբեռնել և ուղարկել գործընկերներին կամ սեփականատիրոջը։ Առաջարկները ռուսերեն են։", "ru": "Можно скачать и переслать коллегам или владельцу.", "en": "Download them and forward to colleagues or the owner. The offers are in Russian."},
   "doc1_b": {"hy": "Կայք և համակարգ հյուրանոցի համար", "ru": "Сайт и система для отеля", "en": "Website and system for a hotel"},
   "doc1_s": {"hy": "4 էջ · սքրինշոթներ, ֆունկցիաներ, գներ", "ru": "4 страницы · скриншоты, функции, цены", "en": "4 pages · screenshots, features, prices"},
   "doc2_b": {"hy": "Հաշվառման համակարգ սուպերմարկետի համար", "ru": "Система учёта для супермаркета", "en": "Inventory system for a supermarket"},
   "doc2_s": {"hy": "3 էջ · սքրինշոթներ, ֆունկցիաներ, գներ", "ru": "3 страницы · скриншоты, функции, цены", "en": "3 pages · screenshots, features, prices"},
-
   "contact_title": {"hy": "Եկեք քննարկենք ձեր նախագիծը", "ru": "Давайте обсудим ваш проект", "en": "Let's discuss your project"},
   "contact_lead": {"hy": "Այս համարով հասանելի են Telegram, WhatsApp և Viber։ Պատասխանում եմ օրվա ընթացքում, գրեք հայերեն, ռուսերեն կամ անգլերեն։", "ru": "На этом номере Telegram, WhatsApp и Viber. Отвечаю в течение дня, пишите на армянском, русском или английском.", "en": "This number works for Telegram, WhatsApp and Viber. I reply within a day; write in Armenian, Russian or English."},
   "contact_tg": {"hy": "Գրել հիմա", "ru": "Написать сейчас", "en": "Write now"},
   "wa_text": {"hy": "Բարև Ձեզ, Ազատ։ Հետաքրքրում է կայք", "ru": "Здравствуйте, Азат! Интересует сайт", "en": "Hello Azat! I'm interested in a website"},
   "footer": {"hy": "Ազատ, կայքերի մշակում, Երևան", "ru": "Азат, разработка сайтов, Ереван", "en": "Azat, web development, Yerevan"},
-
   "lb_label": {"hy": "Սքրինշոթ", "ru": "Скриншот", "en": "Screenshot"},
   "lb_close": {"hy": "Փակել", "ru": "Закрыть", "en": "Close"},
   "lb_prev": {"hy": "Նախորդը", "ru": "Назад", "en": "Previous"},
-  "lb_next": {"hy": "Հաջորդը", "ru": "Дальше", "en": "Next"}
+  "lb_next": {"hy": "Հաջորդը", "ru": "Дальше", "en": "Next"},
+  "geo_place": {"hy": "Երևան", "ru": "Ереван", "en": "Yerevan"},
+  "og_image_alt": {"hy": "EVNWEB՝ կայքեր և համակարգեր բիզնեսի համար", "ru": "EVNWEB: сайты и системы для бизнеса", "en": "EVNWEB: websites and systems for business"},
+  "ld_desc": {"hy": "Կայքերի և համակարգերի մշակում ռեստորանների, հյուրանոցների և խանութների համար Երևանում։", "ru": "Разработка сайтов и систем для ресторанов, отелей и магазинов в Ереване.", "en": "Websites and business systems for restaurants, hotels and shops in Yerevan."},
+  "ld_catalog": {"hy": "Կայքերի պատրաստում", "ru": "Разработка сайтов", "en": "Website development"},
+  "ld_city": {"hy": "Երևան", "ru": "Ереван", "en": "Yerevan"},
+  "ld_person": {"hy": "Ազատ", "ru": "Азат", "en": "Azat"}
 }
