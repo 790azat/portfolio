@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook"
+        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml"
         type: choice
-        options: [check, dry-run, publish, profile]
+        options: [check, dry-run, publish, profile, delete]
         default: check
 
 concurrency: publish
@@ -39,6 +39,7 @@ jobs:
             check) python social/publish.py --check ;;
             dry-run) python social/publish.py --dry-run ;;
             profile) python social/profile.py ;;
+            delete) python social/delete.py ;;
             *) python social/publish.py ;;
           esac
       - name: Записать, что опубликовано
