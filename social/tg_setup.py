@@ -37,11 +37,30 @@ me = tg.api('getMe')
 print(f"Бот @{me['username']}")
 if tg.CHANNEL:
     tg.check()
+hook = {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query'])}
 try:
-    tg.api('setWebhook', {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query'])})
+    try:
+        tg.api('setWebhook', hook)
+    except tg.TgError as e:
+        if 'resolve host' not in str(e):
+            raise
+        # DNS у Telegram не видит адрес workers.dev: даём ему IPv4 адрес, который видим мы (Telegram это поддерживает)
+        import socket
+        ip = socket.getaddrinfo(urllib.parse.urlparse(url).hostname, 443, socket.AF_INET)[0][4][0]
+        print(f'Telegram не нашёл адрес бота, указываю IP {ip}')
+        import time
+        for attempt in range(5):
+            time.sleep(3)
+            try:
+                tg.api('setWebhook', {**hook, 'ip_address': ip}); break
+            except tg.TgError as e2:
+                if 'Too Many Requests' not in str(e2) or attempt == 4:
+                    raise
 except tg.TgError as e:
     # Telegram иногда временно не может проверить адрес (DNS). Если webhook уже стоит на этот адрес, бот работает дальше.
-    if tg.api('getWebhookInfo').get('url') != url:
+    cur = tg.api('getWebhookInfo')
+    print('Сейчас webhook:', json.dumps({k: cur.get(k) for k in ('url', 'last_error_message', 'last_error_date', 'pending_update_count', 'ip_address')}, ensure_ascii=False))
+    if cur.get('url') != url:
         raise
     print(f'::warning::setWebhook не прошёл ({e}), но webhook уже стоит на {url}')
 tg.api('setMyCommands', {'commands': json.dumps([{'command': 'start', 'description': 'Примеры и цены / Օրինակներ և գներ'}])})
