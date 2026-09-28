@@ -232,6 +232,8 @@ def main():
     tz = ZoneInfo(sched.get('timezone', 'Asia/Yerevan'))
     now = datetime.datetime.now(tz)
     log = json.loads(LOG.read_text(encoding='utf-8')) if LOG.exists() else {}
+    dlist = HERE / 'delete.yaml'
+    deleted = set((yaml.safe_load(dlist.read_text(encoding='utf-8')) or {}).get('delete') or []) if dlist.exists() else set()
     failed = False
     for p in sched.get('posts') or []:
         pid = p['id']
@@ -243,8 +245,9 @@ def main():
         urls = [f'{BASE}/m/{pid}/{f}' for f in p['media']]
         cover = f"{BASE}/m/{pid}/{p['cover']}" if p.get('cover') else None
         targets = list(p.get('to', ['instagram', 'facebook']))
-        if tg.enabled() and 'telegram' not in targets and p['kind'] != 'story':
-            targets.append('telegram')  # канал Telegram получает всё, кроме сторис
+        removed = pid in deleted or any(k.endswith('_deleted_at') for k in rec)
+        if tg.enabled() and 'telegram' not in targets and p['kind'] != 'story' and not removed:
+            targets.append('telegram')  # канал Telegram получает всё, кроме сторис и удалённых постов
         for target in targets:
             if target in rec or rec.get(f'{target}_tries', 0) >= MAX_TRIES:
                 continue
@@ -256,7 +259,8 @@ def main():
                 if a.dry_run:
                     print(f'[пробно] {pid} → telegram: {p["kind"]}, {len(urls)} файл(ов)'); continue
                 try:
-                    rec['telegram'] = tg.publish(pid, p['kind'], p['media'], p.get('caption', ''))
+                    ids = tg.publish(pid, p['kind'], p['media'], p.get('caption', ''))
+                    rec['telegram'], rec['telegram_ids'] = ids[0], ids
                     rec['telegram_at'] = now.strftime('%Y-%m-%d %H:%M'); rec.pop('telegram_error', None)
                     print(f"ОПУБЛИКОВАНО {pid} → telegram: {rec['telegram']}")
                 except tg.TgError as e:

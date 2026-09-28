@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Удаление опубликованных постов, перечисленных в social/delete.yaml (id записи из published.json).
 
-Удаляет пост и в Instagram, и на Facebook, отмечает в published.json поле deleted_at. Отменить нельзя.
+Удаляет пост в Instagram, на Facebook и в Telegram-канале, отмечает в published.json поле deleted_at. Отменить нельзя.
 """
 import datetime, json, pathlib, sys
 
 import yaml
 
 import publish
+import tg
 
 HERE = pathlib.Path(__file__).resolve().parent
 LIST = HERE / 'delete.yaml'
@@ -35,6 +36,15 @@ def main():
             except publish.MetaError as e:
                 failed = True
                 print(f'::error::{pid} → {target}: {e}')
+        tg_ids = rec.get('telegram_ids') or ([rec['telegram']] if rec.get('telegram') else [])
+        if tg_ids and not rec.get('telegram_deleted_at') and tg.enabled():
+            try:
+                tg.delete(tg_ids)
+                rec['telegram_deleted_at'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+                print(f'УДАЛЕНО {pid} → telegram: {tg_ids}')
+            except tg.TgError as e:
+                failed = True
+                print(f'::error::{pid} → telegram: {e}')
     publish.LOG.write_text(json.dumps(log, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     if failed:
         sys.exit(1)

@@ -72,7 +72,7 @@ def check():
 
 
 def publish(pid, kind, media, caption):
-    """media: имена файлов в site/m/<pid>/. Возвращает id первого сообщения."""
+    """media: имена файлов в site/m/<pid>/. Возвращает id всех отправленных сообщений (первое — сам пост)."""
     files = [SITE / 'm' / pid / m for m in media]
     missing = [f for f in files if not f.exists()]
     if missing:
@@ -80,16 +80,22 @@ def publish(pid, kind, media, caption):
     short = caption if len(caption) <= CAPTION_MAX else ''
     if kind == 'reel':
         r = api('sendVideo', {'chat_id': CHANNEL, 'caption': short, 'supports_streaming': 'true'}, {'video': files[0]})
-        first = r['message_id']
+        ids = [r['message_id']]
     elif kind == 'carousel' and len(files) > 1:
         group = [{'type': 'photo', 'media': f'attach://f{i}', **({'caption': short} if i == 0 and short else {})}
                  for i, _ in enumerate(files[:10])]
         r = api('sendMediaGroup', {'chat_id': CHANNEL, 'media': json.dumps(group, ensure_ascii=False)},
                 {f'f{i}': f for i, f in enumerate(files[:10])})
-        first = r[0]['message_id']
+        ids = [m['message_id'] for m in r]
     else:
         r = api('sendPhoto', {'chat_id': CHANNEL, 'caption': short}, {'photo': files[0]})
-        first = r['message_id']
+        ids = [r['message_id']]
     if not short and caption:
-        api('sendMessage', {'chat_id': CHANNEL, 'text': caption[:4096], 'disable_web_page_preview': 'true'})
-    return first
+        r = api('sendMessage', {'chat_id': CHANNEL, 'text': caption[:4096], 'disable_web_page_preview': 'true'})
+        ids.append(r['message_id'])
+    return ids
+
+
+def delete(ids):
+    for i in ids:
+        api('deleteMessage', {'chat_id': CHANNEL, 'message_id': i})
