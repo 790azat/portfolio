@@ -40,6 +40,9 @@ jobs:
           sub=$(api "$base/workers/subdomain" | jq -r '.result.subdomain // empty')
           [ -n "$sub" ] || { echo "::error::Нет адреса workers.dev: откройте в Cloudflare раздел Workers & Pages один раз, чтобы он выдал поддомен"; exit 1; }
           echo "Хранилище: $id, поддомен: $sub"
+          adm=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $CF_TOKEN" "$base/storage/kv/namespaces/$id/values/admin")
+          pend=$(api "$base/storage/kv/namespaces/$id/values/pending" | jq -r 'if type=="array" then length else 0 end' 2>/dev/null || echo 0)
+          if [ "$adm" = 200 ]; then echo "Получатель заявок (/admin): зарегистрирован"; else echo "::warning::Получатель заявок не зарегистрирован: отправьте боту /admin. Ждут в очереди: $pend"; fi
           echo "WORKER_URL=https://evnweb-bot.$sub.workers.dev" >> $GITHUB_ENV
           # тот же секрет заголовка, что и у PHP-копии: sha256(токен)[:32], без пробелов и приставки bot
           tok=$(printf '%s' "$TELEGRAM_BOT_TOKEN" | tr -d '[:space:]' | sed -E 's/^[Bb][Oo][Tt]([0-9]+:)/\1/')
