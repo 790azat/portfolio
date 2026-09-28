@@ -37,8 +37,18 @@ me = tg.api('getMe')
 print(f"Бот @{me['username']}")
 if tg.CHANNEL:
     tg.check()
+hook = {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query'])}
 try:
-    tg.api('setWebhook', {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query'])})
+    try:
+        tg.api('setWebhook', hook)
+    except tg.TgError as e:
+        if 'resolve host' not in str(e):
+            raise
+        # DNS у Telegram не видит адрес workers.dev: даём ему IPv4 адрес, который видим мы (Telegram это поддерживает)
+        import socket
+        ip = socket.getaddrinfo(urllib.parse.urlparse(url).hostname, 443, socket.AF_INET)[0][4][0]
+        print(f'Telegram не нашёл адрес бота, указываю IP {ip}')
+        tg.api('setWebhook', {**hook, 'ip_address': ip})
 except tg.TgError as e:
     # Telegram иногда временно не может проверить адрес (DNS). Если webhook уже стоит на этот адрес, бот работает дальше.
     cur = tg.api('getWebhookInfo')
