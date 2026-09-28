@@ -638,7 +638,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Թղթե մենյուն հնանում է այն օրը, երբ գինը փոխվում է։ QR մենյուն՝ ոչ։
 
@@ -675,7 +675,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Ինչպես փոխել գինը մենյուում առանց ծրագրավորողի՝ 25 վայրկյանում։
 
@@ -704,7 +704,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     «Հղում» սթիքեր Telegram-ին՝ https://t.me/+37493401179
 
@@ -718,7 +718,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     «Ես Instagram ունեմ, ինչի՞ս է պետք կայքը»։ Այս հարցը լսում եմ ամեն շաբաթ։
 
@@ -756,7 +756,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Կրկնակի ամրագրում՝ երկու հյուր՝ հաստատումով, մեկ համարի համար։ Ընդունարանի ամենատհաճ իրավիճակը։ Համարների աղյուսակը դա բացառում է։
 
@@ -798,7 +798,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     5 հարց, որ ինձ տալիս են կայք պատվիրելուց առաջ՝
 
@@ -832,7 +832,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Զբոսաշրջիկը կամ երևանցին Google-ում փնտրում է «ռեստորան Երևանում» կամ «հյուրանոց կենտրոնում»։ Եթե ունեք միայն Instagram, այդ ցանկում ձեզ չկա։
 
@@ -870,7 +870,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Ամենատարածված վախը՝ «Կայքը կսարքեն ու կանհետանան»։
 
