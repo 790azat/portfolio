@@ -9,17 +9,41 @@ const DATA = __DIR__ . '/data';
 const PHONE = '+374 93 40-11-79';
 const TG_LINK = 'https://t.me/+37493401179';
 const ADMIN_PHONE = '37493401179';
+const ADMIN_EMAIL = 'vip.azatazat@gmail.com';
+const SITE_URL = 'https://evnweb.am';
 
 if (($_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN'] ?? '') !== TG_SECRET) { http_response_code(403); exit; }
 $u = json_decode(file_get_contents('php://input') ?: '{}', true) ?: [];
 http_response_code(200);
 
+// Хостинг может не достучаться до api.telegram.org. Поэтому главный ответ человеку уходит прямо в ответе
+// на webhook (Telegram сам выполняет этот метод), а запросы к API — только для второстепенного.
+$OUT = null;
+register_shutdown_function(function () {
+    global $OUT;
+    if ($OUT) { header('Content-Type: application/json'); echo json_encode($OUT, JSON_UNESCAPED_UNICODE); }
+});
+function out(string $m, array $p): void {
+    global $OUT;
+    if ($OUT === null) {
+        if (isset($p['reply_markup']) && is_string($p['reply_markup'])) $p['reply_markup'] = json_decode($p['reply_markup'], true);
+        $OUT = ['method' => $m] + $p;
+    } else api($m, $p);
+}
+if (isset($_GET['diag'])) {
+    $t = microtime(true); $r = api('getMe');
+    echo json_encode(['php' => PHP_VERSION, 'getMe' => $r, 'err' => $GLOBALS['API_ERR'] ?? null, 'sec' => round(microtime(true) - $t, 1)]);
+    exit;
+}
+
 function api(string $m, array $p = []): array {
     $ch = curl_init('https://api.telegram.org/bot' . TG_TOKEN . '/' . $m);
     // Хостинг зависал на IPv6-маршруте до api.telegram.org: только IPv4 и короткое ожидание соединения.
     curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $p, CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, CURLOPT_CONNECTTIMEOUT => 10, CURLOPT_TIMEOUT => 50]);
-    $r = json_decode((string)curl_exec($ch), true) ?: [];
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, CURLOPT_CONNECTTIMEOUT => 5, CURLOPT_TIMEOUT => 20]);
+    $raw = curl_exec($ch);
+    if ($raw === false) $GLOBALS['API_ERR'] = curl_error($ch);
+    $r = json_decode((string)$raw, true) ?: [];
     curl_close($ch);
     return $r;
 }
@@ -28,10 +52,10 @@ function save(string $f, $v): void { @mkdir(DATA); file_put_contents(DATA . "/$f
 function logline(array $v): void { @mkdir(DATA); file_put_contents(DATA . '/leads.jsonl', json_encode($v + ['at' => date('c')], JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX); }
 function kb(array $rows): string { return json_encode(['inline_keyboard' => $rows], JSON_UNESCAPED_UNICODE); }
 function admin(): ?int { return load('admin.json', [])['id'] ?? null; }
-function say(int $chat, string $text, ?string $markup = null): array {
-    $p = ['chat_id' => $chat, 'text' => $text, 'disable_web_page_preview' => 'true'];
+function say(int $chat, string $text, ?string $markup = null): void {
+    $p = ['chat_id' => $chat, 'text' => $text, 'disable_web_page_preview' => true];
     if ($markup) $p['reply_markup'] = $markup;
-    return api('sendMessage', $p);
+    out('sendMessage', $p);
 }
 
 const NICHES = [
@@ -59,21 +83,23 @@ function menu(int $chat): void {
 
 function niche(int $chat, string $k): void {
     $n = NICHES[$k] ?? NICHES['drugoe'];
-    $site = dirname(__DIR__);
-    if ($n[1] && is_file("$site/m/{$n[1]}")) {
-        $f = new CURLFile("$site/m/{$n[1]}");
-        str_ends_with($n[1], '.mp4') ? api('sendVideo', ['chat_id' => $chat, 'video' => $f, 'supports_streaming' => 'true'])
-                                     : api('sendPhoto', ['chat_id' => $chat, 'photo' => $f]);
-    }
-    if ($n[2] && is_file("$site/{$n[2]}")) api('sendDocument', ['chat_id' => $chat, 'document' => new CURLFile("$site/{$n[2]}")]);
-    say($chat, $n[3], kb([[['text' => '📝 Հայտ թողնել / Оставить заявку', 'callback_data' => "z:$k"]],
-                         [['text' => '💬 Գրել Ազատին / Написать Азату', 'url' => TG_LINK]]]));
+    $rows = [[['text' => '📝 Հայտ թողնել / Оставить заявку', 'callback_data' => "z:$k"]]];
+    if ($n[2]) $rows[] = [['text' => '📄 PDF առաջարկ / Предложение PDF', 'url' => SITE_URL . '/' . $n[2]]];
+    $rows[] = [['text' => '💬 Գրել Ազատին / Написать Азату', 'url' => TG_LINK]];
+    $p = ['chat_id' => $chat, 'caption' => $n[3], 'reply_markup' => kb($rows)];
+    if ($n[1] && is_file(dirname(__DIR__) . "/m/{$n[1]}")) {
+        $url = SITE_URL . "/m/{$n[1]}";
+        str_ends_with($n[1], '.mp4') ? out('sendVideo', $p + ['video' => $url, 'supports_streaming' => true])
+                                     : out('sendPhoto', $p + ['photo' => $url]);
+    } else out('sendMessage', ['chat_id' => $chat, 'text' => $n[3], 'reply_markup' => kb($rows), 'disable_web_page_preview' => true]);
 }
 
 function toAdmin(string $text, ?int $fromChat = null, ?int $msgId = null): void {
+    @mail(ADMIN_EMAIL, '=?UTF-8?B?' . base64_encode('EVNWEB бот: ' . strtok($text, "\n")) . '?=', $text,
+          "Content-Type: text/plain; charset=UTF-8\r\nFrom: bot@evnweb.am");
     $a = admin();
     if (!$a) return;
-    $ids = [say($a, $text)['result']['message_id'] ?? null];
+    $ids = [api('sendMessage', ['chat_id' => $a, 'text' => $text])['result']['message_id'] ?? null];
     if ($fromChat && $msgId) $ids[] = api('forwardMessage', ['chat_id' => $a, 'from_chat_id' => $fromChat, 'message_id' => $msgId])['result']['message_id'] ?? null;
     if ($fromChat) {
         $map = load('replies.json', []);
@@ -86,7 +112,6 @@ $state = load('state.json', []);
 
 if ($cb = $u['callback_query'] ?? null) {
     $chat = (int)$cb['message']['chat']['id'];
-    api('answerCallbackQuery', ['callback_query_id' => $cb['id']]);
     [$t, $k] = explode(':', $cb['data'] . ':');
     if ($t === 'n') { niche($chat, $k); logline(['chat' => $chat, 'event' => "niche:$k"]); }
     if ($t === 'z') {
@@ -122,15 +147,15 @@ if (isset($m['contact']) && (($state[(string)$chat]['step'] ?? '') === 'admin'))
 if ($chat === admin() && isset($m['reply_to_message'])) {
     $map = load('replies.json', []);
     $to = $map[(string)$m['reply_to_message']['message_id']] ?? ($m['reply_to_message']['forward_from']['id'] ?? null);
-    if ($to) { api('copyMessage', ['chat_id' => $to, 'from_chat_id' => $chat, 'message_id' => $m['message_id']]); say($chat, '✓ отправлено'); }
+    if ($to) { out('copyMessage', ['chat_id' => $to, 'from_chat_id' => $chat, 'message_id' => $m['message_id']]); }
     else say($chat, 'Не нашёл, кому отправить: ответьте на сообщение с именем клиента.');
     exit;
 }
 if (str_starts_with($text, '/start')) {
     $payload = trim(substr($text, 6));
     logline(['chat' => $chat, 'who' => $who, 'event' => 'start', 'from' => $payload]);
-    toAdmin("👋 Новый человек в боте: $who" . ($payload ? " (пришёл по ссылке: $payload)" : ''), $chat);
     isset(NICHES[$payload]) ? niche($chat, $payload) : menu($chat);
+    toAdmin("👋 Новый человек в боте: $who" . ($payload ? " (пришёл по ссылке: $payload)" : ''), $chat);
     exit;
 }
 $st = $state[(string)$chat] ?? null;
@@ -143,12 +168,12 @@ if (isset($m['contact'])) {
 if ($st && $st['step'] === 'name' && $text !== '') {
     unset($state[(string)$chat]); save('state.json', $state);
     logline(['chat' => $chat, 'who' => $who, 'event' => 'lead', 'niche' => $st['niche'], 'phone' => $st['phone'], 'business' => $text]);
-    toAdmin("🔥 ЗАЯВКА\nНиша: {$st['niche']}\nБизнес: $text\nТелефон: {$st['phone']}\nTelegram: $who\n\nОтветьте (reply) на это сообщение, и ответ уйдёт клиенту.", $chat);
     say($chat, "Շնորհակալություն։ Ազատը կկապվի ձեզ հետ այսօր։\n\nСпасибо! Азат свяжется с вами сегодня. Если срочно: " . PHONE);
+    toAdmin("🔥 ЗАЯВКА\nНиша: {$st['niche']}\nБизнес: $text\nТелефон: {$st['phone']}\nTelegram: $who\n\nОтветьте (reply) на это сообщение, и ответ уйдёт клиенту.", $chat);
     exit;
 }
 // Любое другое сообщение: пересылаем Азату, клиенту короткий ответ
 if ($text !== '' || isset($m['photo']) || isset($m['voice'])) {
-    toAdmin("💬 Сообщение от $who:", $chat, (int)$m['message_id']);
     if (!$st) say($chat, "Շնորհակալություն, Ազատը շուտով կպատասխանի։\n\nСпасибо! Азат скоро ответит. А пока можно посмотреть примеры: /start");
+    toAdmin("💬 Сообщение от $who:\n$text", $chat, (int)$m['message_id']);
 }
