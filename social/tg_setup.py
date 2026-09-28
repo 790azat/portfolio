@@ -37,7 +37,13 @@ me = tg.api('getMe')
 print(f"Бот @{me['username']}")
 if tg.CHANNEL:
     tg.check()
-tg.api('setWebhook', {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query']), 'drop_pending_updates': 'true'})
+try:
+    tg.api('setWebhook', {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query'])})
+except tg.TgError as e:
+    # Telegram иногда временно не может проверить адрес (DNS). Если webhook уже стоит на этот адрес, бот работает дальше.
+    if tg.api('getWebhookInfo').get('url') != url:
+        raise
+    print(f'::warning::setWebhook не прошёл ({e}), но webhook уже стоит на {url}')
 tg.api('setMyCommands', {'commands': json.dumps([{'command': 'start', 'description': 'Примеры и цены / Օրինակներ և գներ'}])})
 tg.api('setMyDescription', {'description': 'EVNWEB: сайты и системы для бизнеса в Армении. Покажу пример под вашу сферу и приму заявку.\nEVNWEB՝ կայքեր և համակարգեր Հայաստանի բիզնեսների համար։'})
 info = tg.api('getWebhookInfo')
