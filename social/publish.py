@@ -44,17 +44,19 @@ def call(method, path, **params):
         raise MetaError(f'{method} {path}: {msg}') from None
 
 
-def upload(path, file, **params):
-    """POST с файлом (multipart): Meta получает картинку напрямую, сайт не нужен."""
+def upload(path, file, host=None, **params):
+    """POST с файлом (multipart): Meta получает картинку или видео напрямую, сайт не нужен."""
     import uuid
     params['access_token'] = TOKEN
+    ctype = {'.png': 'image/png', '.mp4': 'video/mp4'}.get(file.suffix.lower(), 'image/jpeg')
+    base = f"{host}/{API.rsplit('/', 1)[-1]}" if host else API
     b = uuid.uuid4().hex
     body = b''.join(f'--{b}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode() for k, v in params.items())
-    body += f'--{b}\r\nContent-Disposition: form-data; name="source"; filename="{file.name}"\r\nContent-Type: image/{"png" if file.suffix == ".png" else "jpeg"}\r\n\r\n'.encode()
+    body += f'--{b}\r\nContent-Disposition: form-data; name="source"; filename="{file.name}"\r\nContent-Type: {ctype}\r\n\r\n'.encode()
     body += file.read_bytes() + f'\r\n--{b}--\r\n'.encode()
-    req = urllib.request.Request(f'{API}/{path}', data=body, method='POST', headers={'Content-Type': f'multipart/form-data; boundary={b}'})
+    req = urllib.request.Request(f'{base}/{path}', data=body, method='POST', headers={'Content-Type': f'multipart/form-data; boundary={b}'})
     try:
-        with urllib.request.urlopen(req, timeout=120) as r:
+        with urllib.request.urlopen(req, timeout=600) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
         try:
@@ -111,6 +113,30 @@ def accounts():
 PAGE = None  # id страницы, задаётся в main()
 
 
+def local_file(url):
+    """Файл из репозитория, который лежит по этой ссылке (site/...)."""
+    rel = url.split('/site/', 1)[-1] if '/site/' in url else url.split(BASE + '/', 1)[-1]
+    f = HERE.parent / 'site' / rel
+    return f if f.exists() else None
+
+
+def ig_upload_video(ig, url, **params):
+    """Рилс в Instagram загружаем файлом (resumable upload), а не ссылкой: чужой хостинг Instagram не скачивает."""
+    f = local_file(url)
+    if not f:
+        return call('POST', f'{ig}/media', video_url=url, **params)['id']
+    r = call('POST', f'{ig}/media', upload_type='resumable', **params)
+    data = f.read_bytes()
+    req = urllib.request.Request(r['uri'], data=data, method='POST', headers={
+        'Authorization': f'OAuth {TOKEN}', 'offset': '0', 'file_size': str(len(data))})
+    try:
+        with urllib.request.urlopen(req, timeout=600) as resp:
+            json.load(resp)
+    except urllib.error.HTTPError as e:
+        raise MetaError(f'загрузка видео в Instagram: {e.read()[:300]!r}') from None
+    return r['id']
+
+
 def fb_cdn(url):
     """Instagram не всегда может скачать картинку со стороннего хостинга (ошибка 2207052).
     Загружаем файл из репозитория в Facebook как неопубликованное фото и отдаём Instagram ссылку на CDN Facebook."""
@@ -141,10 +167,10 @@ def ig_publish(ig, kind, urls, caption, cover=None):
             ig_wait(c, u); kids.append(c)
         cid = call('POST', f'{ig}/media', media_type='CAROUSEL', children=','.join(kids), caption=caption)['id']
     elif kind == 'reel':
-        p = dict(media_type='REELS', video_url=urls[0], caption=caption, share_to_feed='true')
+        p = dict(media_type='REELS', caption=caption, share_to_feed='true')
         if cover:
             p['cover_url'] = fb_cdn(cover)
-        cid = call('POST', f'{ig}/media', **p)['id']
+        cid = ig_upload_video(ig, urls[0], **p)
     elif kind == 'story':
         cid = call('POST', f'{ig}/media', media_type='STORIES', image_url=fb_cdn(urls[0]))['id']
     else:
@@ -156,6 +182,9 @@ def ig_publish(ig, kind, urls, caption, cover=None):
 # ---------- Facebook ----------
 def fb_publish(page, kind, urls, caption):
     if kind == 'reel':
+        f = local_file(urls[0])
+        if f:
+            return upload(f'{page}/videos', f, description=caption, host='https://graph-video.facebook.com')['id']
         return call('POST', f'{page}/videos', file_url=urls[0], description=caption)['id']
     if kind == 'story':
         pid = call('POST', f'{page}/photos', url=urls[0], published='false')['id']
