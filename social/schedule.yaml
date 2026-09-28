@@ -18,7 +18,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Հյուրը ուզում է ընթրել ձեզ մոտ։ Ի՞նչ է լինում հետո, եթե ռեստորանն ունի EVNWEB-ի կայք։
 
@@ -50,7 +50,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     «Հղում» սթիքեր Telegram-ին՝ https://t.me/+37493401179
 
@@ -65,7 +65,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Ինչպես է ռեստորանը ստանում պատվերներ և ամրագրումներ առանց զանգերի՝ 25 վայրկյանում։
 
@@ -91,7 +91,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Մոսկվայից կամ Լոս Անջելեսից հյուրը ձեր հյուրանոցը դիտում է Երևանի ժամանակով գիշերվա 3-ին։ Եթե ամրագրելու համար պետք է զանգել կամ սպասել direct-ի պատասխանին, նա կամրագրի հարևաններին։
 
@@ -117,7 +117,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Որքա՞ն արժե կայքը 2026 թվականին՝
 
@@ -159,7 +159,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Մնացորդների տետր, երեկոյան վերահաշվարկ և ժամկետանց մածուն դարակում։ Ծանո՞թ է։
 
@@ -194,7 +194,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Այլ երկրից հյուրը ձեր հյուրանոցը դիտում է Երևանի ժամանակով գիշերը։ Եթե ամրագրումը միայն զանգով է, նա կգնա նրանց մոտ, ովքեր ունեն «Ամրագրել» կոճակը։
 
@@ -220,7 +220,7 @@ posts:
   to:
   - instagram
   - facebook
-  approved: false
+  approved: true
   caption: |-
     Ինչպես է ընթանում աշխատանքը կայքի վրա՝ քայլ առ քայլ։
 
