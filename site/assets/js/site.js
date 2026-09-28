@@ -30,5 +30,9 @@
     const g = goals.find(([part]) => a.getAttribute('href').includes(part));
     if (g) window.ym(113109354, 'reachGoal', g[1]);
   });
+  // Запоминаем выбранный язык: с главной армянской страницы человек потом сразу попадает на свой язык
+  document.querySelectorAll('.lang a').forEach(function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('lang', a.dataset.lang); } catch (e) {} });
+  });
   document.getElementById('y').textContent = new Date().getFullYear();
 })();
