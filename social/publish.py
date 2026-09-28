@@ -108,6 +108,20 @@ def accounts():
 
 
 # ---------- Instagram ----------
+PAGE = None  # id страницы, задаётся в main()
+
+
+def fb_cdn(url):
+    """Instagram не всегда может скачать картинку со стороннего хостинга (ошибка 2207052).
+    Загружаем файл из репозитория в Facebook как неопубликованное фото и отдаём Instagram ссылку на CDN Facebook."""
+    local = HERE.parent / 'site' / url.split('/site/', 1)[-1] if '/site/' in url else HERE.parent / 'site' / url.split(BASE + '/', 1)[-1]
+    if not PAGE or not local.suffix.lower() in ('.jpg', '.jpeg', '.png') or not local.exists():
+        return url
+    pid = upload(f'{PAGE}/photos', local, published='false')['id']
+    imgs = call('GET', pid, fields='images').get('images') or []
+    return max(imgs, key=lambda i: i.get('width', 0))['source'] if imgs else url
+
+
 def ig_wait(cid, what):
     for _ in range(60):  # до 10 минут на обработку видео
         st = call('GET', cid, fields='status_code,status').get('status_code')
@@ -123,18 +137,18 @@ def ig_publish(ig, kind, urls, caption, cover=None):
     if kind == 'carousel':
         kids = []
         for u in urls:
-            c = call('POST', f'{ig}/media', image_url=u, is_carousel_item='true')['id']
+            c = call('POST', f'{ig}/media', image_url=fb_cdn(u), is_carousel_item='true')['id']
             ig_wait(c, u); kids.append(c)
         cid = call('POST', f'{ig}/media', media_type='CAROUSEL', children=','.join(kids), caption=caption)['id']
     elif kind == 'reel':
         p = dict(media_type='REELS', video_url=urls[0], caption=caption, share_to_feed='true')
         if cover:
-            p['cover_url'] = cover
+            p['cover_url'] = fb_cdn(cover)
         cid = call('POST', f'{ig}/media', **p)['id']
     elif kind == 'story':
-        cid = call('POST', f'{ig}/media', media_type='STORIES', image_url=urls[0])['id']
+        cid = call('POST', f'{ig}/media', media_type='STORIES', image_url=fb_cdn(urls[0]))['id']
     else:
-        cid = call('POST', f'{ig}/media', image_url=urls[0], caption=caption)['id']
+        cid = call('POST', f'{ig}/media', image_url=fb_cdn(urls[0]), caption=caption)['id']
     ig_wait(cid, kind)
     return call('POST', f'{ig}/media_publish', creation_id=cid)['id']
 
@@ -167,6 +181,8 @@ def main():
     elif exp == 0:
         print('Токен бессрочный')
     page, page_name, ig, ig_name = accounts()
+    global PAGE
+    PAGE = page
     print(f'Страница Facebook: {page_name} ({page}); Instagram: @{ig_name or "не привязан"}')
     if a.check:
         if not ig:
