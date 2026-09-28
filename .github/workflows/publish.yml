@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml"
+        description: "check: проверить токен; dry-run: показать, что уйдёт; publish: опубликовать; profile: оформить страницу Facebook; delete: удалить посты из social/delete.yaml; links: ссылки на опубликованные посты"
         type: choice
-        options: [check, dry-run, publish, profile, delete]
+        options: [check, dry-run, publish, profile, delete, links]
         default: check
 
 concurrency: publish
