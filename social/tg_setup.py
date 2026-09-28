@@ -48,7 +48,14 @@ try:
         import socket
         ip = socket.getaddrinfo(urllib.parse.urlparse(url).hostname, 443, socket.AF_INET)[0][4][0]
         print(f'Telegram не нашёл адрес бота, указываю IP {ip}')
-        tg.api('setWebhook', {**hook, 'ip_address': ip})
+        import time
+        for attempt in range(5):
+            time.sleep(3)
+            try:
+                tg.api('setWebhook', {**hook, 'ip_address': ip}); break
+            except tg.TgError as e2:
+                if 'Too Many Requests' not in str(e2) or attempt == 4:
+                    raise
 except tg.TgError as e:
     # Telegram иногда временно не может проверить адрес (DNS). Если webhook уже стоит на этот адрес, бот работает дальше.
     cur = tg.api('getWebhookInfo')
