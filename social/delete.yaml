@@ -1,0 +1,5 @@
+# Посты, которые нужно удалить (id из published.json). Удаляются в режиме delete у publish.yml.
+# Azat 2026-09-28: старые одиночные посты про цены и шаги заменены каруселями.
+delete:
+  - 2026-10-nedelya-1/08-post-ceny
+  - 2026-10-nedelya-1/04-post-kak-rabotaem
