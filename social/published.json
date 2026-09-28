@@ -4,7 +4,9 @@
   "facebook": "1347280171803827_122098755249492824",
   "facebook_at": "2026-09-28 09:39",
   "instagram": "18074937095741743",
-  "instagram_at": "2026-09-28 09:42"
+  "instagram_at": "2026-09-28 09:42",
+  "telegram": 3,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-10-nedelya-1/04-post-kak-rabotaem": {
   "instagram": "18063763028786301",
@@ -12,31 +14,41 @@
   "facebook": "122098834593492824",
   "facebook_at": "2026-09-28 11:56",
   "instagram_deleted_at": "2026-09-28 14:45",
-  "facebook_deleted_at": "2026-09-28 14:45"
+  "facebook_deleted_at": "2026-09-28 14:45",
+  "telegram": 9,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-10-nedelya-1/02-post-otel": {
   "instagram": "17988416526021618",
   "instagram_at": "2026-09-28 11:56",
   "facebook": "122098834971492824",
-  "facebook_at": "2026-09-28 11:56"
+  "facebook_at": "2026-09-28 11:56",
+  "telegram": 10,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-10-nedelya-1/06-reel-restoran": {
   "instagram": "17913236859461521",
   "instagram_at": "2026-09-28 11:56",
   "facebook": "1414943057249483",
-  "facebook_at": "2026-09-28 11:56"
+  "facebook_at": "2026-09-28 11:56",
+  "telegram": 11,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-10-nedelya-1/03-karusel-magazin": {
   "instagram": "18409329349084009",
   "instagram_at": "2026-09-28 11:56",
   "facebook": "1347280171803827_122098836831492824",
-  "facebook_at": "2026-09-28 11:56"
+  "facebook_at": "2026-09-28 11:56",
+  "telegram": 12,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-10-nedelya-1/07-reel-otel": {
   "instagram": "17910583800536930",
   "instagram_at": "2026-09-28 11:56",
   "facebook": "2626367164465168",
-  "facebook_at": "2026-09-28 11:56"
+  "facebook_at": "2026-09-28 11:56",
+  "telegram": 17,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-10-nedelya-1/08-post-ceny": {
   "instagram": "17961300561208046",
@@ -44,30 +56,40 @@
   "facebook": "122098837977492824",
   "facebook_at": "2026-09-28 11:56",
   "instagram_deleted_at": "2026-09-28 14:45",
-  "facebook_deleted_at": "2026-09-28 14:45"
+  "facebook_deleted_at": "2026-09-28 14:45",
+  "telegram": 18,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-09-zamena/02-shagi-karusel": {
   "instagram": "18042244895832176",
   "instagram_at": "2026-09-28 12:06",
   "facebook": "1347280171803827_122098841595492824",
-  "facebook_at": "2026-09-28 12:06"
+  "facebook_at": "2026-09-28 12:06",
+  "telegram": 19,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-09-zamena/01-ceny-karusel": {
   "instagram": "18464483467139867",
   "instagram_at": "2026-09-28 12:06",
   "facebook": "1347280171803827_122098842039492824",
-  "facebook_at": "2026-09-28 12:06"
+  "facebook_at": "2026-09-28 12:06",
+  "telegram": 21,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-09-nabory/01-karusel-otel": {
   "instagram": "18012253238977553",
   "instagram_at": "2026-09-28 12:09",
   "facebook": "1347280171803827_122098844109492824",
-  "facebook_at": "2026-09-28 12:09"
+  "facebook_at": "2026-09-28 12:09",
+  "telegram": 23,
+  "telegram_at": "2026-09-28 15:39"
  },
  "2026-09-nabory/02-karusel-restoran": {
   "instagram": "18216859009349135",
   "instagram_at": "2026-09-28 12:09",
   "facebook": "1347280171803827_122098846263492824",
-  "facebook_at": "2026-09-28 12:09"
+  "facebook_at": "2026-09-28 12:09",
+  "telegram": 30,
+  "telegram_at": "2026-09-28 15:39"
  }
 }
