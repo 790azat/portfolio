@@ -8,6 +8,7 @@ import yaml
 import publish
 
 HERE = publish.HERE
+MEDIA = HERE.parent / 'site' / 'm' / 'profile'  # файлы уходят в Facebook напрямую
 
 
 def main():
@@ -16,7 +17,6 @@ def main():
     page, name, _, _ = publish.accounts()
     print(f'Страница: {name} ({page})')
     cfg = yaml.safe_load((HERE / 'profile.yaml').read_text(encoding='utf-8'))
-    url = lambda f: f'{publish.BASE}/m/profile/{f}'
     ok, bad = [], []
 
     def step(label, fn):
@@ -31,14 +31,10 @@ def main():
     if cfg.get('emails'):
         step('emails', lambda: publish.call('POST', page, emails=json.dumps(cfg['emails'])))
     if cfg.get('picture'):
-        # проверка сайта только для лога, решает сама Meta
-        publish.reachable(url(cfg['picture']))
-        step('picture', lambda: publish.call('POST', f'{page}/picture', picture=url(cfg['picture'])))
+        step('picture', lambda: publish.upload(f'{page}/picture', MEDIA / cfg['picture']))
     if cfg.get('cover'):
-        publish.reachable(url(cfg['cover']))
-
         def cover():
-            pid = publish.call('POST', f'{page}/photos', url=url(cfg['cover']), published='false')['id']
+            pid = publish.upload(f'{page}/photos', MEDIA / cfg['cover'], published='false')['id']
             publish.call('POST', page, cover=pid)
         step('cover', cover)
     print('Готово:', ', '.join(ok) or '—', '| Не получилось:', ', '.join(bad) or '—')

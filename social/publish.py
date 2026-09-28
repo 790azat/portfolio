@@ -44,6 +44,27 @@ def call(method, path, **params):
         raise MetaError(f'{method} {path}: {msg}') from None
 
 
+def upload(path, file, **params):
+    """POST с файлом (multipart): Meta получает картинку напрямую, сайт не нужен."""
+    import uuid
+    params['access_token'] = TOKEN
+    b = uuid.uuid4().hex
+    body = b''.join(f'--{b}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode() for k, v in params.items())
+    body += f'--{b}\r\nContent-Disposition: form-data; name="source"; filename="{file.name}"\r\nContent-Type: image/jpeg\r\n\r\n'.encode()
+    body += file.read_bytes() + f'\r\n--{b}--\r\n'.encode()
+    req = urllib.request.Request(f'{API}/{path}', data=body, method='POST', headers={'Content-Type': f'multipart/form-data; boundary={b}'})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return json.load(r)
+    except urllib.error.HTTPError as e:
+        try:
+            err = json.load(e).get('error', {})
+            msg = f"{err.get('message')} (code {err.get('code')}/{err.get('error_subcode')})"
+        except Exception:
+            msg = str(e)
+        raise MetaError(f'POST {path}: {msg}') from None
+
+
 def reachable(url):
     # GET первого байта с обычным User-Agent: хостинг может отвечать 403 на HEAD или на «Python-urllib»
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (evnweb-publisher)', 'Range': 'bytes=0-0'})
