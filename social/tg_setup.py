@@ -41,7 +41,9 @@ try:
     tg.api('setWebhook', {'url': url, 'secret_token': secret, 'allowed_updates': json.dumps(['message', 'callback_query'])})
 except tg.TgError as e:
     # Telegram иногда временно не может проверить адрес (DNS). Если webhook уже стоит на этот адрес, бот работает дальше.
-    if tg.api('getWebhookInfo').get('url') != url:
+    cur = tg.api('getWebhookInfo')
+    print('Сейчас webhook:', json.dumps({k: cur.get(k) for k in ('url', 'last_error_message', 'last_error_date', 'pending_update_count', 'ip_address')}, ensure_ascii=False))
+    if cur.get('url') != url:
         raise
     print(f'::warning::setWebhook не прошёл ({e}), но webhook уже стоит на {url}')
 tg.api('setMyCommands', {'commands': json.dumps([{'command': 'start', 'description': 'Примеры и цены / Օրինակներ և գներ'}])})
