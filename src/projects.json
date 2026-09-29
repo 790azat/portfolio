@@ -1,32 +1,269 @@
 [
- {"key":"star","name":"7 Star Real Estate","domain":"7star.am","shots":["star1","star3","star2","star4"],
-  "cat":{"hy":"Անշարժ գույքի գործակալություն","ru":"Агентство недвижимости","en":"Real estate agency"},
-  "desc":{"hy":"Բնակարանների և տների կատալոգ՝ ֆիլտրերով, օբյեկտի էջ՝ լուսանկարներով, և ադմին վահանակ գործակալների համար։ Հայերեն և ռուսերեն։","ru":"Каталог квартир и домов с фильтрами, страница объекта с фотогалереей и админ-панель для агентов. Армянский и русский.","en":"Catalogue of flats and houses with filters, property pages with photo galleries and an admin panel for agents. Armenian and Russian."}},
- {"key":"dg","name":"DG Tech","domain":"dgtech.am","shots":["dg1","dg-m"],
-  "cat":{"hy":"Էլեկտրոնիկայի խանութ","ru":"Магазин электроники","en":"Electronics store"},
-  "desc":{"hy":"Տեխնիկայի առցանց խանութ՝ կատեգորիաներ, ֆիլտրեր և դասավորում, զամբյուղ, գները՝ դրամով և դոլարով, բջջային տարբերակ։","ru":"Интернет-магазин техники: категории, фильтры и сортировка, корзина, цены в драмах и долларах, мобильная версия.","en":"Online electronics shop: categories, filters and sorting, cart, prices in dram and dollars, mobile version."}},
- {"key":"hs","name":"HaySh!n.am","domain":"hayshin.am","shots":["hs2","hs1"],
-  "cat":{"hy":"Շինանյութերի խանութ","ru":"Магазин стройматериалов","en":"Building materials store"},
-  "desc":{"hy":"Շինանյութերի կատալոգ՝ գործընկեր բրենդներով, ապրանքների քարտերով և զամբյուղով։","ru":"Каталог стройматериалов с брендами-партнёрами, карточками товаров и корзиной.","en":"Building materials catalogue with partner brands, product cards and a cart."}},
- {"key":"kf","name":"Kinoframe","domain":"","shots":["kf1","kf3","kf-m"],
-  "cat":{"hy":"Առցանց կինոթատրոն","ru":"Онлайн-кинотеатр","en":"Online cinema"},
-  "desc":{"hy":"Ֆիլմերի և սերիալների կատալոգ՝ նորույթներ, Թոփ-100, կատեգորիաներ, որոնում և հարմար բջջային տարբերակ։","ru":"Каталог фильмов и сериалов: новинки, Топ-100, категории, поиск и удобная мобильная версия.","en":"Films and series catalogue: new releases, Top 100, categories, search and a handy mobile version."}},
- {"key":"gni","name":"Gni.am","domain":"gni.am","shots":["gni1"],
-  "cat":{"hy":"Զեղչային քարտեր","ru":"Скидочные карты","en":"Discount cards"},
-  "desc":{"hy":"Զեղչային քարտերի ծառայություն՝ անձնական էջ հաշվեկշռով, բոնուս գրանցման համար, երեք լեզու։","ru":"Сервис скидочных карт: личный кабинет с балансом, бонус за регистрацию, три языка.","en":"Discount card service: personal account with balance, sign-up bonus, three languages."}},
- {"key":"nar","name":"Narinj","domain":"","shots":["nar1"],
-  "cat":{"hy":"Զեղչային կտրոններ","ru":"Купоны на отдых","en":"Holiday coupons"},
-  "desc":{"hy":"Զեղչային կտրոններ հանգստավայրերի և հյուրանոցների համար, օգտատերերի մուտք և գրանցում։","ru":"Купоны со скидками на курорты и отели, вход и регистрация пользователей.","en":"Discount coupons for resorts and hotels, with user sign-in and registration."}},
- {"key":"bg","name":"BackgammonCraft","domain":"","shots":["bg1"],
-  "cat":{"hy":"Նարդիների խանութ","ru":"Магазин нард","en":"Backgammon shop"},
-  "desc":{"hy":"Ձեռագործ նարդիների և շաշկիների առցանց խանութ՝ կատալոգ կատեգորիաներով և որոնում։","ru":"Интернет-магазин нард и шашек ручной работы: каталог по категориям и поиск.","en":"Online shop for handmade backgammon and checkers: catalogue by category and search."}},
- {"key":"dao","name":"Daobab","domain":"","shots":["dao1"],
-  "cat":{"hy":"Աքսեսուարների խանութ","ru":"Магазин аксессуаров","en":"Accessories store"},
-  "desc":{"hy":"Աքսեսուարների խանութ կանանց և տղամարդկանց համար՝ բաժիններ, զեղչեր և զամբյուղ։","ru":"Магазин аксессуаров для женщин и мужчин: разделы, скидки и корзина.","en":"Accessories shop for women and men: sections, sales and a cart."}},
- {"key":"kr","name":"Kristy Design","domain":"","shots":["kr1"],
-  "cat":{"hy":"Դիզայների պորտֆոլիո","ru":"Портфолио дизайнера","en":"Designer portfolio"},
-  "desc":{"hy":"Գրաֆիկական դիզայների պորտֆոլիո կայք՝ լոգոներ, նկարազարդումներ և նկարներ։","ru":"Сайт-портфолио графического дизайнера: логотипы, иллюстрации и рисунки.","en":"Portfolio site for a graphic designer: logos, illustrations and drawings."}},
- {"key":"fr","name":"Fridee Studio","domain":"fridee.studio","shots":["fr-m"],
-  "cat":{"hy":"Վիդեո ստուդիա","ru":"Видеостудия","en":"Video studio"},
-  "desc":{"hy":"Կայք ստուդիայի համար, որը նկարահանում և մոնտաժում է տեսանյութեր բլոգերների և բրենդների համար։","ru":"Сайт студии, которая снимает и монтирует видео для блогеров и брендов.","en":"Site for a studio that shoots and edits videos for creators and brands."}}
+ {
+  "key": "iw",
+  "name": "Impact Waves",
+  "domain": "impactwaves.agency",
+  "shots": [
+   "iw1",
+   "iw2",
+   "iw-m"
+  ],
+  "cat": {
+   "hy": "Մարքեթինգային գործակալություն",
+   "ru": "Маркетинговое агентство",
+   "en": "Marketing agency"
+  },
+  "desc": {
+   "hy": "Փերֆորմանս մարքեթինգի գործակալության կայք՝ ծառայություններ, ROI հաշվիչ, հայտի ձև՝ Telegram-ով ուղարկմամբ, հոդվածներ և ուղեցույցներ։",
+   "ru": "Сайт агентства performance-маркетинга: услуги, калькулятор ROI, форма заявки с отправкой в Telegram, статьи и гайды.",
+   "en": "Website for a performance marketing agency: services, ROI calculator, lead form sent to Telegram, articles and guides."
+  }
+ },
+ {
+  "key": "s42",
+  "name": "School 42",
+  "domain": "",
+  "shots": [
+   "s421",
+   "s422",
+   "s42-m"
+  ],
+  "cat": {
+   "hy": "Դպրոցի կայք",
+   "ru": "Сайт школы",
+   "en": "School website"
+  },
+  "desc": {
+   "hy": "Երևանի Տ. Շևչենկոյի անվան թիվ 42 ավագ դպրոցի կայք՝ պատմություն, ղեկավարություն, փաստաթղթեր և հաշվետվություններ, կոնտակտներ։",
+   "ru": "Сайт ереванской старшей школы №42 им. Т. Шевченко: история, администрация, документы и отчёты, контакты.",
+   "en": "Website for Yerevan High School No. 42 named after T. Shevchenko: history, management, documents and reports, contacts."
+  }
+ },
+ {
+  "key": "aga",
+  "name": "AGA",
+  "domain": "aga.am",
+  "shots": [
+   "aga1",
+   "aga2",
+   "aga-m"
+  ],
+  "cat": {
+   "hy": "Կինոպլատֆորմ",
+   "ru": "Кино-платформа",
+   "en": "Film platform"
+  },
+  "desc": {
+   "hy": "Պլատֆորմ կինոյի և ստեղծագործական ոլորտի համար՝ ֆիլմերի կատալոգ, ֆիլմի էջ դերասաններով և թրեյլերով, մուտք Google-ով և ադմին վահանակ մոդերատորներով։",
+   "ru": "Платформа для кино и креативной индустрии: каталог фильмов, страница фильма с актёрами и трейлером, вход через Google и админка с модераторами.",
+   "en": "Platform for film and creative professionals: film catalogue, film pages with cast and trailer, Google sign-in and an admin panel with moderators."
+  }
+ },
+ {
+  "key": "star",
+  "name": "7 Star Real Estate",
+  "domain": "7star.am",
+  "shots": [
+   "star1",
+   "star3",
+   "star2",
+   "star4"
+  ],
+  "cat": {
+   "hy": "Անշարժ գույքի գործակալություն",
+   "ru": "Агентство недвижимости",
+   "en": "Real estate agency"
+  },
+  "desc": {
+   "hy": "Բնակարանների և տների կատալոգ՝ ֆիլտրերով, օբյեկտի էջ՝ լուսանկարներով, և ադմին վահանակ գործակալների համար։ Հայերեն և ռուսերեն։",
+   "ru": "Каталог квартир и домов с фильтрами, страница объекта с фотогалереей и админ-панель для агентов. Армянский и русский.",
+   "en": "Catalogue of flats and houses with filters, property pages with photo galleries and an admin panel for agents. Armenian and Russian."
+  }
+ },
+ {
+  "key": "dg",
+  "name": "DG Tech",
+  "domain": "dgtech.am",
+  "shots": [
+   "dg1",
+   "dg-m"
+  ],
+  "cat": {
+   "hy": "Էլեկտրոնիկայի խանութ",
+   "ru": "Магазин электроники",
+   "en": "Electronics store"
+  },
+  "desc": {
+   "hy": "Տեխնիկայի առցանց խանութ՝ կատեգորիաներ, ֆիլտրեր և դասավորում, զամբյուղ, գները՝ դրամով և դոլարով, բջջային տարբերակ։",
+   "ru": "Интернет-магазин техники: категории, фильтры и сортировка, корзина, цены в драмах и долларах, мобильная версия.",
+   "en": "Online electronics shop: categories, filters and sorting, cart, prices in dram and dollars, mobile version."
+  }
+ },
+ {
+  "key": "hs",
+  "name": "HaySh!n.am",
+  "domain": "hayshin.am",
+  "shots": [
+   "hs2",
+   "hs1"
+  ],
+  "cat": {
+   "hy": "Շինանյութերի խանութ",
+   "ru": "Магазин стройматериалов",
+   "en": "Building materials store"
+  },
+  "desc": {
+   "hy": "Շինանյութերի կատալոգ՝ գործընկեր բրենդներով, ապրանքների քարտերով և զամբյուղով։",
+   "ru": "Каталог стройматериалов с брендами-партнёрами, карточками товаров и корзиной.",
+   "en": "Building materials catalogue with partner brands, product cards and a cart."
+  }
+ },
+ {
+  "key": "kf",
+  "name": "Kinoframe",
+  "domain": "",
+  "shots": [
+   "kf1",
+   "kf3",
+   "kf-m"
+  ],
+  "cat": {
+   "hy": "Առցանց կինոթատրոն",
+   "ru": "Онлайн-кинотеатр",
+   "en": "Online cinema"
+  },
+  "desc": {
+   "hy": "Ֆիլմերի և սերիալների կատալոգ՝ նորույթներ, Թոփ-100, կատեգորիաներ, որոնում և հարմար բջջային տարբերակ։",
+   "ru": "Каталог фильмов и сериалов: новинки, Топ-100, категории, поиск и удобная мобильная версия.",
+   "en": "Films and series catalogue: new releases, Top 100, categories, search and a handy mobile version."
+  }
+ },
+ {
+  "key": "gni",
+  "name": "Gni.am",
+  "domain": "gni.am",
+  "shots": [
+   "gni1"
+  ],
+  "cat": {
+   "hy": "Զեղչային քարտեր",
+   "ru": "Скидочные карты",
+   "en": "Discount cards"
+  },
+  "desc": {
+   "hy": "Զեղչային քարտերի ծառայություն՝ անձնական էջ հաշվեկշռով, բոնուս գրանցման համար, երեք լեզու։",
+   "ru": "Сервис скидочных карт: личный кабинет с балансом, бонус за регистрацию, три языка.",
+   "en": "Discount card service: personal account with balance, sign-up bonus, three languages."
+  }
+ },
+ {
+  "key": "nar",
+  "name": "Narinj",
+  "domain": "",
+  "shots": [
+   "nar1"
+  ],
+  "cat": {
+   "hy": "Զեղչային կտրոններ",
+   "ru": "Купоны на отдых",
+   "en": "Holiday coupons"
+  },
+  "desc": {
+   "hy": "Զեղչային կտրոններ հանգստավայրերի և հյուրանոցների համար, օգտատերերի մուտք և գրանցում։",
+   "ru": "Купоны со скидками на курорты и отели, вход и регистрация пользователей.",
+   "en": "Discount coupons for resorts and hotels, with user sign-in and registration."
+  }
+ },
+ {
+  "key": "fur",
+  "name": "Fur.am",
+  "domain": "fur.am",
+  "shots": [
+   "fur1",
+   "fur-m"
+  ],
+  "cat": {
+   "hy": "Բեռնափոխադրումներ",
+   "ru": "Грузоперевозки",
+   "en": "Freight"
+  },
+  "desc": {
+   "hy": "Հայաստան–Ռուսաստան բեռնափոխադրումների հարթակ՝ առանձին անձնական էջեր վարորդների և ընկերությունների համար։",
+   "ru": "Площадка грузоперевозок Армения – Россия: отдельные кабинеты для водителей и компаний.",
+   "en": "Armenia–Russia freight platform with separate accounts for drivers and companies."
+  }
+ },
+ {
+  "key": "bg",
+  "name": "BackgammonCraft",
+  "domain": "",
+  "shots": [
+   "bg1"
+  ],
+  "cat": {
+   "hy": "Նարդիների խանութ",
+   "ru": "Магазин нард",
+   "en": "Backgammon shop"
+  },
+  "desc": {
+   "hy": "Ձեռագործ նարդիների և շաշկիների առցանց խանութ՝ կատալոգ կատեգորիաներով և որոնում։",
+   "ru": "Интернет-магазин нард и шашек ручной работы: каталог по категориям и поиск.",
+   "en": "Online shop for handmade backgammon and checkers: catalogue by category and search."
+  }
+ },
+ {
+  "key": "dao",
+  "name": "Daobab",
+  "domain": "",
+  "shots": [
+   "dao1"
+  ],
+  "cat": {
+   "hy": "Աքսեսուարների խանութ",
+   "ru": "Магазин аксессуаров",
+   "en": "Accessories store"
+  },
+  "desc": {
+   "hy": "Աքսեսուարների խանութ կանանց և տղամարդկանց համար՝ բաժիններ, զեղչեր և զամբյուղ։",
+   "ru": "Магазин аксессуаров для женщин и мужчин: разделы, скидки и корзина.",
+   "en": "Accessories shop for women and men: sections, sales and a cart."
+  }
+ },
+ {
+  "key": "kr",
+  "name": "Kristy Design",
+  "domain": "",
+  "shots": [
+   "kr1"
+  ],
+  "cat": {
+   "hy": "Դիզայների պորտֆոլիո",
+   "ru": "Портфолио дизайнера",
+   "en": "Designer portfolio"
+  },
+  "desc": {
+   "hy": "Գրաֆիկական դիզայների պորտֆոլիո կայք՝ լոգոներ, նկարազարդումներ և նկարներ։",
+   "ru": "Сайт-портфолио графического дизайнера: логотипы, иллюстрации и рисунки.",
+   "en": "Portfolio site for a graphic designer: logos, illustrations and drawings."
+  }
+ },
+ {
+  "key": "fr",
+  "name": "Fridee Studio",
+  "domain": "fridee.studio",
+  "shots": [
+   "fr2",
+   "fr-m"
+  ],
+  "cat": {
+   "hy": "Վիդեո ստուդիա",
+   "ru": "Видеостудия",
+   "en": "Video studio"
+  },
+  "desc": {
+   "hy": "Կայք ստուդիայի համար, որը նկարահանում և մոնտաժում է տեսանյութեր բլոգերների և բրենդների համար, և անձնական էջ՝ ստեղծագործողների համար։",
+   "ru": "Сайт студии, которая снимает и монтирует видео для блогеров и брендов, и личный кабинет для авторов.",
+   "en": "Site for a studio that shoots and edits videos for creators and brands, with a personal account for creators."
+  }
+ }
 ]
