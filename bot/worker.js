@@ -1,7 +1,7 @@
 // Telegram-бот EVNWEB на Cloudflare Workers (хостинг SmartApe не пропускает Telegram).
 // Отвечает тем, кто написал сам: меню ниш, пример (видео/фото), заявка с номером, всё пересылается Азату.
 // Ответ Азата (reply на пересланное) уходит клиенту. Получатель заявок: кто отправит /admin и свой номер ADMIN_PHONE.
-// Переменные окружения: TG_TOKEN (секрет), TG_SECRET (секрет заголовка webhook), KV-привязка BOT.
+// Переменные окружения: TG_TOKEN (секрет), TG_SECRET (секрет заголовка webhook), KV-привязка BOT, Durable Object CHAT (ChatRoom).
 // Выкладка: .github/workflows/bot.yml
 
 const PHONE = '+374 93 40-11-79';
@@ -44,8 +44,9 @@ function tg(env) {
 
 async function chat(req, env, url) {
   const origin = req.headers.get('Origin') || '';
+  const allowed = ORIGINS.includes(origin) || origin.startsWith('http://localhost');
   const cors = {
-    'Access-Control-Allow-Origin': ORIGINS.includes(origin) || origin.startsWith('http://localhost') ? origin : ORIGINS[0],
+    'Access-Control-Allow-Origin': allowed ? origin : ORIGINS[0],
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store',
   };
@@ -54,26 +55,78 @@ async function chat(req, env, url) {
   const q = req.method === 'POST' ? await req.json().catch(() => ({})) : Object.fromEntries(url.searchParams);
   const sid = String(q.sid || '');
   if (!/^[a-z0-9]{16,40}$/.test(sid)) return res({ error: 'sid' }, 400);
-  const key = `chat:${sid}`;
-  const hist = (await env.BOT.get(key, 'json')) || { msgs: [] };
+  const room = env.CHAT.get(env.CHAT.idFromName(sid));
+  // WebSocket: ответ Азата приходит в окно сразу, без опроса
+  if (url.pathname === '/chat/ws') {
+    if (!allowed || req.headers.get('Upgrade') !== 'websocket') return new Response('no', { status: 400 });
+    return room.fetch(new Request(`https://room/ws?sid=${sid}`, req));
+  }
   if (url.pathname === '/chat/poll') {
-    const after = Number(q.after) || 0;
-    return res({ msgs: hist.msgs.slice(after), n: hist.msgs.length });
+    const r = await room.fetch(`https://room/poll?sid=${sid}&after=${Number(q.after) || 0}`);
+    return res(await r.json());
   }
   if (url.pathname !== '/chat/send' || req.method !== 'POST') return res({ error: 'not found' }, 404);
   const text = String(q.text || '').trim().slice(0, 1500);
   if (!text) return res({ error: 'empty' }, 400);
-  // простая защита от флуда: не больше 30 сообщений от посетителя в разговоре и 1 в 2 секунды
-  const mine = hist.msgs.filter((m) => m.f === 'v');
-  if (mine.length >= 30 || (mine.length && Date.now() - mine[mine.length - 1].at < 2000)) return res({ error: 'slow' }, 429);
-  hist.msgs.push({ f: 'v', t: text, at: Date.now() });
-  if (q.name) hist.name = String(q.name).slice(0, 80);
-  if (q.page) hist.page = String(q.page).slice(0, 200);
-  await env.BOT.put(key, JSON.stringify(hist), { expirationTtl: CHAT_TTL });
-  const first = mine.length === 0;
-  const head = first ? `🌐 Чат на сайте, новый посетитель${hist.page ? ` (${hist.page})` : ''}` : '🌐 Чат на сайте';
+  const r = await room.fetch(`https://room/add?sid=${sid}`, { method: 'POST', body: JSON.stringify({ f: 'v', t: text, page: String(q.page || '').slice(0, 200) }) });
+  const j = await r.json();
+  if (r.status !== 200) return res(j, r.status);
+  const head = j.first ? `🌐 Чат на сайте, новый посетитель${j.page ? ` (${j.page})` : ''}` : '🌐 Чат на сайте';
   await notifyAdmin(env, `${head} #${sid.slice(0, 6)}:\n\n${text}\n\nОтветьте (reply), и ответ появится у него в чате на сайте.`, `web:${sid}`);
-  return res({ ok: true, n: hist.msgs.length });
+  return res({ ok: true, n: j.n });
+}
+
+// Один разговор с сайта = один Durable Object: история читается сразу после записи (в KV запись видна не сразу),
+// а открытые окна чата получают новые сообщения по WebSocket в момент ответа.
+export class ChatRoom {
+  constructor(ctx, env) { this.ctx = ctx; this.env = env; }
+
+  async load(sid) {
+    let h = await this.ctx.storage.get('h');
+    if (!h) {
+      // разговоры, начатые до переезда, лежат в KV
+      h = (sid && await this.env.BOT.get(`chat:${sid}`, 'json')) || { msgs: [] };
+      await this.ctx.storage.put('h', h);
+    }
+    return h;
+  }
+
+  async fetch(req) {
+    const url = new URL(req.url);
+    const sid = url.searchParams.get('sid') || '';
+    if (url.pathname === '/ws') {
+      const [client, server] = Object.values(new WebSocketPair());
+      this.ctx.acceptWebSocket(server);
+      const h = await this.load(sid);
+      server.send(JSON.stringify({ n: h.msgs.length }));
+      return new Response(null, { status: 101, webSocket: client });
+    }
+    const h = await this.load(sid);
+    if (url.pathname === '/poll') {
+      const after = Number(url.searchParams.get('after')) || 0;
+      return Response.json({ msgs: h.msgs.slice(after), n: h.msgs.length });
+    }
+    if (url.pathname === '/add') {
+      const m = await req.json();
+      const mine = h.msgs.filter((x) => x.f === 'v');
+      // защита от флуда: не больше 30 сообщений от посетителя в разговоре и 1 в 2 секунды
+      if (m.f === 'v' && (mine.length >= 30 || (mine.length && Date.now() - mine[mine.length - 1].at < 2000)))
+        return Response.json({ error: 'slow' }, { status: 429 });
+      if (m.page) h.page = m.page;
+      const msg = { f: m.f === 'a' ? 'a' : 'v', t: String(m.t).slice(0, 4000), at: Date.now() };
+      h.msgs.push(msg);
+      await this.ctx.storage.put('h', h);
+      await this.ctx.storage.setAlarm(Date.now() + CHAT_TTL * 1000);
+      const out = JSON.stringify({ msgs: [msg], n: h.msgs.length });
+      for (const ws of this.ctx.getWebSockets()) { try { ws.send(out); } catch (e) {} }
+      return Response.json({ ok: true, n: h.msgs.length, first: m.f === 'v' && mine.length === 0, page: h.page });
+    }
+    return new Response('not found', { status: 404 });
+  }
+
+  webSocketMessage(ws, msg) { if (msg === 'ping') ws.send('pong'); }
+  webSocketClose(ws, code) { try { ws.close(code, 'bye'); } catch (e) {} }
+  async alarm() { await this.ctx.storage.deleteAll(); }   // разговор без сообщений 30 дней удаляется
 }
 
 // Сообщение Азату. Пока он не зарегистрировался через /admin, сообщения копятся в очереди
@@ -188,10 +241,8 @@ async function handle(u, env) {
     const to = (await env.BOT.get(`reply:${m.reply_to_message.message_id}`)) || m.reply_to_message.forward_from?.id;
     if (String(to).startsWith('web:')) {
       if (!text) return say(chat, 'В чат на сайте уходит только текст.');
-      const key = `chat:${String(to).slice(4)}`;
-      const hist = (await env.BOT.get(key, 'json')) || { msgs: [] };
-      hist.msgs.push({ f: 'a', t: text, at: Date.now() });
-      await env.BOT.put(key, JSON.stringify(hist), { expirationTtl: CHAT_TTL });
+      const sid = String(to).slice(4);
+      await env.CHAT.get(env.CHAT.idFromName(sid)).fetch(`https://room/add?sid=${sid}`, { method: 'POST', body: JSON.stringify({ f: 'a', t: text }) });
       return say(chat, '✓ отправлено в чат на сайте');
     }
     if (to) { await api('copyMessage', { chat_id: Number(to), from_chat_id: chat, message_id: m.message_id }); return say(chat, '✓ отправлено'); }
