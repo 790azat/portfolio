@@ -54,7 +54,7 @@
   <a href="#" class="logo" aria-label="EvnWeb"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 11.5 15.6 5.8l3 3.2L20 5l1.4 4 3-3.2 1.1 5.7Z" fill="#8f2a2e"/><circle cx="20" cy="23" r="13" fill="#b8373a"/><path d="M15.2 19 11.4 23l3.8 4M24.8 19l3.8 4-3.8 4M21.6 18.2l-3.2 9.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Evn<b>Web</b></span></a>
   <nav class="nav">
     <a href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>{{nav_services}}</a>
-    <a href="#works"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>{{nav_works}}</a>
+    <a href="#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>{{nav_works}}</a>
     <a href="#prices"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1.5"/></svg>{{nav_prices}}</a>
     <a href="#docs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>{{nav_docs}}</a>
     <a href="#contacts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 4.2 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>{{nav_contacts}}</a>
@@ -70,7 +70,7 @@
     <p class="lead">{{hero_lead}}</p>
     <div class="hero__cta">
       <a class="btn" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{tg_icon}}{{hero_tg}}</a>
-      <a class="btn btn--ghost" href="#works">{{hero_works}}</a>
+      <a class="btn btn--ghost" href="#projects">{{hero_works}}</a>
     </div>
     <div class="chips"><span>Laravel / PHP</span><span>Հայ · Рус · Eng</span><span>{{chip_mobile}}</span><span>{{chip_pay}}</span></div>
   </div>
@@ -93,8 +93,56 @@
   </div>
 </div></section>
 
-<section class="section" id="works"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{nav_works}}</div><h2>{{works_title}}</h2><p>{{works_lead}}</p></div>
+<section class="section" id="projects"><div class="wrap">
+  <div class="section__head"><div class="eyebrow">{{nav_works}}</div><h2>{{proj_title}}</h2><p>{{proj_lead}}</p></div>
+<!-- projects:start -->
+  <div class="projects">
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/star-1.webp" data-cap="7 Star Real Estate · {{pj_star_cat}}" aria-label="7 Star Real Estate · {{pj_star_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>7star.am</b></span><img src="{{root}}assets/img/projects/star-t.webp" alt="7 Star Real Estate · {{pj_star_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>4</span></button><button hidden data-full="{{root}}assets/img/projects/star-2.webp" data-cap="7 Star Real Estate · {{pj_star_cat}}" aria-label="7 Star Real Estate · {{pj_star_cat}}"></button><button hidden data-full="{{root}}assets/img/projects/star-3.webp" data-cap="7 Star Real Estate · {{pj_star_cat}}" aria-label="7 Star Real Estate · {{pj_star_cat}}"></button><button hidden data-full="{{root}}assets/img/projects/star-4.webp" data-cap="7 Star Real Estate · {{pj_star_cat}}" aria-label="7 Star Real Estate · {{pj_star_cat}}"></button>
+      <div class="pj__body"><span class="case__tag">{{pj_star_cat}}</span><h3>7 Star Real Estate</h3><p>{{pj_star_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/dg-1.webp" data-cap="DG Tech · {{pj_dg_cat}}" aria-label="DG Tech · {{pj_dg_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>dgtech.am</b></span><img src="{{root}}assets/img/projects/dg-t.webp" alt="DG Tech · {{pj_dg_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>2</span></button><button hidden data-full="{{root}}assets/img/projects/dg-2.webp" data-cap="DG Tech · {{pj_dg_cat}}" aria-label="DG Tech · {{pj_dg_cat}}"></button>
+      <div class="pj__body"><span class="case__tag">{{pj_dg_cat}}</span><h3>DG Tech</h3><p>{{pj_dg_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/hs-1.webp" data-cap="HaySh!n.am · {{pj_hs_cat}}" aria-label="HaySh!n.am · {{pj_hs_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>hayshin.am</b></span><img src="{{root}}assets/img/projects/hs-t.webp" alt="HaySh!n.am · {{pj_hs_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>2</span></button><button hidden data-full="{{root}}assets/img/projects/hs-2.webp" data-cap="HaySh!n.am · {{pj_hs_cat}}" aria-label="HaySh!n.am · {{pj_hs_cat}}"></button>
+      <div class="pj__body"><span class="case__tag">{{pj_hs_cat}}</span><h3>HaySh!n.am</h3><p>{{pj_hs_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/kf-1.webp" data-cap="Kinoframe · {{pj_kf_cat}}" aria-label="Kinoframe · {{pj_kf_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>kinoframe</b></span><img src="{{root}}assets/img/projects/kf-t.webp" alt="Kinoframe · {{pj_kf_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>3</span></button><button hidden data-full="{{root}}assets/img/projects/kf-2.webp" data-cap="Kinoframe · {{pj_kf_cat}}" aria-label="Kinoframe · {{pj_kf_cat}}"></button><button hidden data-full="{{root}}assets/img/projects/kf-3.webp" data-cap="Kinoframe · {{pj_kf_cat}}" aria-label="Kinoframe · {{pj_kf_cat}}"></button>
+      <div class="pj__body"><span class="case__tag">{{pj_kf_cat}}</span><h3>Kinoframe</h3><p>{{pj_kf_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/gni-1.webp" data-cap="Gni.am · {{pj_gni_cat}}" aria-label="Gni.am · {{pj_gni_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>gni.am</b></span><img src="{{root}}assets/img/projects/gni-t.webp" alt="Gni.am · {{pj_gni_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>1</span></button>
+      <div class="pj__body"><span class="case__tag">{{pj_gni_cat}}</span><h3>Gni.am</h3><p>{{pj_gni_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/nar-1.webp" data-cap="Narinj · {{pj_nar_cat}}" aria-label="Narinj · {{pj_nar_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>narinj</b></span><img src="{{root}}assets/img/projects/nar-t.webp" alt="Narinj · {{pj_nar_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>1</span></button>
+      <div class="pj__body"><span class="case__tag">{{pj_nar_cat}}</span><h3>Narinj</h3><p>{{pj_nar_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/bg-1.webp" data-cap="BackgammonCraft · {{pj_bg_cat}}" aria-label="BackgammonCraft · {{pj_bg_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>backgammoncraft</b></span><img src="{{root}}assets/img/projects/bg-t.webp" alt="BackgammonCraft · {{pj_bg_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>1</span></button>
+      <div class="pj__body"><span class="case__tag">{{pj_bg_cat}}</span><h3>BackgammonCraft</h3><p>{{pj_bg_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/dao-1.webp" data-cap="Daobab · {{pj_dao_cat}}" aria-label="Daobab · {{pj_dao_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>daobab</b></span><img src="{{root}}assets/img/projects/dao-t.webp" alt="Daobab · {{pj_dao_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>1</span></button>
+      <div class="pj__body"><span class="case__tag">{{pj_dao_cat}}</span><h3>Daobab</h3><p>{{pj_dao_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/kr-1.webp" data-cap="Kristy Design · {{pj_kr_cat}}" aria-label="Kristy Design · {{pj_kr_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>kristy design</b></span><img src="{{root}}assets/img/projects/kr-t.webp" alt="Kristy Design · {{pj_kr_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>1</span></button>
+      <div class="pj__body"><span class="case__tag">{{pj_kr_cat}}</span><h3>Kristy Design</h3><p>{{pj_kr_desc}}</p></div>
+    </article>
+    <article class="pj" data-g>
+      <button class="pj__shot" data-full="{{root}}assets/img/projects/fr-1.webp" data-cap="Fridee Studio · {{pj_fr_cat}}" aria-label="Fridee Studio · {{pj_fr_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>fridee.studio</b></span><img src="{{root}}assets/img/projects/fr-t.webp" alt="Fridee Studio · {{pj_fr_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg>1</span></button>
+      <div class="pj__body"><span class="case__tag">{{pj_fr_cat}}</span><h3>Fridee Studio</h3><p>{{pj_fr_desc}}</p></div>
+    </article>
+  </div>
+  <!-- projects:end -->
+</div></section>
+
+<section class="section section--alt" id="works"><div class="wrap">
+  <div class="section__head"><div class="eyebrow">{{works_eyebrow}}</div><h2>{{works_title}}</h2><p>{{works_lead}}</p></div>
 
   <article class="case">
     <div>
@@ -130,7 +178,7 @@
   </article>
 </div></section>
 
-<section class="section section--alt" id="prices"><div class="wrap">
+<section class="section" id="prices"><div class="wrap">
   <div class="section__head"><div class="eyebrow">{{nav_prices}}</div><h2>{{prices_title}}</h2><p>{{prices_lead}}</p></div>
   <div class="prices">
     <div class="price"><h3>{{p1_h}}</h3><b>{{p1_b}}</b><ul><li>{{p1_1}}</li><li>{{p1_2}}</li><li>{{p1_3}}</li></ul><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
