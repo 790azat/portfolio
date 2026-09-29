@@ -132,7 +132,7 @@
    47
   ],
   "telegram_at": "2026-09-29 14:06",
-  "instagram_tries": 1,
+  "instagram_tries": 2,
   "instagram_error": "Instagram не принял reel: ERROR Error: Media upload has failed with error code 2207076"
  },
  "2026-09-universal/02-story": {
@@ -140,5 +140,20 @@
   "instagram_at": "2026-09-29 14:06",
   "facebook": "1807282870403640",
   "facebook_at": "2026-09-29 14:06"
+ },
+ "2026-10-segmenty/01-karusel-salon": {
+  "instagram": "18113276126144670",
+  "instagram_at": "2026-09-29 19:42",
+  "facebook": "1347280171803827_122099937507492824",
+  "facebook_at": "2026-09-29 19:42",
+  "telegram": 48,
+  "telegram_ids": [
+   48,
+   49,
+   50,
+   51,
+   52
+  ],
+  "telegram_at": "2026-09-29 19:42"
  }
 }
