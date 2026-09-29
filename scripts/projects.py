@@ -43,7 +43,7 @@ def card(p):
             f'      <button class="pj__shot" data-full="{full(1)}" data-cap="{cap}" aria-label="{cap}">'
             f'<span class="pj__bar"><i></i><i></i><i></i><b>{bar}</b></span>'
             f'<img src="{{{{root}}}}assets/img/projects/{k}-t.webp" alt="{cap}" loading="lazy">'
-            f'<span class="pj__n">{CAM}{len(p["shots"])}</span></button>{extra}\n'
+            f'<span class="pj__n">{CAM}</span></button>{extra}\n'
             f'      <div class="pj__body"><span class="case__tag">{{{{pj_{k}_cat}}}}</span><h3>{name}</h3><p>{{{{pj_{k}_desc}}}}</p></div>\n'
             f'    </article>\n')
 
