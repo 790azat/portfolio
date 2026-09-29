@@ -20,6 +20,44 @@
   }
  },
  {
+  "key": "fs",
+  "name": "Fridee Studio",
+  "domain": "frideestudio.com",
+  "shots": [
+   "fs1",
+   "fs3",
+   "fs2"
+  ],
+  "cat": {
+   "hy": "Պրոդաքշն բլոգերների և բրենդների համար",
+   "ru": "Продакшн для блогеров и брендов",
+   "en": "Production for creators and brands"
+  },
+  "desc": {
+   "hy": "Ստուդիայի կայք՝ անիմացիաներով, երաժշտությամբ, ծառայություններ գործակալությունների, բրենդների և բիզնեսի համար, թիմի էջ և «Գրեք մեզ» ձև։",
+   "ru": "Сайт студии с анимациями и музыкой: услуги для агентств, брендов и бизнеса, команда и форма «Напишите нам».",
+   "en": "Studio website with animations and music: services for agencies, brands and businesses, the team and a “Write us” form."
+  }
+ },
+ {
+  "key": "cf",
+  "name": "Cinefox",
+  "domain": "cinefox.studio",
+  "shots": [
+   "cf1"
+  ],
+  "cat": {
+   "hy": "Վիդեո և ռազմավարություն բրենդների համար",
+   "ru": "Видео и стратегии для брендов",
+   "en": "Video and strategy for brands"
+  },
+  "desc": {
+   "hy": "Վիդեո ստուդիայի կայք՝ անիմացիոն դիզայնով, գործընկերների կենդանի ժապավենով և կոնտակտներով։",
+   "ru": "Сайт видеостудии: анимированный дизайн, живая лента партнёров, соцсети и контакты.",
+   "en": "Video studio website: animated design, a live partner carousel, socials and contacts."
+  }
+ },
+ {
   "key": "s42",
   "name": "School 42",
   "domain": "",
@@ -245,25 +283,6 @@
    "hy": "Գրաֆիկական դիզայների պորտֆոլիո կայք՝ լոգոներ, նկարազարդումներ և նկարներ։",
    "ru": "Сайт-портфолио графического дизайнера: логотипы, иллюстрации и рисунки.",
    "en": "Portfolio site for a graphic designer: logos, illustrations and drawings."
-  }
- },
- {
-  "key": "fr",
-  "name": "Fridee Studio",
-  "domain": "fridee.studio",
-  "shots": [
-   "fr2",
-   "fr-m"
-  ],
-  "cat": {
-   "hy": "Վիդեո ստուդիա",
-   "ru": "Видеостудия",
-   "en": "Video studio"
-  },
-  "desc": {
-   "hy": "Կայք ստուդիայի համար, որը նկարահանում և մոնտաժում է տեսանյութեր բլոգերների և բրենդների համար, և անձնական էջ՝ ստեղծագործողների համար։",
-   "ru": "Сайт студии, которая снимает и монтирует видео для блогеров и брендов, и личный кабинет для авторов.",
-   "en": "Site for a studio that shoots and edits videos for creators and brands, with a personal account for creators."
   }
  }
 ]
