@@ -3,3 +3,5 @@
 delete:
   - 2026-10-nedelya-1/08-post-ceny
   - 2026-10-nedelya-1/04-post-kak-rabotaem
+  # 2026-09-29: повтор карусели для салонов (запуск взял устаревший журнал)
+  - 2026-10-segmenty/01-karusel-salon-dubl
