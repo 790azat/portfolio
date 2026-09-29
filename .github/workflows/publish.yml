@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # запуск мог ждать в очереди (concurrency), пока предыдущий записывал журнал; берём свежий main, иначе пост выйдет дважды
+      - run: git fetch -q origin main && git reset -q --hard origin/main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
