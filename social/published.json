@@ -123,5 +123,22 @@
    46
   ],
   "telegram_at": "2026-09-28 23:51"
+ },
+ "2026-09-universal/01-reel": {
+  "instagram_tries": 1,
+  "instagram_error": "загрузка видео в Instagram: b'{\"debug_info\":{\"retriable\":false,\"type\":\"ProcessingFailedError\",\"message\":\"Request processing failed\"}}'",
+  "facebook": "1715923789521094",
+  "facebook_at": "2026-09-29 14:06",
+  "telegram": 47,
+  "telegram_ids": [
+   47
+  ],
+  "telegram_at": "2026-09-29 14:06"
+ },
+ "2026-09-universal/02-story": {
+  "instagram": "17991071025107323",
+  "instagram_at": "2026-09-29 14:06",
+  "facebook": "1807282870403640",
+  "facebook_at": "2026-09-29 14:06"
  }
 }
