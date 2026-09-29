@@ -1005,8 +1005,8 @@ posts:
   - reel.mp4
   cover: cover.jpg
   at: 2026-09-30 01:30
+  # Instagram: API отклоняет длинное видео (ProcessingFailedError), Азат публикует вручную
   to:
-  - instagram
   - facebook
   approved: true
   caption: |-
