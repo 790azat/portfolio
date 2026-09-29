@@ -123,8 +123,22 @@ def local_file(url):
     return f if f.exists() else None
 
 
-def ig_upload_video(ig, url, **params):
-    """Рилс в Instagram загружаем файлом (resumable upload), а не ссылкой: чужой хостинг Instagram не скачивает."""
+def ig_upload_video(ig, url, fb_video=None, **params):
+    """Рилс в Instagram загружаем файлом (resumable upload), а не ссылкой: чужой хостинг Instagram не скачивает.
+    Если загрузка файлом не прошла, а в Facebook это видео уже есть, отдаём Instagram ссылку на него в CDN Facebook."""
+    try:
+        return ig_upload_file(ig, url, **params)
+    except MetaError as e:
+        if not fb_video:
+            raise
+        src = call('GET', fb_video, fields='source').get('source')
+        if not src:
+            raise
+        print(f'Instagram не принял файл ({e}), беру видео из Facebook')
+        return call('POST', f'{ig}/media', video_url=src, **params)['id']
+
+
+def ig_upload_file(ig, url, **params):
     f = local_file(url)
     if not f:
         return call('POST', f'{ig}/media', video_url=url, **params)['id']
@@ -162,7 +176,7 @@ def ig_wait(cid, what):
     raise MetaError(f'Instagram слишком долго обрабатывает {what}')
 
 
-def ig_publish(ig, kind, urls, caption, cover=None):
+def ig_publish(ig, kind, urls, caption, cover=None, fb_video=None):
     if kind == 'carousel':
         kids = []
         for u in urls:
@@ -173,7 +187,7 @@ def ig_publish(ig, kind, urls, caption, cover=None):
         p = dict(media_type='REELS', caption=caption, share_to_feed='true')
         if cover:
             p['cover_url'] = fb_cdn(cover)
-        cid = ig_upload_video(ig, urls[0], **p)
+        cid = ig_upload_video(ig, urls[0], fb_video=fb_video, **p)
     elif kind == 'story':
         cid = call('POST', f'{ig}/media', media_type='STORIES', image_url=fb_cdn(urls[0]))['id']
     else:
@@ -284,7 +298,7 @@ def main():
             if a.dry_run:
                 print(f'[пробно] {pid} → {target}: {p["kind"]}, {len(urls)} файл(ов)'); continue
             try:
-                mid = ig_publish(ig, p['kind'], urls, p.get('caption', ''), cover) if target == 'instagram' \
+                mid = ig_publish(ig, p['kind'], urls, p.get('caption', ''), cover, rec.get('facebook') if p['kind'] == 'reel' else None) if target == 'instagram' \
                     else fb_publish(page, p['kind'], urls, p.get('caption', ''))
                 rec[target] = mid; rec[f'{target}_at'] = now.strftime('%Y-%m-%d %H:%M')
                 rec.pop(f'{target}_error', None)

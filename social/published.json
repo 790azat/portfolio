@@ -125,8 +125,6 @@
   "telegram_at": "2026-09-28 23:51"
  },
  "2026-09-universal/01-reel": {
-  "instagram_tries": 2,
-  "instagram_error": "загрузка видео в Instagram: b'{\"debug_info\":{\"retriable\":false,\"type\":\"ProcessingFailedError\",\"message\":\"Request processing failed\"}}'",
   "facebook": "1715923789521094",
   "facebook_at": "2026-09-29 14:06",
   "telegram": 47,
