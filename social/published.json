@@ -131,7 +131,9 @@
   "telegram_ids": [
    47
   ],
-  "telegram_at": "2026-09-29 14:06"
+  "telegram_at": "2026-09-29 14:06",
+  "instagram_tries": 1,
+  "instagram_error": "Instagram не принял reel: ERROR"
  },
  "2026-09-universal/02-story": {
   "instagram": "17991071025107323",
