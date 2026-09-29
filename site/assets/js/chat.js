@@ -7,9 +7,9 @@
   var AV_BOT = '/assets/img/logo-180.png', AV_AZAT = '/assets/img/azat.webp';
   var lang = (document.documentElement.lang || 'hy').slice(0, 2);
   var T = {
-    hy: { title: 'Գրեք Ազատին', hi: 'Բարև Ձեզ։ Ես Ազատն եմ, EVNWEB։ Գրեք ձեր հարցը, կպատասխանեմ այստեղ աշխատանքային օրվա ընթացքում։ Կարող եք թողնել նաև հեռախոսահամար կամ Telegram։', ph: 'Ձեր հաղորդագրությունը…', send: 'Ուղարկել', open: 'Չատ', err: 'Չհաջողվեց ուղարկել, փորձեք նորից', slow: 'Մի քիչ սպասեք և ուղարկեք նորից', tg: 'Կամ գրեք Telegram-ով', name: 'Ազատ', on: 'առցանց', sub: 'EVNWEB' },
-    ru: { title: 'Написать Азату', hi: 'Здравствуйте! Я Азат, EVNWEB. Напишите ваш вопрос, отвечу здесь в течение рабочего дня. Можно оставить телефон или Telegram.', ph: 'Ваше сообщение…', send: 'Отправить', open: 'Чат', err: 'Не удалось отправить, попробуйте ещё раз', slow: 'Подождите немного и отправьте снова', tg: 'Или напишите в Telegram', name: 'Азат', on: 'онлайн', sub: 'EVNWEB' },
-    en: { title: 'Message Azat', hi: 'Hi! I’m Azat from EVNWEB. Type your question and I’ll reply here during the working day. You can also leave your phone or Telegram.', ph: 'Your message…', send: 'Send', open: 'Chat', err: 'Couldn’t send, please try again', slow: 'Please wait a moment and send again', tg: 'Or message me on Telegram', name: 'Azat', on: 'online', sub: 'EVNWEB' },
+    hy: { title: 'Գրեք Ազատին', hi: 'Բարև Ձեզ։ Ես Ազատն եմ, EVNWEB։ Գրեք ձեր հարցը, կպատասխանեմ այստեղ աշխատանքային օրվա ընթացքում։ Կարող եք թողնել նաև հեռախոսահամար կամ Telegram։', ph: 'Ձեր հաղորդագրությունը…', send: 'Ուղարկել', open: 'Չատ', err: 'Չհաջողվեց ուղարկել, փորձեք նորից', slow: 'Մի քիչ սպասեք և ուղարկեք նորից', tg: 'Կամ գրեք Telegram-ով', name: 'Ազատ', on: 'առցանց', sub: 'EVNWEB', nw: 'Նոր հաղորդագրություն' },
+    ru: { title: 'Написать Азату', hi: 'Здравствуйте! Я Азат, EVNWEB. Напишите ваш вопрос, отвечу здесь в течение рабочего дня. Можно оставить телефон или Telegram.', ph: 'Ваше сообщение…', send: 'Отправить', open: 'Чат', err: 'Не удалось отправить, попробуйте ещё раз', slow: 'Подождите немного и отправьте снова', tg: 'Или напишите в Telegram', name: 'Азат', on: 'онлайн', sub: 'EVNWEB', nw: 'Новое сообщение' },
+    en: { title: 'Message Azat', hi: 'Hi! I’m Azat from EVNWEB. Type your question and I’ll reply here during the working day. You can also leave your phone or Telegram.', ph: 'Your message…', send: 'Send', open: 'Chat', err: 'Couldn’t send, please try again', slow: 'Please wait a moment and send again', tg: 'Or message me on Telegram', name: 'Azat', on: 'online', sub: 'EVNWEB', nw: 'New message' },
   }[lang] || null;
   if (!T) return;
 
@@ -17,9 +17,10 @@
   var sid = store('evn_chat_sid');
   var seen = Number(store('evn_chat_seen')) || 0;
   var n = 0, msgs = [], timer = null, lastActive = Date.now(), open = false, ws = null, wsTry = 0;
+  var ready = false, baseTitle = document.title, blink = null, audio = null;
 
   var css = '.evc-btn{position:fixed;right:18px;bottom:18px;z-index:31;height:56px;padding:0 20px 0 16px;border-radius:28px;border:0;background:var(--accent,#1f5f5b);color:#fff;font:600 1rem var(--sans,system-ui);display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.2);cursor:pointer}' +
-    '.evc-btn svg{width:24px;height:24px}.evc-dot{position:absolute;top:6px;right:8px;width:12px;height:12px;border-radius:50%;background:#e0575a;border:2px solid #fff;display:none}' +
+    '.evc-btn svg{width:24px;height:24px}.evc-live{position:absolute;left:30px;bottom:12px;width:12px;height:12px;border-radius:50%;background:#2ecc71;border:2px solid var(--accent,#1f5f5b);display:none}.evc-btn.live .evc-live{display:block}.evc-dot{position:absolute;top:6px;right:8px;width:12px;height:12px;border-radius:50%;background:#e0575a;border:2px solid #fff;display:none}' +
     '.fab{bottom:86px !important}' +
     '.evc{position:fixed;right:18px;bottom:86px;z-index:40;width:min(360px,calc(100vw - 32px));height:min(520px,calc(100vh - 120px));background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);display:none;flex-direction:column;overflow:hidden;font:15px/1.45 var(--sans,system-ui);color:#1b2124}' +
     '.evc.open{display:flex}.evc-h{background:var(--accent,#1f5f5b);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}.evc-t{flex:1;display:flex;flex-direction:column;line-height:1.25}.evc-t b{font-size:1.02rem}.evc-t small{opacity:.8;font-size:.8rem}' +
@@ -35,7 +36,7 @@
 
   var btn = document.createElement('button');
   btn.className = 'evc-btn'; btn.type = 'button'; btn.setAttribute('aria-label', T.title);
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg><span>' + T.open + '</span><i class="evc-dot"></i>';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg><span>' + T.open + '</span><i class="evc-dot"></i><i class="evc-live"></i>';
   var box = document.createElement('div');
   box.className = 'evc'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', T.title);
   box.innerHTML = '<div class="evc-h"><div class="evc-av"><img alt="" width="40" height="40"><i class="evc-on"></i></div><div class="evc-t"><b></b><small></small></div><button type="button" aria-label="×">×</button></div><div class="evc-l"></div>' +
@@ -52,7 +53,7 @@
   // Пока Азат не ответил, в шапке аватар бота; после его первого ответа его фото и зелёная точка «онлайн»
   function header() {
     var live = msgs.some(function (m) { return m.f === 'a'; });
-    box.classList.toggle('live', live);
+    box.classList.toggle('live', live); btn.classList.toggle('live', live);
     var src = live ? AV_AZAT : AV_BOT;
     if (avImg.getAttribute('src') !== src) avImg.src = src;
     hTitle.textContent = live ? T.name : T.title;
@@ -73,15 +74,47 @@
   }
   function markSeen() { seen = msgs.filter(function (m) { return m.f === 'a'; }).length; store('evn_chat_seen', String(seen)); dot(); }
 
+  // Новый ответ Азата: короткий звук и мигающий заголовок вкладки, пока посетитель не посмотрит
+  function beep() {
+    try {
+      var C = window.AudioContext || window.webkitAudioContext; if (!C) return;
+      audio = audio || new C(); if (audio.state === 'suspended') audio.resume();
+      [[880, 0], [1320, 0.12]].forEach(function (f) {
+        var o = audio.createOscillator(), g = audio.createGain(), t = audio.currentTime + f[1];
+        o.type = 'sine'; o.frequency.value = f[0]; o.connect(g); g.connect(audio.destination);
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.25, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
+        o.start(t); o.stop(t + 0.3);
+      });
+    } catch (e) {}
+  }
+  function stopBlink() { if (blink) { clearInterval(blink); blink = null; document.title = baseTitle; } }
+  function startBlink() {
+    if (blink) return; var on = false;
+    blink = setInterval(function () { on = !on; document.title = on ? '💬 ' + T.nw : baseTitle; }, 1000);
+  }
+  function notify(fresh) {
+    if (!fresh.length) return;
+    beep();
+    if (document.hidden || !open) startBlink();
+  }
+  // AudioContext разрешён только после действия посетителя: готовим его при первом клике или вводе
+  ['click', 'keydown', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, function () { try { var C = window.AudioContext || window.webkitAudioContext; if (C && !audio) audio = new C(); if (audio && audio.state === 'suspended') audio.resume(); } catch (e) {} }, { once: true, passive: true });
+  });
+  window.addEventListener('focus', function () { if (open) stopBlink(); });
+
   function add(j) {
     if (j.msgs && j.msgs.length && j.n > n && j.n - n <= j.msgs.length) {
-      msgs = msgs.concat(j.msgs.slice(j.msgs.length - (j.n - n))); n = j.n;
+      var got = j.msgs.slice(j.msgs.length - (j.n - n));
+      msgs = msgs.concat(got); n = j.n;
       render(); if (open) markSeen(); else dot(); lastActive = Date.now();
+      if (ready) notify(got.filter(function (m) { return m.f === 'a'; }));
     } else if (j.n > n) poll();   // что-то пропустили, пока не было связи
   }
   function poll() {
     if (!sid) return;
-    fetch(API + 'poll?sid=' + sid + '&after=' + n).then(function (r) { return r.json(); }).then(add).catch(function () {}).then(schedule);
+    // первый ответ после загрузки страницы — это история, по ней не звеним
+    fetch(API + 'poll?sid=' + sid + '&after=' + n).then(function (r) { return r.json(); }).then(add).catch(function () {}).then(function () { ready = true; schedule(); });
   }
   function schedule() {
     clearTimeout(timer);
@@ -103,7 +136,7 @@
       if (Date.now() - lastActive < 30 * 60 * 1000) setTimeout(connect, Math.min(60000, 2000 * Math.pow(2, wsTry++)));
     };
   }
-  document.addEventListener('visibilitychange', function () { if (!document.hidden && sid) { lastActive = Date.now(); poll(); } });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden && open) stopBlink(); if (!document.hidden && sid) { lastActive = Date.now(); poll(); } });
 
   var phone = window.matchMedia('(max-width:520px)');
   // Когда на телефоне открыта клавиатура, окно подстраивается под видимую часть экрана
@@ -120,7 +153,7 @@
     document.documentElement.classList.toggle('evc-open', v);
     document.body.style.overflow = v && phone.matches ? 'hidden' : '';
     fit();
-    if (v) { render(); markSeen(); lastActive = Date.now(); poll(); if (!phone.matches) setTimeout(function () { ta.focus(); }, 50); }
+    if (v) { stopBlink(); render(); markSeen(); lastActive = Date.now(); poll(); if (!phone.matches) setTimeout(function () { ta.focus(); }, 50); }
   }
   btn.addEventListener('click', function () { toggle(!open); });
   box.querySelector('.evc-h button').addEventListener('click', function () { toggle(false); });
@@ -144,5 +177,5 @@
 
   // вернувшийся посетитель: подтянуть историю и новые ответы
   header();
-  if (sid) poll();
+  if (sid) poll(); else ready = true;
 })();
