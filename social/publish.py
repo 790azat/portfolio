@@ -167,11 +167,12 @@ def fb_cdn(url):
 
 def ig_wait(cid, what):
     for _ in range(60):  # до 10 минут на обработку видео
-        st = call('GET', cid, fields='status_code,status').get('status_code')
+        r = call('GET', cid, fields='status_code,status')
+        st = r.get('status_code')
         if st == 'FINISHED':
             return
         if st in ('ERROR', 'EXPIRED'):
-            raise MetaError(f'Instagram не принял {what}: {st}')
+            raise MetaError(f"Instagram не принял {what}: {st} {r.get('status') or ''}".strip())
         time.sleep(10)
     raise MetaError(f'Instagram слишком долго обрабатывает {what}')
 
