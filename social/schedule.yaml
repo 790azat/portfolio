@@ -881,7 +881,7 @@ posts:
   - 4.jpg
   - 5.jpg
   - 6.jpg
-  at: 2026-09-30 13:00
+  at: 2026-10-01 10:00
   to:
   - instagram
   telegram: false
@@ -921,7 +921,7 @@ posts:
   media:
   - 1.jpg
   - 2.jpg
-  at: 2026-09-30 13:20
+  at: 2026-10-01 12:00
   to:
   - instagram
   telegram: false
@@ -961,7 +961,7 @@ posts:
   - 4.jpg
   - 5.jpg
   - 6.jpg
-  at: 2026-09-30 13:40
+  at: 2026-10-01 14:00
   to:
   - instagram
   telegram: false
@@ -1013,7 +1013,7 @@ posts:
   - 2.jpg
   - 3.jpg
   - 4.jpg
-  at: 2026-09-30 14:00
+  at: 2026-10-01 16:00
   to:
   - instagram
   telegram: false
