@@ -602,7 +602,7 @@ posts:
   - 4.jpg
   - 5.jpg
   - 6.jpg
-  at: 2026-09-30 12:00
+  at: 2026-09-30 05:00
   to:
   - instagram
   telegram: false
@@ -636,7 +636,7 @@ posts:
   media:
   - 1.jpg
   - 2.jpg
-  at: 2026-09-30 12:02
+  at: 2026-09-30 05:02
   to:
   - instagram
   telegram: false
@@ -664,7 +664,7 @@ posts:
   media:
   - reel.mp4
   cover: cover.jpg
-  at: 2026-09-30 12:04
+  at: 2026-09-30 05:04
   to:
   - instagram
   telegram: false
@@ -695,7 +695,7 @@ posts:
   - 3.jpg
   - 4.jpg
   - 5.jpg
-  at: 2026-09-30 12:06
+  at: 2026-09-30 05:06
   to:
   - instagram
   telegram: false
@@ -731,7 +731,7 @@ posts:
   media:
   - reel.mp4
   cover: cover.jpg
-  at: 2026-09-30 12:08
+  at: 2026-09-30 05:08
   to:
   - instagram
   telegram: false
@@ -759,7 +759,7 @@ posts:
   media:
   - 1.jpg
   - 2.jpg
-  at: 2026-09-30 12:10
+  at: 2026-09-30 05:10
   to:
   - instagram
   telegram: false
@@ -793,7 +793,7 @@ posts:
   media:
   - 1.jpg
   - 2.jpg
-  at: 2026-09-30 12:12
+  at: 2026-09-30 05:12
   to:
   - instagram
   telegram: false
@@ -837,7 +837,7 @@ posts:
   - 4.jpg
   - 5.jpg
   - 6.jpg
-  at: 2026-09-30 12:14
+  at: 2026-09-30 05:14
   to:
   - instagram
   telegram: false
@@ -881,7 +881,7 @@ posts:
   - 4.jpg
   - 5.jpg
   - 6.jpg
-  at: 2026-09-30 12:16
+  at: 2026-09-30 05:16
   to:
   - instagram
   telegram: false
@@ -921,7 +921,7 @@ posts:
   media:
   - 1.jpg
   - 2.jpg
-  at: 2026-09-30 12:18
+  at: 2026-09-30 05:18
   to:
   - instagram
   telegram: false
@@ -961,7 +961,7 @@ posts:
   - 4.jpg
   - 5.jpg
   - 6.jpg
-  at: 2026-09-30 12:20
+  at: 2026-09-30 05:20
   to:
   - instagram
   telegram: false
@@ -1013,7 +1013,7 @@ posts:
   - 2.jpg
   - 3.jpg
   - 4.jpg
-  at: 2026-09-30 12:22
+  at: 2026-09-30 05:22
   to:
   - instagram
   telegram: false
