@@ -6,7 +6,7 @@
 Картинки берутся на языке --lang, подпись: сначала на этом языке, под ней на втором.
 Все новые записи получают approved: false, публикация начнётся только после одобрения.
 """
-import argparse, datetime, pathlib, re, shutil, subprocess, sys
+import argparse, datetime, json, pathlib, re, shutil, subprocess, sys
 
 import yaml
 from PIL import Image
@@ -39,6 +39,9 @@ def main():
     ap.add_argument('factory'); ap.add_argument('batch')
     ap.add_argument('--start', required=True, help='понедельник недели публикации, ГГГГ-ММ-ДД')
     ap.add_argument('--lang', default='hy')
+    ap.add_argument('--refresh', action='store_true',
+                    help='только обновить картинки/видео у уже стоящих в расписании и ещё не опубликованных записей; '
+                         'время, подпись и approved не трогаются')
     a = ap.parse_args()
     fac = pathlib.Path(a.factory); out = fac / 'out' / a.batch; briefs = fac / 'briefs' / a.batch
     other = 'hy' if a.lang == 'ru' else 'ru'
@@ -47,9 +50,13 @@ def main():
     sched = sched or {'timezone': 'Asia/Yerevan', 'posts': []}
     sched['posts'] = sched.get('posts') or []
     known = {p['id'] for p in sched['posts']}
+    pub = ROOT / 'social' / 'published.json'
+    published = {k for k, v in (json.loads(pub.read_text(encoding='utf-8')) if pub.exists() else {}).items() if v.get('instagram') or v.get('facebook')}
     for bf in sorted(briefs.glob('*.y*ml')):
         b = yaml.safe_load(bf.read_text(encoding='utf-8'))
         pid = f'{a.batch}/{bf.stem}'
+        if a.refresh and (pid not in known or pid in published):
+            continue
         src = out / bf.stem / a.lang
         if not src.is_dir():
             print('нет готовых файлов, пропуск:', src); continue
@@ -78,6 +85,11 @@ def main():
             second = cap2.read_text(encoding='utf-8').strip().rsplit('\n\n', 1)[0]
             cap = f'{first}\n\n———\n\n{second}\n\n{tags}'.strip()
         entry.update(at=when_to_dt(b.get('when'), start), to=['instagram', 'facebook'], approved=False, caption=cap)
+        if a.refresh:
+            old = next(p for p in sched['posts'] if p['id'] == pid)
+            if kind == 'post' and len(entry['media']) > 1:
+                kind = entry['kind'] = 'carousel'  # обложка для сетки + сам пост
+            entry = {**old, 'kind': kind, 'media': entry['media'], **({'cover': entry['cover']} if 'cover' in entry else {})}
         if pid in known:
             sched['posts'] = [entry if p['id'] == pid else p for p in sched['posts']]
         else:
