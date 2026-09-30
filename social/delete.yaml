@@ -5,3 +5,13 @@ delete:
   - 2026-10-nedelya-1/04-post-kak-rabotaem
   # 2026-09-29: повтор карусели для салонов (запуск взял устаревший журнал)
   - 2026-10-segmenty/01-karusel-salon-dubl
+# Azat 2026-09-30 («да»): старое оформление, заменено постами 2026-09-setka/*. Удаляются только из Instagram.
+delete_instagram:
+  - 2026-10-nedelya-1/01-karusel-restoran
+  - 2026-10-nedelya-1/02-post-otel
+  - 2026-10-nedelya-1/06-reel-restoran
+  - 2026-10-nedelya-1/03-karusel-magazin
+  - 2026-10-nedelya-1/07-reel-otel
+  - 2026-09-zamena/02-shagi-karusel
+  - 2026-09-zamena/01-ceny-karusel
+  - 2026-09-nabory/01-karusel-otel
