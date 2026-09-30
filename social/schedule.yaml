@@ -606,7 +606,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-nedelya-1/01-karusel-restoran
   caption: |-
     Հյուրը ուզում է ընթրել ձեզ մոտ։ Ի՞նչ է լինում հետո, եթե ռեստորանն ունի EVNWEB-ի կայք։
@@ -640,7 +640,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-nedelya-1/02-post-otel
   caption: |-
     Մոսկվայից կամ Լոս Անջելեսից հյուրը ձեր հյուրանոցը դիտում է Երևանի ժամանակով գիշերվա 3-ին։ Եթե ամրագրելու համար պետք է զանգել կամ սպասել direct-ի պատասխանին, նա կամրագրի հարևաններին։
@@ -668,7 +668,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-nedelya-1/06-reel-restoran
   caption: |-
     Ինչպես է ռեստորանը ստանում պատվերներ և ամրագրումներ առանց զանգերի՝ 25 վայրկյանում։
@@ -699,7 +699,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-nedelya-1/03-karusel-magazin
   caption: |-
     Մնացորդների տետր, երեկոյան վերահաշվարկ և ժամկետանց մածուն դարակում։ Ծանո՞թ է։
@@ -735,7 +735,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-nedelya-1/07-reel-otel
   caption: |-
     Այլ երկրից հյուրը ձեր հյուրանոցը դիտում է Երևանի ժամանակով գիշերը։ Եթե ամրագրումը միայն զանգով է, նա կգնա նրանց մոտ, ովքեր ունեն «Ամրագրել» կոճակը։
@@ -763,7 +763,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-09-zamena/02-shagi-karusel
   caption: |-
     Ինչպես է ընթանում աշխատանքը կայքի վրա՝ քայլ առ քայլ։
@@ -797,7 +797,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-09-zamena/01-ceny-karusel
   caption: |-
     Որքա՞ն արժե կայքը 2026 թվականին՝
@@ -841,7 +841,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-09-nabory/01-karusel-otel
   caption: |-
     Ամրագրում հեռախոսով, Excel աղյուսակ և երկու հյուր մեկ համարի համար։ Ծանո՞թ է։
@@ -885,7 +885,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-09-nabory/02-karusel-restoran
   caption: |-
     Ամրագրումներ նոթատետրում, մենյու PDF-ով և «զանգահարեք, ճշտեք գինը»։ Ծանո՞թ է։
@@ -925,7 +925,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-segmenty/04-post-business-site
   caption: |-
     Հայաստանում շատ հյուրանոցներ, սրճարաններ և խանութներ ժամանակին ստեղծել են անվճար կայք Google Business-ում՝ anun.business.site տեսքի հասցեով։
@@ -965,7 +965,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-09-smm/01-karusel-smm
   caption: |-
     Երևանի SMM մասնագետներին, թարգեթոլոգներին և ռիլսմեյքերներին 👋
@@ -1017,7 +1017,7 @@ posts:
   to:
   - instagram
   telegram: false
-  approved: false
+  approved: true
   replaces: 2026-10-segmenty/01-karusel-salon
   caption: |-
     Հաճախորդը ժամը 23:00-ին թերթում է Instagram-ը և ուզում է գրանցվել վաղվա համար։ Ադմինիստրատորը քնած է, direct-ում լռություն է, և առավոտյան նա արդեն գրանցված է ուրիշ սրահում։
