@@ -270,7 +270,7 @@ def main():
         cover = f"{BASE}/m/{pid}/{p['cover']}" if p.get('cover') else None
         targets = list(p.get('to', ['instagram', 'facebook']))
         removed = pid in deleted or any(k.endswith('_deleted_at') for k in rec)
-        if tg.enabled() and 'telegram' not in targets and p['kind'] != 'story' and not removed:
+        if tg.enabled() and 'telegram' not in targets and p['kind'] != 'story' and not removed and p.get('telegram', True) is not False:
             targets.append('telegram')  # канал Telegram получает всё, кроме сторис и удалённых постов
         for target in targets:
             if target in rec or rec.get(f'{target}_tries', 0) >= MAX_TRIES:
