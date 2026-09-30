@@ -847,9 +847,10 @@ posts:
     #EVNWEB #Երևան #կայք #բիզնես #Հայաստան
 - id: 2026-10-nedelya-2/03-post-instagram-ili-sajt
   title: Instagram или свой сайт
-  kind: post
+  kind: carousel
   media:
   - 1.jpg
+  - 2.jpg
   at: 2026-10-14 12:00
   to:
   - instagram
@@ -961,9 +962,10 @@ posts:
     #EVNWEB #կայք #հարցուպատասխան #բիզնես #Երևան
 - id: 2026-10-nedelya-2/06-post-google
   title: Как клиент находит вас в Google
-  kind: post
+  kind: carousel
   media:
   - 1.jpg
+  - 2.jpg
   at: 2026-10-17 12:00
   to:
   - instagram
@@ -999,9 +1001,10 @@ posts:
     #EVNWEB #Google #ռեստորան #կայք #Երևան
 - id: 2026-10-nedelya-2/07-post-podderzhka
   title: Поддержка после запуска
-  kind: post
+  kind: carousel
   media:
   - 1.jpg
+  - 2.jpg
   at: 2026-10-18 11:00
   to:
   - instagram
