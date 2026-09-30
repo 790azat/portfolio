@@ -185,5 +185,53 @@
    58
   ],
   "telegram_at": "2026-09-30 01:39"
+ },
+ "2026-09-setka/01-01-karusel-restoran": {
+  "instagram": "17893934097610351",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/02-02-post-otel": {
+  "instagram": "18111576773589024",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/03-06-reel-restoran": {
+  "instagram": "18130949548666547",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/04-03-karusel-magazin": {
+  "instagram": "18114704956816054",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/05-07-reel-otel": {
+  "instagram": "18114711025826368",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/06-02-shagi-karusel": {
+  "instagram": "18053060537804338",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/07-01-ceny-karusel": {
+  "instagram": "18106846556624999",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/08-01-karusel-otel": {
+  "instagram": "18023049749867231",
+  "instagram_at": "2026-09-30 05:36"
+ },
+ "2026-09-setka/09-02-karusel-restoran": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)"
+ },
+ "2026-09-setka/10-04-post-business-site": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)"
+ },
+ "2026-09-setka/11-01-karusel-smm": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)"
+ },
+ "2026-09-setka/12-01-karusel-salon": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)"
  }
 }
