@@ -251,5 +251,17 @@
   ],
   "telegram_at": "2026-09-30 19:13",
   "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)"
+ },
+ "2026-10-segmenty/03-post-avtoservis": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)",
+  "facebook": "1347280171803827_122101654857492824",
+  "facebook_at": "2026-10-01 19:16",
+  "telegram": 62,
+  "telegram_ids": [
+   62,
+   63
+  ],
+  "telegram_at": "2026-10-01 19:16"
  }
 }
