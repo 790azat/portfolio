@@ -227,12 +227,18 @@
   "instagram_at": "2026-09-30 05:36"
  },
  "2026-09-setka/09-02-karusel-restoran": {
-  "instagram_tries": 2,
+  "instagram_tries": 3,
   "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)"
  },
- "2026-09-setka/10-04-post-business-site": {},
- "2026-09-setka/11-01-karusel-smm": {},
- "2026-09-setka/12-01-karusel-salon": {},
+ "2026-09-setka/10-04-post-business-site": {
+  "instagram_tries": 3
+ },
+ "2026-09-setka/11-01-karusel-smm": {
+  "instagram_tries": 3
+ },
+ "2026-09-setka/12-01-karusel-salon": {
+  "instagram_tries": 3
+ },
  "2026-10-segmenty/02-post-stomatologiya": {
   "instagram_tries": 3,
   "facebook": "1347280171803827_122100709773492824",
