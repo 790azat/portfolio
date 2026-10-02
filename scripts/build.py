@@ -33,9 +33,9 @@ REDIRECT = ("<script>try{var l=localStorage.getItem('lang');if(l==='ru'||l==='en
 
 # Шрифты, которые нужны первому экрану: подгружаем заранее, чтобы текст не «прыгал»
 PRELOAD = {
-    "hy": ["NotoSansArmenian-400-armenian", "NotoSerifArmenian-700-armenian"],
-    "ru": ["NotoSans-400-cyrillic", "NotoSerif-700-cyrillic"],
-    "en": ["NotoSans-400-latin", "NotoSerif-700-latin"],
+    "hy": ["NotoSansArmenian-var-armenian", "Manrope-var-latin"],
+    "ru": ["Manrope-var-cyrillic", "Manrope-var-latin"],
+    "en": ["Manrope-var-latin"],
 }
 
 # Цены для разметки schema.org: ключ заголовка услуги в strings.json и цена «от» в драмах
