@@ -1,0 +1,34 @@
+name: Скриншоты сайтов
+# Песочница Claude не открывает внешние сайты, поэтому скриншоты для портфолио снимает GitHub.
+# Как пользоваться: в ветке shots/<что-угодно> положить scripts/shots.txt (строки «ключ адрес»)
+# и запушить. Готовые картинки <ключ>1.jpg, <ключ>2.jpg, <ключ>-m.jpg появятся в shots-out/ той же ветки,
+# дальше: python3 scripts/projects.py --images shots-out
+on:
+  push:
+    branches: ['shots/**']
+    paths: ['scripts/shots.txt']
+
+permissions:
+  contents: write
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Playwright
+        run: |
+          npm i --no-save playwright@1.47.2
+          npx playwright install --with-deps chromium
+      - name: Снимки
+        run: node scripts/shots.cjs
+      - name: Сохранить в ветку
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898237+github-actions[bot]@users.noreply.github.com"
+          git add shots-out
+          git commit -m "Скриншоты сайтов [skip ci]" || exit 0
+          git push
