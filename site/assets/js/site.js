@@ -1,3 +1,14 @@
+// Карусель проектов: копия карточек в конце ленты, чтобы она крутилась бесконечно (до привязки лайтбокса — клики работают и у копий)
+(function () {
+  var track = document.querySelector('.projects');
+  if (!track) return;
+  Array.prototype.slice.call(track.children).forEach(function (c) {
+    var k = c.cloneNode(true);
+    k.setAttribute('aria-hidden', 'true'); k.classList.add('pj--clone');
+    k.querySelectorAll('a,button').forEach(function (el) { el.setAttribute('tabindex', '-1'); });
+    track.appendChild(k);
+  });
+})();
 (function () {
   var lb = document.getElementById('lb'), img = lb.querySelector('img'), cap = lb.querySelector('figcaption');
   var list = [], idx = 0;
@@ -36,33 +47,45 @@
   });
   document.getElementById('y').textContent = new Date().getFullYear();
 })();
-// Карусель проектов: стрелки и точки, на телефоне листается пальцем (CSS scroll-snap)
+// Карусель проектов: едет сама по кругу, стоит при наведении, касании и открытом лайтбоксе; стрелки и палец тоже листают
 (function () {
-  var nav = document.querySelector('.carousel-nav'), track = document.querySelector('.projects');
-  if (!nav || !track) return;
-  var cards = track.children, dotsBox = nav.querySelector('.carousel-nav__dots'), btns = nav.querySelectorAll('.carousel-nav__btn');
-  function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth; }
-  function pages() { return Math.max(1, Math.round((track.scrollWidth - track.clientWidth) / step()) + 1); }
-  function current() { return Math.round(track.scrollLeft / step()); }
-  function build() {
-    dotsBox.innerHTML = '';
-    for (var i = 0; i < pages(); i++) {
-      var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', String(i + 1));
-      d.addEventListener('click', (function (n) { return function () { track.scrollTo({ left: n * step() }); }; })(i));
-      dotsBox.appendChild(d);
-    }
-    update();
+  var track = document.querySelector('.projects'), lb = document.getElementById('lb');
+  if (!track) return;
+  var cards = track.children, n = cards.length / 2, pos = 0, last = 0, hold = 0, hover = false, SPEED = 45;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function half() { return cards[n].offsetLeft - cards[0].offsetLeft; }
+  function step() { return cards[1].offsetLeft - cards[0].offsetLeft; }
+  function wrap() {
+    var h = half(), x = track.scrollLeft;
+    if (x >= h) x -= h; else if (x < 1) x += h; else return;
+    track.scrollLeft = x;
   }
-  function update() {
-    var c = current(), n = pages();
-    Array.prototype.forEach.call(dotsBox.children, function (d, i) { d.classList.toggle('on', i === Math.min(c, n - 1)); });
-    btns[0].disabled = track.scrollLeft < 4;
-    btns[1].disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 4;
+  function pause(ms) { hold = Math.max(hold, performance.now() + ms); }
+  function tick(t) {
+    var dt = Math.min(64, t - (last || t)); last = t;
+    if (!still && !hover && t > hold && !(lb && lb.classList.contains('open'))) {
+      if (Math.abs(track.scrollLeft - pos) > 2) pos = track.scrollLeft;
+      pos += SPEED * dt / 1000;
+      var h = half(); if (pos >= h) pos -= h;
+      track.scrollLeft = pos;
+    } else pos = track.scrollLeft;
+    requestAnimationFrame(tick);
   }
-  btns.forEach(function (b) { b.addEventListener('click', function () { track.scrollBy({ left: step() * +b.dataset.dir }); }); });
-  var t; track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(update, 60); });
-  window.addEventListener('resize', build);
-  build();
+  track.addEventListener('mouseenter', function () { hover = true; });
+  track.addEventListener('mouseleave', function () { hover = false; });
+  track.addEventListener('touchstart', function () { pause(4000); }, { passive: true });
+  track.addEventListener('touchend', function () { pause(2500); }, { passive: true });
+  track.addEventListener('focusin', function () { pause(6000); });
+  var t; track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(function () { if (performance.now() < hold || hover) wrap(); pos = track.scrollLeft; }, 120); });
+  document.querySelectorAll('.carousel-nav__btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      pause(3500);
+      if (+b.dataset.dir < 0 && track.scrollLeft < step()) track.scrollLeft += half();
+      track.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' });
+    });
+  });
+  track.scrollLeft = 1; pos = 1;
+  requestAnimationFrame(tick);
 })();
 // Первый экран: три сцены сменяют друг друга; на узком экране сцена уменьшается под ширину
 (function () {
