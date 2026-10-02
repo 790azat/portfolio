@@ -153,16 +153,13 @@ p { margin: 0 0 1em; }
 .svc__shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 
 /* выполненные проекты (разметка из scripts/projects.py) */
-.projects { --per: 3; display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; padding: 6px 0 4px; }
+.projects { --per: 3.3; display: flex; gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; padding: 6px 0 4px; }
 .projects::-webkit-scrollbar { display: none; }
-.projects > .pj { flex: 0 0 calc((100% - (var(--per) - 1) * 20px) / var(--per)); scroll-snap-align: start; }
+.projects { -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.projects > .pj { flex: 0 0 calc((100% - (var(--per) - 1) * 20px) / var(--per)); }
 .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 28px; }
 .carousel-nav__btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; transition: background .2s, opacity .2s; }
 .carousel-nav__btn:hover { background: var(--red); border-color: var(--red); }
-.carousel-nav__btn:disabled { opacity: .3; cursor: default; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.2); }
-.carousel-nav__dots { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-.carousel-nav__dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.25); cursor: pointer; transition: width .25s, background .25s; }
-.carousel-nav__dots button.on { width: 28px; background: var(--rose); }
 .pj { background: var(--ink2); border: 1px solid rgba(255,255,255,.08); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, border-color .2s; }
 .pj:hover { transform: translateY(-3px); border-color: rgba(255,138,122,.45); }
 .pj__shot { display: block; width: 100%; padding: 0; border: 0; background: #2a2224; cursor: zoom-in; position: relative; font: inherit; text-align: left; }
@@ -289,7 +286,7 @@ p { margin: 0 0 1em; }
   .svc { grid-column: span 6; }
   .svc--big { grid-column: span 12; }
   .prices { grid-template-columns: 1fr 1fr; }
-  .projects { --per: 2; }
+  .projects { --per: 2.2; }
   .steps { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
@@ -298,9 +295,9 @@ p { margin: 0 0 1em; }
   .marq { justify-content: flex-start; gap: 10px 24px; font-size: 1rem; padding: 20px 18px; }
   .marq small { flex-basis: 100%; }
   .bento, .prices, .docs, .links, .steps { grid-template-columns: minmax(0, 1fr); }
-  .projects { --per: 1.15; gap: 14px; margin-right: -18px; padding-right: 18px; scroll-padding-left: 0; }
+  .projects { --per: 1.15; gap: 14px; margin-right: -18px; padding-right: 18px; -webkit-mask-image: none; mask-image: none; }
   .projects > .pj { flex-basis: 84%; }
-  .carousel-nav__btn { display: none; }
+  .carousel-nav { display: none; }
   .svc, .svc--big { grid-column: auto; }
   .svc--big { min-height: 460px; padding-right: 28px; }
   .svc__shot { height: 220px; }
