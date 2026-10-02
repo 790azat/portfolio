@@ -14,9 +14,29 @@
    "en": "Marketing agency"
   },
   "desc": {
-   "hy": "Փերֆորմանս մարքեթինգի գործակալության կայք՝ ծառայություններ, ROI հաշվիչ, հայտի ձև՝ Telegram-ով ուղարկմամբ, հոդվածներ և ուղեցույցներ։",
-   "ru": "Сайт агентства performance-маркетинга: услуги, калькулятор ROI, форма заявки с отправкой в Telegram, статьи и гайды.",
-   "en": "Website for a performance marketing agency: services, ROI calculator, lead form sent to Telegram, articles and guides."
+   "hy": "Մարքեթինգային գործակալության կայք՝ ծառայություններ, TikTok, Meta և Google գովազդ, գործընկերներ և կոնտակտներ։",
+   "ru": "Сайт маркетингового агентства: услуги, реклама в TikTok, Meta и Google, партнёры и контакты.",
+   "en": "Website for a marketing agency: services, TikTok, Meta and Google ads, partners and contacts."
+  }
+ },
+ {
+  "key": "nf",
+  "name": "Notfilmmaker",
+  "domain": "notfilmmaker.com",
+  "shots": [
+   "nf1",
+   "nf2",
+   "nf-m"
+  ],
+  "cat": {
+   "hy": "Կինոգործչի պորտֆոլիո",
+   "ru": "Портфолио кинорежиссёра",
+   "en": "Filmmaker portfolio"
+  },
+  "desc": {
+   "hy": "Կինոգործչի և լուսանկարչի պորտֆոլիո՝ շոուռիլ, աշխատանքներ ըստ ժանրերի, «Իմ մասին» էջ և կոնտակտներ, երեք լեզու։",
+   "ru": "Портфолио режиссёра и фотографа: шоурил, работы по жанрам, страница «Обо мне» и контакты, три языка.",
+   "en": "Portfolio of a filmmaker and photographer: showreel, works by genre, about page and contacts, three languages."
   }
  },
  {
@@ -75,26 +95,6 @@
    "hy": "Երևանի Տ. Շևչենկոյի անվան թիվ 42 ավագ դպրոցի կայք՝ պատմություն, ղեկավարություն, փաստաթղթեր և հաշվետվություններ, կոնտակտներ։",
    "ru": "Сайт ереванской старшей школы №42 им. Т. Шевченко: история, администрация, документы и отчёты, контакты.",
    "en": "Website for Yerevan High School No. 42 named after T. Shevchenko: history, management, documents and reports, contacts."
-  }
- },
- {
-  "key": "aga",
-  "name": "AGA",
-  "domain": "aga.am",
-  "shots": [
-   "aga1",
-   "aga2",
-   "aga-m"
-  ],
-  "cat": {
-   "hy": "Կինոպլատֆորմ",
-   "ru": "Кино-платформа",
-   "en": "Film platform"
-  },
-  "desc": {
-   "hy": "Պլատֆորմ կինոյի և ստեղծագործական ոլորտի համար՝ ֆիլմերի կատալոգ, ֆիլմի էջ դերասաններով և թրեյլերով, մուտք Google-ով և ադմին վահանակ մոդերատորներով։",
-   "ru": "Платформа для кино и креативной индустрии: каталог фильмов, страница фильма с актёрами и трейлером, вход через Google и админка с модераторами.",
-   "en": "Platform for film and creative professionals: film catalogue, film pages with cast and trailer, Google sign-in and an admin panel with moderators."
   }
  },
  {
@@ -213,6 +213,62 @@
   }
  },
  {
+  "key": "dao",
+  "name": "Daobab",
+  "domain": "",
+  "shots": [
+   "dao1"
+  ],
+  "cat": {
+   "hy": "Աքսեսուարների խանութ",
+   "ru": "Магазин аксессуаров",
+   "en": "Accessories store"
+  },
+  "desc": {
+   "hy": "Աքսեսուարների խանութ կանանց և տղամարդկանց համար՝ բաժիններ, զեղչեր և զամբյուղ։",
+   "ru": "Магазин аксессуаров для женщин и мужчин: разделы, скидки и корзина.",
+   "en": "Accessories shop for women and men: sections, sales and a cart."
+  }
+ },
+ {
+  "key": "kr",
+  "name": "Kristy Design",
+  "domain": "",
+  "shots": [
+   "kr1"
+  ],
+  "cat": {
+   "hy": "Դիզայների պորտֆոլիո",
+   "ru": "Портфолио дизайнера",
+   "en": "Designer portfolio"
+  },
+  "desc": {
+   "hy": "Գրաֆիկական դիզայների պորտֆոլիո կայք՝ լոգոներ, նկարազարդումներ և նկարներ։",
+   "ru": "Сайт-портфолио графического дизайнера: логотипы, иллюстрации и рисунки.",
+   "en": "Portfolio site for a graphic designer: logos, illustrations and drawings."
+  }
+ },
+ {
+  "key": "aga",
+  "name": "AGA",
+  "domain": "aga.am",
+  "shots": [
+   "aga1",
+   "aga2",
+   "aga-m"
+  ],
+  "cat": {
+   "hy": "Կինոպլատֆորմ",
+   "ru": "Кино-платформа",
+   "en": "Film platform"
+  },
+  "desc": {
+   "hy": "Պլատֆորմ կինոյի և ստեղծագործական ոլորտի համար՝ ֆիլմերի կատալոգ, ֆիլմի էջ դերասաններով և թրեյլերով, մուտք Google-ով և ադմին վահանակ մոդերատորներով։",
+   "ru": "Платформа для кино и креативной индустрии: каталог фильмов, страница фильма с актёрами и трейлером, вход через Google и админка с модераторами.",
+   "en": "Platform for film and creative professionals: film catalogue, film pages with cast and trailer, Google sign-in and an admin panel with moderators."
+  }
+ },
+ {
   "key": "fur",
   "name": "Fur.am",
   "domain": "fur.am",
@@ -247,42 +303,6 @@
    "hy": "Ձեռագործ նարդիների և շաշկիների առցանց խանութ՝ կատալոգ կատեգորիաներով և որոնում։",
    "ru": "Интернет-магазин нард и шашек ручной работы: каталог по категориям и поиск.",
    "en": "Online shop for handmade backgammon and checkers: catalogue by category and search."
-  }
- },
- {
-  "key": "dao",
-  "name": "Daobab",
-  "domain": "",
-  "shots": [
-   "dao1"
-  ],
-  "cat": {
-   "hy": "Աքսեսուարների խանութ",
-   "ru": "Магазин аксессуаров",
-   "en": "Accessories store"
-  },
-  "desc": {
-   "hy": "Աքսեսուարների խանութ կանանց և տղամարդկանց համար՝ բաժիններ, զեղչեր և զամբյուղ։",
-   "ru": "Магазин аксессуаров для женщин и мужчин: разделы, скидки и корзина.",
-   "en": "Accessories shop for women and men: sections, sales and a cart."
-  }
- },
- {
-  "key": "kr",
-  "name": "Kristy Design",
-  "domain": "",
-  "shots": [
-   "kr1"
-  ],
-  "cat": {
-   "hy": "Դիզայների պորտֆոլիո",
-   "ru": "Портфолио дизайнера",
-   "en": "Designer portfolio"
-  },
-  "desc": {
-   "hy": "Գրաֆիկական դիզայների պորտֆոլիո կայք՝ լոգոներ, նկարազարդումներ և նկարներ։",
-   "ru": "Сайт-портфолио графического дизайнера: логотипы, иллюстрации и рисунки.",
-   "en": "Portfolio site for a graphic designer: logos, illustrations and drawings."
   }
  }
 ]
