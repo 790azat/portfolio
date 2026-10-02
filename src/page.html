@@ -6,7 +6,7 @@
 {{redirect}}<title>{{title}}</title>
 <meta name="description" content="{{description}}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#1f5f5b">
+<meta name="theme-color" content="#140f10">
 <meta name="geo.region" content="AM-ER">
 <meta name="geo.placename" content="{{geo_place}}">
 <meta property="og:title" content="{{title}}">
@@ -33,7 +33,7 @@
 {{alternates}}
 {{preload}}
 <link rel="stylesheet" href="{{root}}assets/fonts/fonts.css">
-<link rel="stylesheet" href="{{root}}assets/css/site.css?v=5">
+<link rel="stylesheet" href="{{root}}assets/css/site.css?v=6">
 {{jsonld}}
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -51,50 +51,53 @@
 <body>
 <noscript><div><img src="https://mc.yandex.ru/watch/113109354" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <header class="top"><div class="wrap top__in">
-  <a href="#" class="logo" aria-label="EvnWeb"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 11.5 15.6 5.8l3 3.2L20 5l1.4 4 3-3.2 1.1 5.7Z" fill="#8f2a2e"/><circle cx="20" cy="23" r="13" fill="#b8373a"/><path d="M15.2 19 11.4 23l3.8 4M24.8 19l3.8 4-3.8 4M21.6 18.2l-3.2 9.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Evn<b>Web</b></span></a>
+  <a href="#" class="logo" aria-label="EvnWeb"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 11.5 15.6 5.8l3 3.2L20 5l1.4 4 3-3.2 1.1 5.7Z" fill="#8f2a2e"/><circle cx="20" cy="23" r="13" fill="#d13d43"/><path d="M15.2 19 11.4 23l3.8 4M24.8 19l3.8 4-3.8 4M21.6 18.2l-3.2 9.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Evn<b>Web</b></span></a>
   <nav class="nav">
-    <a href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>{{nav_services}}</a>
-    <a href="#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>{{nav_works}}</a>
-    <a href="#prices"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1.5"/></svg>{{nav_prices}}</a>
-    <a href="#docs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>{{nav_docs}}</a>
-    <a href="#contacts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 4.2 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>{{nav_contacts}}</a>
+    <a href="#services">{{nav_services}}</a>
+    <a href="#projects">{{nav_works}}</a>
+    <a href="#prices">{{nav_prices}}</a>
+    <a href="#docs">{{nav_docs}}</a>
+    <a href="#contacts">{{nav_contacts}}</a>
   </nav>
   {{switcher}}
   <a class="btn btn--sm" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{tg_icon}}<span>{{tg_header}}</span></a>
 </div></header>
 
 <section class="hero"><div class="wrap hero__in">
-  <div>
-    <div class="eyebrow">{{hero_eyebrow}}</div>
-    <h1>{{hero_title}}</h1>
+  <div class="hero__text">
+    <div class="pill"><img src="{{root}}assets/img/azat.webp" alt="{{ld_person}}">{{hero_eyebrow}}<i aria-hidden="true"></i></div>
+    <h1>{{hero_h1a}}<em>{{hero_h1em}}</em>{{hero_h1b}}</h1>
     <p class="lead">{{hero_lead}}</p>
     <div class="hero__cta">
       <a class="btn" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{tg_icon}}{{hero_tg}}</a>
-      <a class="btn btn--ghost" href="#projects">{{hero_works}}</a>
+      <a class="btn btn--glass" href="#projects">{{hero_works}}</a>
     </div>
-    <div class="chips"><span>Laravel / PHP</span><span>Հայ · Рус · Eng</span><span>{{chip_mobile}}</span><span>{{chip_pay}}</span></div>
+    <div class="ticks"><span>{{chip_mobile}}</span><span>{{chip_pay}}</span><span>Հայ · Рус · Eng</span></div>
   </div>
-  <div class="collage" aria-hidden="true">
-    <img class="a" src="{{root}}assets/img/hotel-1-t.webp" alt="" fetchpriority="high">
-    <img class="b" src="{{root}}assets/img/market-1-t.webp" alt="">
-    <img class="c" src="{{root}}assets/img/hotel-5-t.webp" alt="">
+  <div class="stage" aria-hidden="true">
+    <div class="laptop"><div class="laptop__bar"><i></i><i></i><i></i></div><img src="{{root}}assets/img/restaurant-1-wide.webp" alt="" fetchpriority="high"></div>
+    <div class="phone"><img src="{{root}}assets/img/restaurant-4-t.webp" alt=""></div>
+    <div class="toast toast--a"><span class="toast__ic" style="background:#d13d43"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></svg></span><span><b>{{hero_f2_b}}</b><small>{{hero_f2_s}}</small></span></div>
+    <div class="toast toast--b"><span class="toast__ic" style="background:#2fbf71"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>{{hero_f1_b}}</b><small>{{hero_f1_s}}</small></span></div>
+  </div>
+</div>
+<div class="wrap marq"><small>{{hero_marq}}</small><span>School 42</span><span>Impact Waves</span><span>AGA</span><span>Fur.am</span><span>Kinoframe</span><span>7 Star</span><span>DG Tech</span><span>Cinefox</span></div>
+</section>
+
+<section class="section" id="services"><div class="wrap">
+  <div class="section__head"><div><div class="eyebrow">{{nav_services}}</div><h2>{{svc_title}}</h2></div><p>{{svc_lead}}</p></div>
+  <div class="bento">
+    <div class="svc svc--big svc--dark"><span class="svc__n">01</span><h3>{{svc1_h}}</h3><p>{{svc1_p}}</p><div class="svc__shot"><img src="{{root}}assets/img/restaurant-2-wide.webp" alt="{{rest_c2}}" loading="lazy"></div></div>
+    <div class="svc svc--big svc--red"><span class="svc__n">02</span><h3>{{svc2_h}}</h3><p>{{svc2_p}}</p><div class="svc__shot"><img src="{{root}}assets/img/hotel-4-t.webp" alt="{{hotel_c4}}" loading="lazy"></div></div>
+    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4-9-4ZM3 7v10l9 4 9-4V7M12 11v10"/></svg></div><h3>{{svc3_h}}</h3><p>{{svc3_p}}</p></div>
+    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>{{svc4_h}}</h3><p>{{svc4_p}}</p></div>
+    <div class="svc svc--green"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div><h3>{{svc5_h}}</h3><p>{{svc5_p}}</p></div>
+    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div><h3>{{svc6_h}}</h3><p>{{svc6_p}}</p></div>
   </div>
 </div></section>
 
-<section class="section section--alt" id="services"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{nav_services}}</div><h2>{{svc_title}}</h2><p>{{svc_lead}}</p></div>
-  <div class="services">
-    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2 1-3 3.5-3 7v3h3"/></svg></div><h3>{{svc1_h}}</h3><p>{{svc1_p}}</p></div>
-    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V6M3 16h18v4M21 16v-3a3 3 0 0 0-3-3h-7v6M7 12.5a1.5 1.5 0 1 0 0-.01"/></svg></div><h3>{{svc2_h}}</h3><p>{{svc2_p}}</p></div>
-    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 9-4 9 4-9 4-9-4ZM3 7v10l9 4 9-4V7M12 11v10"/></svg></div><h3>{{svc3_h}}</h3><p>{{svc3_p}}</p></div>
-    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h3>{{svc4_h}}</h3><p>{{svc4_p}}</p></div>
-    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 8-8-1.7-1.3M9.3 17.7 3 11.4a4 4 0 0 1 5.6-5.7l1.4 1.4"/></svg></div><h3>{{svc5_h}}</h3><p>{{svc5_p}}</p></div>
-    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div><h3>{{svc6_h}}</h3><p>{{svc6_p}}</p></div>
-  </div>
-</div></section>
-
-<section class="section" id="projects"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{nav_works}}</div><h2>{{proj_title}}</h2><p>{{proj_lead}}</p></div>
+<section class="section section--dark" id="projects"><div class="wrap">
+  <div class="section__head"><div><div class="eyebrow">{{nav_works}}</div><h2>{{proj_title}}</h2></div><p>{{proj_lead}}</p></div>
 <!-- projects:start -->
   <div class="projects">
     <article class="pj" data-g>
@@ -161,58 +164,67 @@
   <!-- projects:end -->
 </div></section>
 
-<section class="section section--alt" id="works"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{works_eyebrow}}</div><h2>{{works_title}}</h2><p>{{works_lead}}</p></div>
+<section class="section" id="works"><div class="wrap">
+  <div class="section__head"><div><div class="eyebrow">{{works_eyebrow}}</div><h2>{{works_title}}</h2></div><p>{{works_lead}}</p></div>
 
   <article class="case">
-    <div>
-      <span class="case__tag">{{hotel_tag}}</span>
-      <h2>Arev Hotel</h2>
-      <p class="muted">{{hotel_desc}}</p>
-      <ul><li>{{hotel_li1}}</li><li>{{hotel_li2}}</li><li>{{hotel_li3}}</li><li>{{hotel_li4}}</li><li>{{hotel_li5}}</li></ul>
-      <div class="case__actions"><a class="btn btn--sm" href="{{root}}docs/predlozhenie-otel.pdf" target="_blank">{{offer_pdf}}</a><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{want_m}}</a></div>
-    </div>
-    <div class="gallery g4" data-g><button class="big" data-full="{{root}}assets/img/hotel-1.webp" data-cap="{{hotel_c1}}" aria-label="{{hotel_c1}}"><img src="{{root}}assets/img/hotel-1-t.webp" alt="{{hotel_c1}}" loading="lazy"><span>{{hotel_c1}}</span></button><button class="" data-full="{{root}}assets/img/hotel-2.webp" data-cap="{{hotel_c2}}" aria-label="{{hotel_c2}}"><img src="{{root}}assets/img/hotel-2-t.webp" alt="{{hotel_c2}}" loading="lazy"><span>{{hotel_c2}}</span></button><button class="" data-full="{{root}}assets/img/hotel-3.webp" data-cap="{{hotel_c3}}" aria-label="{{hotel_c3}}"><img src="{{root}}assets/img/hotel-3-t.webp" alt="{{hotel_c3}}" loading="lazy"><span>{{hotel_c3}}</span></button><button class="" data-full="{{root}}assets/img/hotel-4.webp" data-cap="{{hotel_c4}}" aria-label="{{hotel_c4}}"><img src="{{root}}assets/img/hotel-4-t.webp" alt="{{hotel_c4}}" loading="lazy"><span>{{hotel_c4}}</span></button><button class="m" data-full="{{root}}assets/img/hotel-5.webp" data-cap="{{c_mobile}}" aria-label="{{c_mobile}}"><img src="{{root}}assets/img/hotel-5-t.webp" alt="{{c_mobile}}" loading="lazy"><span>{{c_mobile}}</span></button></div>
-  </article>
-
-  <article class="case">
-    <div>
-      <span class="case__tag">{{market_tag}}</span>
-      <h2>Sona Market</h2>
-      <p class="muted">{{market_desc}}</p>
-      <ul><li>{{market_li1}}</li><li>{{market_li2}}</li><li>{{market_li3}}</li><li>{{market_li4}}</li><li>{{market_li5}}</li></ul>
-      <div class="case__actions"><a class="btn btn--sm" href="{{root}}docs/predlozhenie-supermarket.pdf" target="_blank">{{offer_pdf}}</a><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{want_f}}</a></div>
-    </div>
-    <div class="gallery" data-g><button class="big" data-full="{{root}}assets/img/market-1.webp" data-cap="{{market_c1}}" aria-label="{{market_c1}}"><img src="{{root}}assets/img/market-1-t.webp" alt="{{market_c1}}" loading="lazy"><span>{{market_c1}}</span></button><button class="" data-full="{{root}}assets/img/market-2.webp" data-cap="{{market_c2}}" aria-label="{{market_c2}}"><img src="{{root}}assets/img/market-2-t.webp" alt="{{market_c2}}" loading="lazy"><span>{{market_c2}}</span></button><button class="" data-full="{{root}}assets/img/market-3.webp" data-cap="{{market_c3}}" aria-label="{{market_c3}}"><img src="{{root}}assets/img/market-3-t.webp" alt="{{market_c3}}" loading="lazy"><span>{{market_c3}}</span></button><button class="m" data-full="{{root}}assets/img/market-4.webp" data-cap="{{market_c4}}" aria-label="{{market_c4}}"><img src="{{root}}assets/img/market-4-t.webp" alt="{{market_c4}}" loading="lazy"><span>{{market_c4}}</span></button></div>
-  </article>
-
-  <article class="case">
-    <div>
+    <div class="case__text">
       <span class="case__tag">{{rest_tag}}</span>
-      <h2>Tsiran</h2>
+      <h3>Tsiran</h3>
       <p class="muted">{{rest_desc}}</p>
       <ul><li>{{rest_li1}}</li><li>{{rest_li2}}</li><li>{{rest_li3}}</li><li>{{rest_li4}}</li></ul>
-      <div class="case__actions"><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{want_m}}</a></div>
+      <div class="case__actions"><a class="btn" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{want_m}}</a></div>
     </div>
-    <div class="gallery" data-g><button class="m" data-full="{{root}}assets/img/restaurant-1.webp" data-cap="{{rest_c1}}" aria-label="{{rest_c1}}"><img src="{{root}}assets/img/restaurant-1-t.webp" alt="{{rest_c1}}" loading="lazy"><span>{{rest_c1}}</span></button><button class="m" data-full="{{root}}assets/img/restaurant-2.webp" data-cap="{{rest_c2}}" aria-label="{{rest_c2}}"><img src="{{root}}assets/img/restaurant-2-t.webp" alt="{{rest_c2}}" loading="lazy"><span>{{rest_c2}}</span></button><button class="" data-full="{{root}}assets/img/restaurant-3.webp" data-cap="{{rest_c3}}" aria-label="{{rest_c3}}"><img src="{{root}}assets/img/restaurant-3-t.webp" alt="{{rest_c3}}" loading="lazy"><span>{{rest_c3}}</span></button><button class="m" data-full="{{root}}assets/img/restaurant-4.webp" data-cap="{{rest_c4}}" aria-label="{{rest_c4}}"><img src="{{root}}assets/img/restaurant-4-t.webp" alt="{{rest_c4}}" loading="lazy"><span>{{rest_c4}}</span></button><button class="" data-full="{{root}}assets/img/restaurant-5.webp" data-cap="{{rest_c5}}" aria-label="{{rest_c5}}"><img src="{{root}}assets/img/restaurant-5-t.webp" alt="{{rest_c5}}" loading="lazy"><span>{{rest_c5}}</span></button><button class="" data-full="{{root}}assets/img/restaurant-6.webp" data-cap="{{rest_c6}}" aria-label="{{rest_c6}}"><img src="{{root}}assets/img/restaurant-6-t.webp" alt="{{rest_c6}}" loading="lazy"><span>{{rest_c6}}</span></button></div>
+    <div class="shots" data-g>
+      <div class="shots__main"><button class="shots__big" data-full="{{root}}assets/img/restaurant-1.webp" data-cap="{{rest_c1}}" aria-label="{{rest_c1}}"><img src="{{root}}assets/img/restaurant-1-wide.webp" alt="{{rest_c1}}" loading="lazy"></button><button class="shots__phone" data-full="{{root}}assets/img/restaurant-4.webp" data-cap="{{rest_c4}}" aria-label="{{rest_c4}}"><img src="{{root}}assets/img/restaurant-4-t.webp" alt="{{rest_c4}}" loading="lazy"></button></div>
+      <div class="shots__row"><button data-full="{{root}}assets/img/restaurant-2.webp" data-cap="{{rest_c2}}" aria-label="{{rest_c2}}"><img src="{{root}}assets/img/restaurant-2-wide.webp" alt="{{rest_c2}}" loading="lazy"></button><button data-full="{{root}}assets/img/restaurant-3.webp" data-cap="{{rest_c3}}" aria-label="{{rest_c3}}"><img src="{{root}}assets/img/restaurant-3-t.webp" alt="{{rest_c3}}" loading="lazy"></button><button data-full="{{root}}assets/img/restaurant-5.webp" data-cap="{{rest_c5}}" aria-label="{{rest_c5}}"><img src="{{root}}assets/img/restaurant-5-t.webp" alt="{{rest_c5}}" loading="lazy"></button><button data-full="{{root}}assets/img/restaurant-6.webp" data-cap="{{rest_c6}}" aria-label="{{rest_c6}}"><img src="{{root}}assets/img/restaurant-6-t.webp" alt="{{rest_c6}}" loading="lazy"></button></div>
+    </div>
+  </article>
+
+  <article class="case case--rev">
+    <div class="case__text">
+      <span class="case__tag case__tag--green">{{hotel_tag}}</span>
+      <h3>Arev Hotel</h3>
+      <p class="muted">{{hotel_desc}}</p>
+      <ul><li>{{hotel_li1}}</li><li>{{hotel_li2}}</li><li>{{hotel_li3}}</li><li>{{hotel_li4}}</li><li>{{hotel_li5}}</li></ul>
+      <div class="case__actions"><a class="btn" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{want_m}}</a><a class="link" href="{{root}}docs/predlozhenie-otel.pdf" target="_blank">{{offer_pdf}}</a></div>
+    </div>
+    <div class="shots" data-g>
+      <div class="shots__main"><button class="shots__big" data-full="{{root}}assets/img/hotel-1.webp" data-cap="{{hotel_c1}}" aria-label="{{hotel_c1}}"><img src="{{root}}assets/img/hotel-1-t.webp" alt="{{hotel_c1}}" loading="lazy"></button><button class="shots__phone" data-full="{{root}}assets/img/hotel-5.webp" data-cap="{{c_mobile}}" aria-label="{{c_mobile}}"><img src="{{root}}assets/img/hotel-5-t.webp" alt="{{c_mobile}}" loading="lazy"></button></div>
+      <div class="shots__row"><button data-full="{{root}}assets/img/hotel-2.webp" data-cap="{{hotel_c2}}" aria-label="{{hotel_c2}}"><img src="{{root}}assets/img/hotel-2-t.webp" alt="{{hotel_c2}}" loading="lazy"></button><button data-full="{{root}}assets/img/hotel-3.webp" data-cap="{{hotel_c3}}" aria-label="{{hotel_c3}}"><img src="{{root}}assets/img/hotel-3-t.webp" alt="{{hotel_c3}}" loading="lazy"></button><button data-full="{{root}}assets/img/hotel-4.webp" data-cap="{{hotel_c4}}" aria-label="{{hotel_c4}}"><img src="{{root}}assets/img/hotel-4-t.webp" alt="{{hotel_c4}}" loading="lazy"></button></div>
+    </div>
+  </article>
+
+  <article class="case">
+    <div class="case__text">
+      <span class="case__tag">{{market_tag}}</span>
+      <h3>Sona Market</h3>
+      <p class="muted">{{market_desc}}</p>
+      <ul><li>{{market_li1}}</li><li>{{market_li2}}</li><li>{{market_li3}}</li><li>{{market_li4}}</li><li>{{market_li5}}</li></ul>
+      <div class="case__actions"><a class="btn" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{want_f}}</a><a class="link" href="{{root}}docs/predlozhenie-supermarket.pdf" target="_blank">{{offer_pdf}}</a></div>
+    </div>
+    <div class="shots" data-g>
+      <div class="shots__main"><button class="shots__big" data-full="{{root}}assets/img/market-1.webp" data-cap="{{market_c1}}" aria-label="{{market_c1}}"><img src="{{root}}assets/img/market-1-t.webp" alt="{{market_c1}}" loading="lazy"></button><button class="shots__phone" data-full="{{root}}assets/img/market-4.webp" data-cap="{{market_c4}}" aria-label="{{market_c4}}"><img src="{{root}}assets/img/market-4-t.webp" alt="{{market_c4}}" loading="lazy"></button></div>
+      <div class="shots__row"><button data-full="{{root}}assets/img/market-2.webp" data-cap="{{market_c2}}" aria-label="{{market_c2}}"><img src="{{root}}assets/img/market-2-t.webp" alt="{{market_c2}}" loading="lazy"></button><button data-full="{{root}}assets/img/market-3.webp" data-cap="{{market_c3}}" aria-label="{{market_c3}}"><img src="{{root}}assets/img/market-3-t.webp" alt="{{market_c3}}" loading="lazy"></button></div>
+    </div>
   </article>
 </div></section>
 
-<section class="section" id="prices"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{nav_prices}}</div><h2>{{prices_title}}</h2><p>{{prices_lead}}</p></div>
+<section class="section section--tight" id="prices"><div class="wrap">
+  <div class="section__head"><div><div class="eyebrow">{{nav_prices}}</div><h2>{{prices_title}}</h2></div><p>{{prices_lead}}</p></div>
   <div class="prices">
-    <div class="price"><h3>{{p1_h}}</h3><b>{{p1_b}}</b><ul><li>{{p1_1}}</li><li>{{p1_2}}</li><li>{{p1_3}}</li></ul><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
-    <div class="price"><h3>{{p2_h}}</h3><b>{{p2_b}}</b><ul><li>{{p2_1}}</li><li>{{p2_2}}</li><li>{{p2_3}}</li></ul><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
-    <div class="price hl"><h3>{{p3_h}}</h3><b>{{p3_b}}</b><ul><li>{{p3_1}}</li><li>{{p3_2}}</li><li>{{p3_3}}</li></ul><a class="btn btn--sm" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
-    <div class="price"><h3>{{p4_h}}</h3><b>{{p4_b}}</b><ul><li>{{p4_1}}</li><li>{{p4_2}}</li><li>{{p4_3}}</li></ul><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
-    <div class="price"><h3>{{p5_h}}</h3><b>{{p5_b}}</b><ul><li>{{p5_1}}</li><li>{{p5_2}}</li><li>{{p5_3}}</li></ul><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
-    <div class="price"><h3>{{p6_h}}</h3><b>{{p6_b}}</b><ul><li>{{p6_1}}</li><li>{{p6_2}}</li><li>{{p6_3}}</li></ul><a class="btn btn--sm btn--ghost" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
+    <div class="price"><h3>{{p1_h}}</h3><b>{{p1_b}}</b><ul><li>{{p1_1}}</li><li>{{p1_2}}</li><li>{{p1_3}}</li></ul><a class="btn btn--soft" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
+    <div class="price hl"><span class="price__badge">{{price_badge}}</span><h3>{{p2_h}}</h3><b>{{p2_b}}</b><ul><li>{{p2_1}}</li><li>{{p2_2}}</li><li>{{p2_3}}</li></ul><a class="btn" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
+    <div class="price"><h3>{{p3_h}}</h3><b>{{p3_b}}</b><ul><li>{{p3_1}}</li><li>{{p3_2}}</li><li>{{p3_3}}</li></ul><a class="btn btn--soft" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
+    <div class="price"><h3>{{p4_h}}</h3><b>{{p4_b}}</b><ul><li>{{p4_1}}</li><li>{{p4_2}}</li><li>{{p4_3}}</li></ul><a class="btn btn--soft" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
+    <div class="price"><h3>{{p5_h}}</h3><b>{{p5_b}}</b><ul><li>{{p5_1}}</li><li>{{p5_2}}</li><li>{{p5_3}}</li></ul><a class="btn btn--soft" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
+    <div class="price"><h3>{{p6_h}}</h3><b>{{p6_b}}</b><ul><li>{{p6_1}}</li><li>{{p6_2}}</li><li>{{p6_3}}</li></ul><a class="btn btn--soft" href="https://t.me/+37493401179" target="_blank" rel="noopener">{{discuss}}</a></div>
   </div>
-  <p class="note">{{prices_note}}</p>
+  <p class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>{{prices_note}}</p>
 </div></section>
 
-<section class="section section--dark"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{steps_eyebrow}}</div><h2>{{steps_title}}</h2><p>{{steps_lead}}</p></div>
+<section class="section section--tight"><div class="wrap">
+  <div class="section__head"><div><div class="eyebrow">{{steps_eyebrow}}</div><h2>{{steps_title}}</h2></div><p>{{steps_lead}}</p></div>
   <div class="steps">
     <div class="step"><h3>{{s1_h}}</h3><p>{{s1_p}}</p></div>
     <div class="step"><h3>{{s2_h}}</h3><p>{{s2_p}}</p></div>
@@ -221,30 +233,31 @@
   </div>
 </div></section>
 
-<section class="section" id="docs"><div class="wrap">
-  <div class="section__head"><div class="eyebrow">{{nav_docs}}</div><h2>{{docs_title}}</h2><p>{{docs_lead}}</p></div>
+<section class="section section--tight" id="docs"><div class="wrap">
+  <div class="section__head"><div><div class="eyebrow">{{nav_docs}}</div><h2>{{docs_title}}</h2></div><p>{{docs_lead}}</p></div>
   <div class="docs">
-    <a class="doc" href="{{root}}docs/predlozhenie-otel.pdf" target="_blank"><div class="pdf">PDF</div><div><b>{{doc1_b}}</b><small>{{doc1_s}}</small></div></a>
-    <a class="doc" href="{{root}}docs/predlozhenie-supermarket.pdf" target="_blank"><div class="pdf">PDF</div><div><b>{{doc2_b}}</b><small>{{doc2_s}}</small></div></a>
+    <a class="doc" href="{{root}}docs/predlozhenie-otel.pdf" target="_blank"><div class="pdf">PDF</div><div><b>{{doc1_b}}</b><small>{{doc1_s}}</small></div><span class="doc__go" aria-hidden="true">↓</span></a>
+    <a class="doc" href="{{root}}docs/predlozhenie-supermarket.pdf" target="_blank"><div class="pdf">PDF</div><div><b>{{doc2_b}}</b><small>{{doc2_s}}</small></div><span class="doc__go" aria-hidden="true">↓</span></a>
   </div>
 </div></section>
 
-<section class="section section--alt" id="contacts"><div class="wrap contact">
+<section class="section section--tight" id="contacts"><div class="wrap"><div class="cta">
   <div>
     <div class="eyebrow">{{nav_contacts}}</div>
     <h2>{{contact_title}}</h2>
     <a class="big-phone" href="tel:+37493401179">+374 93 40-11-79</a>
-    <p class="muted">{{contact_lead}}</p>
+    <p>{{contact_lead}}</p>
+    <div class="who"><img src="{{root}}assets/img/azat.webp" alt="{{ld_person}}" loading="lazy"><span><b>{{ld_person}}</b><small>{{hero_eyebrow}}</small></span></div>
   </div>
   <div class="links">
-    <a href="https://t.me/+37493401179" target="_blank" rel="noopener"><span class="ic" style="background:#2aa3df">{{tg_icon}}</span><span>Telegram<small>{{contact_tg}}</small></span></a>
+    <a class="links__main" href="https://t.me/+37493401179" target="_blank" rel="noopener"><span class="ic" style="background:#2aa3df">{{tg_icon}}</span><span>Telegram<small>{{contact_tg}}</small></span></a>
     <a href="https://wa.me/37493401179?text={{wa_text|url}}" target="_blank" rel="noopener"><span class="ic" style="background:#25d366"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg></span><span>WhatsApp<small>+374 93 40-11-79</small></span></a>
     <a href="viber://chat?number=%2B37493401179"><span class="ic" style="background:#7360f2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c5.4 0 8.5 2.4 8.5 8s-3.1 8-8.5 8c-.9 0-1.8-.1-2.6-.3L6 21v-3.6c-1.8-1.3-2.5-3.5-2.5-6.9 0-5.6 3.1-8 8.5-8Z"/><path d="M9.2 7.6c-.5 0-1 .6-1 1.3 0 2.8 3.6 6.4 6.3 6.4.7 0 1.3-.5 1.3-1l-1.6-1-1 .6c-1.1-.4-2.3-1.6-2.7-2.7l.6-1-1-1.6h-.9Z"/></svg></span><span>Viber<small>+374 93 40-11-79</small></span></a>
-    <a href="mailto:vip.azatazat@gmail.com"><span class="ic" style="background:#1f5f5b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span>Email<small>vip.azatazat@gmail.com</small></span></a>
+    <a href="mailto:vip.azatazat@gmail.com"><span class="ic" style="background:#140f10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span>Email<small>vip.azatazat@gmail.com</small></span></a>
   </div>
-</div></section>
+</div></div></section>
 
-<footer class="foot"><div class="wrap"><span>© <span id="y">2026</span> EVNWEB · {{footer}} · evnweb.am</span><a href="tel:+37493401179">+374 93 40-11-79</a></div></footer>
+<footer class="foot"><div class="wrap"><a href="#" class="logo" aria-label="EvnWeb"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 11.5 15.6 5.8l3 3.2L20 5l1.4 4 3-3.2 1.1 5.7Z" fill="#8f2a2e"/><circle cx="20" cy="23" r="13" fill="#c8323a"/><path d="M15.2 19 11.4 23l3.8 4M24.8 19l3.8 4-3.8 4M21.6 18.2l-3.2 9.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Evn<b>Web</b></span></a><span>© <span id="y">2026</span> EVNWEB · {{footer}} · evnweb.am</span><a href="tel:+37493401179">+374 93 40-11-79</a></div></footer>
 
 <a class="fab" href="https://t.me/+37493401179" target="_blank" rel="noopener" aria-label="Telegram">{{tg_icon}}</a>
 
@@ -253,6 +266,6 @@
   <figure><img alt=""><figcaption></figcaption></figure>
 </div>
 <script src="{{root}}assets/js/site.js?v=3"></script>
-<script src="{{root}}assets/js/chat.js?v=4" defer></script>
+<script src="{{root}}assets/js/chat.js?v=5" defer></script>
 </body>
 </html>
