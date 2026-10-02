@@ -33,7 +33,7 @@
 {{alternates}}
 {{preload}}
 <link rel="stylesheet" href="{{root}}assets/fonts/fonts.css">
-<link rel="stylesheet" href="{{root}}assets/css/site.css?v=6">
+<link rel="stylesheet" href="{{root}}assets/css/site.css?v=7">
 {{jsonld}}
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -99,7 +99,7 @@
 <section class="section section--dark" id="projects"><div class="wrap">
   <div class="section__head"><div><div class="eyebrow">{{nav_works}}</div><h2>{{proj_title}}</h2></div><p>{{proj_lead}}</p></div>
 <!-- projects:start -->
-  <div class="projects">
+  <div class="projects" id="projects-track">
     <article class="pj" data-g>
       <button class="pj__shot" data-full="{{root}}assets/img/projects/iw-1.webp" data-cap="Impact Waves · {{pj_iw_cat}}" aria-label="Impact Waves · {{pj_iw_cat}}"><span class="pj__bar"><i></i><i></i><i></i><b>impactwaves.agency</b></span><img src="{{root}}assets/img/projects/iw-t.webp" alt="Impact Waves · {{pj_iw_cat}}" loading="lazy"><span class="pj__n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></svg></span></button><button hidden data-full="{{root}}assets/img/projects/iw-2.webp" data-cap="Impact Waves · {{pj_iw_cat}}" aria-label="Impact Waves · {{pj_iw_cat}}"></button><button hidden data-full="{{root}}assets/img/projects/iw-3.webp" data-cap="Impact Waves · {{pj_iw_cat}}" aria-label="Impact Waves · {{pj_iw_cat}}"></button>
       <div class="pj__body"><span class="case__tag">{{pj_iw_cat}}</span><h3>Impact Waves</h3><p>{{pj_iw_desc}}</p></div>
@@ -166,6 +166,7 @@
     </article>
   </div>
   <!-- projects:end -->
+  <div class="carousel-nav" data-for="projects"><button class="carousel-nav__btn" data-dir="-1" aria-label="{{lb_prev}}">‹</button><div class="carousel-nav__dots"></div><button class="carousel-nav__btn" data-dir="1" aria-label="{{lb_next}}">›</button></div>
 </div></section>
 
 <section class="section" id="works"><div class="wrap">
@@ -269,7 +270,7 @@
   <button class="x" aria-label="{{lb_close}}">×</button><button class="pv" aria-label="{{lb_prev}}">‹</button><button class="nx" aria-label="{{lb_next}}">›</button>
   <figure><img alt=""><figcaption></figcaption></figure>
 </div>
-<script src="{{root}}assets/js/site.js?v=3"></script>
+<script src="{{root}}assets/js/site.js?v=4"></script>
 <script src="{{root}}assets/js/chat.js?v=5" defer></script>
 </body>
 </html>
