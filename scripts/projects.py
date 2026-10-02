@@ -55,7 +55,7 @@ if "--images" in sys.argv:
 page_path = ROOT / "src/page.html"
 page = page_path.read_text(encoding="utf-8")
 a, b = page.index(START) + len(START), page.index(END)
-page = page[:a] + '\n  <div class="projects">\n' + "".join(card(p) for p in projects) + "  </div>\n  " + page[b:]
+page = page[:a] + '\n  <div class="projects" id="projects-track">\n' + "".join(card(p) for p in projects) + "  </div>\n  " + page[b:]
 page_path.write_text(page, encoding="utf-8")
 
 s_path = ROOT / "src/strings.json"

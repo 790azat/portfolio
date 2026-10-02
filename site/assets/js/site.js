@@ -36,3 +36,31 @@
   });
   document.getElementById('y').textContent = new Date().getFullYear();
 })();
+// Карусель проектов: стрелки и точки, на телефоне листается пальцем (CSS scroll-snap)
+(function () {
+  var nav = document.querySelector('.carousel-nav'), track = document.querySelector('.projects');
+  if (!nav || !track) return;
+  var cards = track.children, dotsBox = nav.querySelector('.carousel-nav__dots'), btns = nav.querySelectorAll('.carousel-nav__btn');
+  function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth; }
+  function pages() { return Math.max(1, Math.round((track.scrollWidth - track.clientWidth) / step()) + 1); }
+  function current() { return Math.round(track.scrollLeft / step()); }
+  function build() {
+    dotsBox.innerHTML = '';
+    for (var i = 0; i < pages(); i++) {
+      var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', String(i + 1));
+      d.addEventListener('click', (function (n) { return function () { track.scrollTo({ left: n * step() }); }; })(i));
+      dotsBox.appendChild(d);
+    }
+    update();
+  }
+  function update() {
+    var c = current(), n = pages();
+    Array.prototype.forEach.call(dotsBox.children, function (d, i) { d.classList.toggle('on', i === Math.min(c, n - 1)); });
+    btns[0].disabled = track.scrollLeft < 4;
+    btns[1].disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 4;
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { track.scrollBy({ left: step() * +b.dataset.dir }); }); });
+  var t; track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(update, 60); });
+  window.addEventListener('resize', build);
+  build();
+})();
