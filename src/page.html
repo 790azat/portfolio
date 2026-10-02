@@ -33,7 +33,7 @@
 {{alternates}}
 {{preload}}
 <link rel="stylesheet" href="{{root}}assets/fonts/fonts.css">
-<link rel="stylesheet" href="{{root}}assets/css/site.css?v=7">
+<link rel="stylesheet" href="{{root}}assets/css/site.css?v=8">
 {{jsonld}}
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -75,10 +75,42 @@
     <div class="ticks"><span>{{chip_mobile}}</span><span>{{chip_pay}}</span><span>Հայ · Рус · Eng</span></div>
   </div>
   <div class="stage" aria-hidden="true">
-    <div class="laptop"><div class="laptop__bar"><i></i><i></i><i></i></div><img src="{{root}}assets/img/restaurant-1-wide.webp" alt="" fetchpriority="high"></div>
-    <div class="phone"><img src="{{root}}assets/img/restaurant-4-t.webp" alt=""></div>
-    <div class="toast toast--a"><span class="toast__ic" style="background:#d13d43"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></svg></span><span><b>{{hero_f2_b}}</b><small>{{hero_f2_s}}</small></span></div>
-    <div class="toast toast--b"><span class="toast__ic" style="background:#2fbf71"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span><b>{{hero_f1_b}}</b><small>{{hero_f1_s}}</small></span></div>
+    <div class="scenes">
+      <div class="scene scene--fan on">
+        <div class="fan fan--4"><div class="fan__bar"><i></i><i></i><i></i><b>7star.am</b></div><img src="{{root}}assets/img/projects/star-t.webp" alt=""></div>
+        <div class="fan fan--3"><div class="fan__bar"><i></i><i></i><i></i><b>frideestudio.com</b></div><img src="{{root}}assets/img/projects/fs-t.webp" alt=""></div>
+        <div class="fan fan--2"><div class="fan__bar"><i></i><i></i><i></i><b>impactwaves.agency</b></div><img src="{{root}}assets/img/projects/iw-t.webp" alt=""></div>
+        <div class="fan fan--1"><div class="fan__bar"><i></i><i></i><i></i><b>notfilmmaker.com</b></div><img src="{{root}}assets/img/projects/nf-t.webp" alt="" fetchpriority="high"></div>
+        <span class="fan__tag fan__tag--1">{{pj_nf_cat}}</span><span class="fan__tag fan__tag--2">{{pj_iw_cat}}</span><span class="fan__tag fan__tag--3">{{pj_star_cat}}</span>
+      </div>
+      <div class="scene scene--tg">
+        <div class="tg__site"><img src="{{root}}assets/img/restaurant-1-wide.webp" alt="" loading="lazy"><div class="tg__form"><b>{{hv_form_h}}</b><span>{{hv_form_s}}</span><em>{{hv_form_b}}</em></div></div>
+        <div class="tg__phone">
+          <div class="tg__head"><span class="tg__av"><svg viewBox="0 0 40 40"><path d="M14.5 11.5 15.6 5.8l3 3.2L20 5l1.4 4 3-3.2 1.1 5.7Z" fill="#8f2a2e"/><circle cx="20" cy="23" r="13" fill="#d13d43"/><path d="M15.2 19 11.4 23l3.8 4M24.8 19l3.8 4-3.8 4M21.6 18.2l-3.2 9.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>{{hv_bot}}</b><small>{{hv_online}}</small></span></div>
+          <div class="tg__msgs">
+            <div class="tg__msg"><b>{{hv_m1_h}}</b>{{hv_m1_p}}<small>18:02</small></div>
+            <div class="tg__msg"><b>{{hv_m2_h}}</b>{{hv_m2_p}}<small>18:15</small></div>
+            <div class="tg__msg"><b>{{hv_m3_h}}</b>{{hv_m3_p}}<small>18:31</small></div>
+            <div class="tg__msg"><b>{{hv_m4_h}}</b>{{hv_m4_p}}<small>18:44</small></div>
+            <div class="tg__typing"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="scene scene--orbit">
+        <div class="orbit__ring orbit__ring--1"></div><div class="orbit__ring orbit__ring--2"></div>
+        <div class="orbit__core"><svg viewBox="0 0 40 40"><path d="M14.5 11.5 15.6 5.8l3 3.2L20 5l1.4 4 3-3.2 1.1 5.7Z" fill="#8f2a2e"/><circle cx="20" cy="23" r="13" fill="#d13d43"/><path d="M15.2 19 11.4 23l3.8 4M24.8 19l3.8 4-3.8 4M21.6 18.2l-3.2 9.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="orbit__chip" style="left:-10px;top:60px"><i>🍽</i>{{hv_n1}}</span>
+        <span class="orbit__chip" style="left:340px;top:30px"><i>🏨</i>{{hv_n2}}</span>
+        <span class="orbit__chip" style="left:360px;top:350px"><i>🛒</i>{{hv_n3}}</span>
+        <span class="orbit__chip" style="left:-20px;top:400px"><i>💇</i>{{hv_n4}}</span>
+        <span class="orbit__chip" style="left:170px;top:490px"><i>🏢</i>{{hv_n5}}</span>
+        <span class="orbit__chip" style="left:180px;top:-20px"><i>🎬</i>{{hv_n6}}</span>
+        <div class="orbit__mini orbit__mini--1"><img src="{{root}}assets/img/projects/nf-t.webp" alt="" loading="lazy"></div>
+        <div class="orbit__mini orbit__mini--2"><img src="{{root}}assets/img/hotel-1-t.webp" alt="" loading="lazy"></div>
+        <div class="orbit__mini orbit__mini--3"><img src="{{root}}assets/img/market-1-t.webp" alt="" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="scenes__dots"><button type="button" tabindex="-1" class="on" aria-label="1"></button><button type="button" tabindex="-1" aria-label="2"></button><button type="button" tabindex="-1" aria-label="3"></button></div>
   </div>
 </div>
 <div class="wrap marq"><small>{{hero_marq}}</small><span>School 42</span><span>Impact Waves</span><span>Notfilmmaker</span><span>Fridee Studio</span><span>Kinoframe</span><span>7 Star</span><span>DG Tech</span><span>Cinefox</span></div>
@@ -270,7 +302,7 @@
   <button class="x" aria-label="{{lb_close}}">×</button><button class="pv" aria-label="{{lb_prev}}">‹</button><button class="nx" aria-label="{{lb_next}}">›</button>
   <figure><img alt=""><figcaption></figcaption></figure>
 </div>
-<script src="{{root}}assets/js/site.js?v=4"></script>
+<script src="{{root}}assets/js/site.js?v=5"></script>
 <script src="{{root}}assets/js/chat.js?v=5" defer></script>
 </body>
 </html>

@@ -64,3 +64,25 @@
   window.addEventListener('resize', build);
   build();
 })();
+// Первый экран: три сцены сменяют друг друга; на узком экране сцена уменьшается под ширину
+(function () {
+  var stage = document.querySelector('.stage');
+  if (!stage) return;
+  var scenes = stage.querySelectorAll('.scene'), dots = stage.querySelectorAll('.scenes__dots button'), i = 0, timer;
+  function fit() { stage.style.setProperty('--k', Math.min(1, stage.clientWidth / 600)); }
+  function show(n) {
+    i = (n + scenes.length) % scenes.length;
+    scenes.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+  }
+  function play() {
+    clearInterval(timer);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = setInterval(function () { if (!document.hidden) show(i + 1); }, 5500);
+  }
+  dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); play(); }); });
+  stage.addEventListener('mouseenter', function () { clearInterval(timer); });
+  stage.addEventListener('mouseleave', play);
+  window.addEventListener('resize', fit);
+  fit(); play();
+})();
