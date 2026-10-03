@@ -3,6 +3,8 @@
 # наступило время `at` (по Еревану) и стоит `approved: true`. Подпись можно править прямо здесь.
 # Уже опубликованное записано в social/published.json и повторно не уходит.
 timezone: Asia/Yerevan
+# Azat 2026-10-03: пауза публикаций в Telegram-канал (Instagram и Facebook идут как обычно). Снять: false.
+telegram_paused: true
 posts:
 - id: 2026-10-nedelya-1/01-karusel-restoran
   title: Гость заказал ужин. Что дальше?
