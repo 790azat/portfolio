@@ -34,6 +34,7 @@ p { margin: 0 0 1em; }
 .logo { font-weight: 800; font-size: 1.45rem; letter-spacing: -.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
 .logo svg { width: 38px; height: 38px; flex: none; }
 .logo b { color: var(--rose); font-weight: 800; }
+.logo span { font-family: 'EvnLogo', 'Manrope', sans-serif; letter-spacing: -.01em; }
 .nav { display: flex; gap: 4px; margin-left: auto; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 99px; padding: 5px; }
 .nav a { text-decoration: none; color: #e4d9d6; font-size: .93rem; font-weight: 600; padding: 7px 15px; border-radius: 99px; white-space: nowrap; transition: background .2s, color .2s; }
 .nav a:hover { background: #fff; color: var(--ink); }
