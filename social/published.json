@@ -276,5 +276,18 @@
    66
   ],
   "telegram_at": "2026-10-02 19:16"
+ },
+ "2026-10-segmenty/06-post-partnery": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)",
+  "facebook": "1347280171803827_122103196461492824",
+  "facebook_at": "2026-10-03 12:05",
+  "telegram": 67,
+  "telegram_ids": [
+   67,
+   68,
+   69
+  ],
+  "telegram_at": "2026-10-03 12:05"
  }
 }
