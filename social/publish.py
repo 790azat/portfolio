@@ -259,6 +259,10 @@ def main():
     dlist = HERE / 'delete.yaml'
     deleted = set((yaml.safe_load(dlist.read_text(encoding='utf-8')) or {}).get('delete') or []) if dlist.exists() else set()
     failed = False
+    # Azat 2026-10-03: канал Telegram на паузе (подписчиков нет). Вернуть: telegram_paused: false в schedule.yaml.
+    tg_paused = bool(sched.get('telegram_paused'))
+    if tg_paused:
+        print('Telegram: публикация в канал на паузе (telegram_paused в schedule.yaml)')
     for p in sched.get('posts') or []:
         pid = p['id']
         at = p['at'] if isinstance(p['at'], datetime.datetime) else datetime.datetime.strptime(str(p['at'])[:16], '%Y-%m-%d %H:%M')
@@ -278,7 +282,12 @@ def main():
             if target == 'instagram' and not ig:
                 print(f'{pid}: пропуск Instagram, аккаунт не привязан'); continue
             if target == 'telegram':
-                if not tg.enabled():
+                if not tg.enabled() or rec.get('telegram_skipped'):
+                    continue
+                if tg_paused:
+                    # отмечаем пропуск, чтобы после снятия паузы старые посты не ушли в канал пачкой
+                    if not a.dry_run:
+                        rec['telegram_skipped'] = f"пауза {now.strftime('%Y-%m-%d %H:%M')}"
                     continue
                 if a.dry_run:
                     print(f'[пробно] {pid} → telegram: {p["kind"]}, {len(urls)} файл(ов)'); continue
