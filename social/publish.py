@@ -194,7 +194,13 @@ def ig_publish(ig, kind, urls, caption, cover=None, fb_video=None):
     else:
         cid = call('POST', f'{ig}/media', image_url=fb_cdn(urls[0]), caption=caption)['id']
     ig_wait(cid, kind)
-    return call('POST', f'{ig}/media_publish', creation_id=cid)['id']
+    for i in range(6):  # бывает, что после FINISHED Instagram ещё секунды отвечает 9007 «Media ID is not available»
+        try:
+            return call('POST', f'{ig}/media_publish', creation_id=cid)['id']
+        except MetaError as e:
+            if 'code 9007' not in str(e) or i == 5:
+                raise
+            time.sleep(15)
 
 
 # ---------- Facebook ----------
