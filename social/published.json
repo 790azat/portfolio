@@ -289,5 +289,11 @@
    69
   ],
   "telegram_at": "2026-10-03 12:05"
+ },
+ "2026-10-nedelya-1/05-story-razbor": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Media ID is not available (code 9007/2207027)",
+  "facebook": "1110150034814427",
+  "facebook_at": "2026-10-06 10:20"
  }
 }
