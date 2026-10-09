@@ -16,8 +16,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Даты файлов = дата последнего коммита (чтобы заливались только изменённые)
-        run: python scripts/restore_mtime.py site
       - name: Проверка перед выкладкой
         run: python scripts/check.py
       - name: Настройки Telegram-бота (из секрета, в репозиторий не попадают)
@@ -65,17 +63,27 @@ jobs:
             exit 1
           fi
           echo "Вход по SFTP успешен, папка $REMOTE на месте"
+          # Какой коммит выложен в прошлый раз: изменённые с тех пор файлы зальются, остальные нет
+          PREV=$(LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
+            set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 20;
+            cat $REMOTE/.deployed-sha; bye" 2>/dev/null | head -c 40 || true)
+          python scripts/restore_mtime.py site "$PREV"
           LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
             set sftp:auto-confirm yes;
             set net:max-retries 3; set net:timeout 30;
-            mirror -R --delete --verbose --parallel=4 --exclude-glob .well-known/ --exclude-glob bot/data/ site/ $REMOTE/;
+            mirror -R --delete --verbose --parallel=4 --exclude-glob .well-known/ --exclude-glob bot/data/ --exclude-glob .deployed-sha site/ $REMOTE/;
             bye"
+          # Запоминаем выложенный коммит (только после успешной заливки)
+          echo "$GITHUB_SHA" > /tmp/deployed-sha
+          LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
+            set sftp:auto-confirm yes; set net:max-retries 3; set net:timeout 30;
+            put /tmp/deployed-sha -o $REMOTE/.deployed-sha; bye"
           # Запасная копия на техническом адресе SmartApe: пока evnweb.am не открывается, Telegram-бот работает отсюда.
           if [ -n "$MIRROR" ]; then
             LFTP_PASSWORD="$PASS" lftp --env-password -u "$USER" -p "$PORT" "sftp://$HOST" -e "
               set sftp:auto-confirm yes;
               set net:max-retries 3; set net:timeout 30;
               mkdir -p -f $MIRROR;
-              mirror -R --delete --parallel=4 --exclude-glob .well-known/ --exclude-glob bot/data/ site/ $MIRROR/;
+              mirror -R --delete --parallel=4 --exclude-glob .well-known/ --exclude-glob bot/data/ --exclude-glob .deployed-sha site/ $MIRROR/;
               bye" && echo "Копия выложена в $MIRROR" || echo "::warning::Не удалось выложить копию в $MIRROR"
           fi
