@@ -143,14 +143,15 @@ p { margin: 0 0 1em; }
 .svc .ic svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .svc--green { background: var(--green-bg); border-color: #cfe4dc; }
 .svc--green .ic { background: #d6ebe3; color: var(--green); }
-.svc--big { grid-column: span 6; min-height: 500px; border: 0; color: #fff; padding-right: 60px; }
+.svc--big { grid-column: span 6; min-height: 540px; border: 0; color: #fff; padding-right: 60px; padding-bottom: 0; display: flex; flex-direction: column; }
 .svc--big h3 { font-size: 1.6rem; margin-top: 4px; }
 .svc--dark { background: var(--ink); }
 .svc--dark p { color: #bfb2af; }
 .svc--red { background: linear-gradient(160deg, #c8323a, #8f1f26); }
 .svc--red p { color: #ffd9d4; }
 .svc__n { position: absolute; top: 26px; right: 28px; font-weight: 800; font-size: .85rem; opacity: .55; }
-.svc__shot { position: absolute; left: 28px; right: -40px; bottom: -30px; height: 270px; border-radius: 14px; overflow: hidden; box-shadow: 0 -10px 40px rgba(0,0,0,.4); }
+.svc__shot { position: relative; flex: 1 0 300px; margin: 24px -60px -30px 0; border-radius: 14px; overflow: hidden; box-shadow: 0 -10px 40px rgba(0,0,0,.4); }
+.svc__shot img { position: absolute; inset: 0; }
 .svc__shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 
 /* выполненные проекты (разметка из scripts/projects.py) */
@@ -300,8 +301,8 @@ p { margin: 0 0 1em; }
   .projects > .pj { flex-basis: 84%; }
   .carousel-nav { display: none; }
   .svc, .svc--big { grid-column: auto; }
-  .svc--big { min-height: 460px; padding-right: 28px; }
-  .svc__shot { height: 220px; }
+  .svc--big { min-height: 0; padding-right: 28px; }
+  .svc__shot { flex-basis: 240px; margin-right: -28px; }
   .case { padding: 24px; border-radius: 24px; }
   .shots__main { padding: 0 44px 30px 0; }
   .shots__row { gap: 8px; }
