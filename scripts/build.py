@@ -39,7 +39,9 @@ PRELOAD = {
 }
 
 # Цены для разметки schema.org: ключ заголовка услуги в strings.json и цена «от» в драмах
-OFFERS = [("p1_h", 150000), ("p2_h", 280000), ("p3_h", 450000), ("p4_h", 400000), ("p5_h", 650000), ("p6_h", 25000)]
+OFFERS = [("p1_h", 150000), ("p2_h", 280000), ("p3_h", 450000), ("p4_h", 400000), ("p5_h", 650000), ("p6_h", 25000),
+          ("sys1_h", 200000), ("sys2_h", 650000), ("sys3_h", 350000), ("sys4_h", 900000), ("sys5_h", 100000),
+          ("sys6_h", 400000), ("sys7_h", 450000), ("sys8_h", 400000), ("sys9_h", 600000)]
 
 
 def webp_size(path):
@@ -87,7 +89,7 @@ def jsonld(lang, strings, url):
                 "geo": {"@type": "GeoCoordinates", "latitude": 40.1792, "longitude": 44.4991},
                 "areaServed": {"@type": "Country", "name": "Armenia"},
                 "availableLanguage": ["hy", "ru", "en"],
-                "priceRange": "150000–1500000 AMD",
+                "priceRange": "100000–1500000 AMD",
                 "currenciesAccepted": "AMD",
                 "sameAs": ["https://t.me/+37493401179", "https://www.instagram.com/evnweb/"],
                 "contactPoint": {"@type": "ContactPoint", "telephone": "+37493401179", "contactType": "customer service",
