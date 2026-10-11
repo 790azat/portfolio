@@ -196,6 +196,16 @@ p { margin: 0 0 1em; }
 .shots__row button { flex: 1 1 0; aspect-ratio: 4 / 3; border-radius: 10px; }
 
 /* цены */
+.systems { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.sys { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; display: flex; flex-direction: column; }
+.sys h3 { font-size: 1.08rem; margin-bottom: 8px; overflow-wrap: break-word; hyphens: auto; }
+.sys p { color: var(--muted); font-size: .93rem; margin: 0 0 18px; flex: 1; }
+.sys .ic { width: 46px; height: 46px; border-radius: 14px; background: #fbeae8; color: var(--red); display: grid; place-items: center; margin-bottom: 16px; }
+.sys .ic svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.sys__price { border-top: 1px dashed var(--line); padding-top: 14px; }
+.sys__price b { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; display: block; }
+.sys__price small { color: var(--muted); font-size: .85rem; }
+.systems__cta { margin-top: 26px; text-align: center; }
 .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .price { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 30px; display: flex; flex-direction: column; }
 .price h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 14px; }
@@ -287,7 +297,7 @@ p { margin: 0 0 1em; }
   .section__head { flex-direction: column; align-items: flex-start; gap: 14px; }
   .svc { grid-column: span 6; }
   .svc--big { grid-column: span 12; }
-  .prices { grid-template-columns: 1fr 1fr; }
+  .prices, .systems { grid-template-columns: 1fr 1fr; }
   .projects { --per: 2.2; }
   .steps { grid-template-columns: 1fr 1fr; }
 }
@@ -296,7 +306,7 @@ p { margin: 0 0 1em; }
   .hero__cta .btn { flex: 1 1 100%; }
   .marq { justify-content: flex-start; gap: 10px 24px; font-size: 1rem; padding: 20px 18px; }
   .marq small { flex-basis: 100%; }
-  .bento, .prices, .docs, .links, .steps { grid-template-columns: minmax(0, 1fr); }
+  .bento, .prices, .systems, .docs, .links, .steps { grid-template-columns: minmax(0, 1fr); }
   .projects { --per: 1.15; gap: 14px; margin-right: -18px; padding-right: 18px; -webkit-mask-image: none; mask-image: none; }
   .projects > .pj { flex-basis: 84%; }
   .carousel-nav { display: none; }
