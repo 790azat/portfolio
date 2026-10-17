@@ -337,5 +337,12 @@
   "facebook": "1347280171803827_122112049755492824",
   "facebook_at": "2026-10-16 18:06",
   "telegram_skipped": "пауза 2026-10-16 18:06"
+ },
+ "2026-10-nedelya-2/06-post-google": {
+  "instagram_tries": 1,
+  "instagram_error": "POST 17841421152410929/media_publish: Application request limit reached (code 4/2207051)",
+  "facebook": "1347280171803827_122112329805492824",
+  "facebook_at": "2026-10-17 12:06",
+  "telegram_skipped": "пауза 2026-10-17 12:06"
  }
 }
