@@ -43,6 +43,9 @@ OFFERS = [("p1_h", 150000), ("p2_h", 280000), ("p3_h", 450000), ("p4_h", 400000)
           ("sys1_h", 200000), ("sys2_h", 650000), ("sys3_h", 350000), ("sys4_h", 900000), ("sys5_h", 100000),
           ("sys6_h", 400000), ("sys7_h", 450000), ("sys8_h", 400000), ("sys9_h", 600000)]
 
+# Сколько вопросов в блоке #faq (ключи faq1_q/faq1_a … в strings.json)
+FAQ_COUNT = 7
+
 
 def webp_size(path):
     """Ширина и высота картинки WebP (VP8, VP8L, VP8X) по заголовку файла."""
@@ -87,11 +90,12 @@ def jsonld(lang, strings, url):
                 "founder": {"@type": "Person", "name": t("ld_person")},
                 "address": {"@type": "PostalAddress", "addressLocality": t("ld_city"), "addressCountry": "AM"},
                 "geo": {"@type": "GeoCoordinates", "latitude": 40.1792, "longitude": 44.4991},
-                "areaServed": {"@type": "Country", "name": "Armenia"},
+                "areaServed": [{"@type": "City", "name": "Yerevan"}, {"@type": "Country", "name": "Armenia"}],
                 "availableLanguage": ["hy", "ru", "en"],
                 "priceRange": "100000–1500000 AMD",
                 "currenciesAccepted": "AMD",
-                "sameAs": ["https://t.me/+37493401179", "https://www.instagram.com/evnweb/"],
+                "sameAs": ["https://t.me/+37493401179", "https://www.instagram.com/evnweb/",
+                           "https://www.facebook.com/1347280171803827"],
                 "contactPoint": {"@type": "ContactPoint", "telephone": "+37493401179", "contactType": "customer service",
                                  "availableLanguage": ["Armenian", "Russian", "English"]},
                 "hasOfferCatalog": {
@@ -108,6 +112,12 @@ def jsonld(lang, strings, url):
              "publisher": {"@id": BASE + "#business"}},
             {"@type": "WebPage", "url": url, "name": t("title"), "description": t("description"), "inLanguage": lang,
              "isPartOf": {"@id": BASE + "#website"}, "about": {"@id": BASE + "#business"}},
+            # Блок «Частые вопросы» на странице: те же вопросы и ответы для поиска (FAQPage)
+            {"@type": "FAQPage", "url": url, "inLanguage": lang, "mainEntity": [
+                {"@type": "Question", "name": t(f"faq{i}_q"),
+                 "acceptedAnswer": {"@type": "Answer", "text": t(f"faq{i}_a")}}
+                for i in range(1, FAQ_COUNT + 1)
+            ]},
         ],
     }
     body = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

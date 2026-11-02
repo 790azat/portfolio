@@ -5,7 +5,23 @@ AddType font/woff2 .woff2
 AddType video/mp4 .mp4
 AddType image/svg+xml .svg
 AddType application/xml .xml
-ErrorDocument 404 /
+ErrorDocument 404 /404.html
+
+# Один адрес для поиска: www.evnweb.am -> evnweb.am (без HTTPS-редиректа: на SmartApe он зацикливается)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.evnweb\.am$ [NC]
+  RewriteCond %{REQUEST_URI} !^/bot/
+  RewriteRule ^(.*)$ https://evnweb.am/$1 [R=301,L]
+</IfModule>
+
+# Копия сайта на техническом адресе SmartApe не должна попадать в поиск (дубль evnweb.am)
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase Host "smrtp\.ru" EVN_MIRROR
+</IfModule>
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow" env=EVN_MIRROR
+</IfModule>
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml text/xml text/plain application/ld+json
 </IfModule>

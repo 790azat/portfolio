@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /m/
+Disallow: /bot/
 Sitemap: https://evnweb.am/sitemap.xml

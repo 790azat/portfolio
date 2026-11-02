@@ -406,3 +406,14 @@ p { margin: 0 0 1em; }
 .lc__promo { display: flex; align-items: center; gap: 9px; margin-top: 8px; background: #fbeae8; border-radius: 14px; padding: 6px; font-weight: 800; color: var(--red-d); }
 .lc__promo img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
 .tr__sheet .tr__av { flex: none; width: 28px; height: 28px; border-radius: 50%; background: #e7dcd4; color: #8f7f7c; display: grid; place-items: center; margin: 0; padding: 0; font-size: 0; line-height: 0; overflow: hidden; } .tr__av svg { display: block; width: 18px; height: 18px; fill: currentColor; }
+
+/* Частые вопросы */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.faq__item { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 0 24px; }
+.faq__item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; }
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary:after { content: "+"; flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); color: var(--red); font-weight: 800; font-size: 1.2rem; transition: transform .2s; }
+.faq__item[open] summary:after { transform: rotate(45deg); }
+.faq__item h3 { font-size: 1.05rem; margin: 0; }
+.faq__item p { color: var(--muted); font-size: .95rem; margin: 0 0 20px; }
+@media (max-width: 860px) { .faq { grid-template-columns: minmax(0, 1fr); } }
