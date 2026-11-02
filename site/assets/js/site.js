@@ -109,3 +109,10 @@
   window.addEventListener('resize', fit);
   fit(); play();
 })();
+// Блок «Мобильные приложения»: телефоны уменьшаются под ширину экрана
+(function () {
+  var st = document.querySelector('.apps__stage');
+  if (!st) return;
+  function fit() { st.style.setProperty('--k', Math.min(1, st.clientWidth / 600)); }
+  fit(); window.addEventListener('resize', fit);
+})();
