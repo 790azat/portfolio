@@ -87,3 +87,22 @@ jobs:
               mirror -R --delete --parallel=4 --exclude-glob .well-known/ --exclude-glob bot/data/ --exclude-glob .deployed-sha site/ $MIRROR/;
               bye" && echo "Копия выложена в $MIRROR" || echo "::warning::Не удалось выложить копию в $MIRROR"
           fi
+      - name: "Сообщить поисковикам об обновлении (IndexNow — Bing, Яндекс и др.)"
+        if: success()
+        continue-on-error: true
+        run: |
+          KEY_FILE=$(ls site/*.txt | grep -E '/[0-9a-f]{32}\.txt$' | head -1)
+          if [ -z "$KEY_FILE" ]; then echo "Нет ключа IndexNow в site/"; exit 0; fi
+          KEY=$(basename "$KEY_FILE" .txt)
+          # Ключ должен открываться на сайте, иначе поисковик отклонит запрос
+          if ! curl -fsS --max-time 20 "https://evnweb.am/$KEY.txt" | grep -q "$KEY"; then
+            echo "::warning::Ключ IndexNow не открывается на https://evnweb.am/$KEY.txt, пропускаю"; exit 0
+          fi
+          for U in https://evnweb.am/ https://evnweb.am/ru/ https://evnweb.am/en/; do
+            curl -sS --max-time 20 -o /dev/null -w "$U: %{http_code}\n" -I "$U" || true
+          done
+          BODY=$(printf '{"host":"evnweb.am","key":"%s","keyLocation":"https://evnweb.am/%s.txt","urlList":["https://evnweb.am/","https://evnweb.am/ru/","https://evnweb.am/en/"]}' "$KEY" "$KEY")
+          for API in https://api.indexnow.org/indexnow https://yandex.com/indexnow; do
+            CODE=$(curl -sS --max-time 20 -o /dev/null -w '%{http_code}' -X POST -H 'Content-Type: application/json; charset=utf-8' -d "$BODY" "$API" || echo fail)
+            echo "$API -> $CODE"
+          done
