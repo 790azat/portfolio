@@ -405,3 +405,4 @@ p { margin: 0 0 1em; }
 @media (max-width: 640px) { .apps { border-radius: 26px; padding: 26px 18px 10px; } .apps__feats { grid-template-columns: 1fr; } .apps__buy .btn { flex: 1 1 100%; } }
 .lc__promo { display: flex; align-items: center; gap: 9px; margin-top: 8px; background: #fbeae8; border-radius: 14px; padding: 6px; font-weight: 800; color: var(--red-d); }
 .lc__promo img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
+.tr__av { flex: none; width: 28px; height: 28px; border-radius: 50%; background: #e7dcd4; color: #8f7f7c; display: grid; place-items: center; margin: 0 !important; } .tr__av svg { width: 18px; height: 18px; fill: currentColor; }
